@@ -216,6 +216,9 @@
     <Content Include="images\back_enabled.png" />
     <Content Include="images\back_enabled_hover.png" />
     <Content Include="images\copy_csv_xls_pdf.swf" />
+    <Content Include="images\details_close.png" />
+    <Content Include="images\details_open.png" />
+    <Content Include="images\edit_control.png" />
     <Content Include="images\forward_disabled.png" />
     <Content Include="images\forward_enabled.png" />
     <Content Include="images\forward_enabled_hover.png" />
@@ -271,6 +274,7 @@
     <Content Include="Scripts\dashboard-demo.js" />
     <Content Include="Scripts\dataTables.tableTools.js" />
     <Content Include="Scripts\Function\AddFunction.js" />
+    <Content Include="Scripts\Function\ViewFunction.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
@@ -329,6 +333,7 @@
     <None Include="Properties\PublishProfiles\PrinterMonitor.pubxml" />
     <Content Include="Views\Printer\Monitor.cshtml" />
     <Content Include="Views\Function\AddFunction.cshtml" />
+    <Content Include="Views\Function\ViewFunction.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

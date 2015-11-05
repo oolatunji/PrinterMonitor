@@ -47,8 +47,16 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                bool result = FunctionPL.Update(function);
-                return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function was updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                if (ModelState.IsValid)
+                {
+                    bool result = FunctionPL.Update(function);
+                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function was updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                }
+                else
+                {
+                    string errors = ModelStateValidation.GetErrorListFromModelState(ModelState);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
+                }
             }
             catch (Exception ex)
             {
