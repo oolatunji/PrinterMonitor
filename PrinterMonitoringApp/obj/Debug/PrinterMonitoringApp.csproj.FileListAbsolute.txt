@@ -55,6 +55,7 @@ C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\Printer
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\Newtonsoft.Json.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\Owin.dll
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\PrinterMonitorLibrary.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\System.Net.Http.Formatting.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\System.Web.Helpers.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\System.Web.Http.dll
@@ -66,6 +67,7 @@ C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\Printer
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\System.Web.WebPages.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\System.Web.WebPages.Razor.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\WebGrease.dll
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\PrinterMonitorLibrary.pdb
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\EntityFramework.xml
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\EntityFramework.SqlServer.xml
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\Microsoft.AspNet.SignalR.Core.xml
@@ -88,5 +90,3 @@ C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\Printer
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\obj\Debug\PrinterMonitoringApp.csprojResolveAssemblyReference.cache
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\obj\Debug\PrinterMonitoringApp.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\obj\Debug\PrinterMonitoringApp.pdb
-C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\PrinterMonitorLibrary.dll
-C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitoringApp\bin\PrinterMonitorLibrary.pdb

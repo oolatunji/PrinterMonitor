@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Add Functions";
+    ViewBag.Title = "Add Role";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Scripts.Render("~/bundles/addfunctions")
+@Scripts.Render("~/bundles/addroles")
 <aside class="content-wrapper sidebarLeft">
     <div class="content container-fluid sidebarRight animated fadeInUp">
         <div class="row">
@@ -14,8 +14,8 @@
                         <div class="right">
                             <ol class="breadcrumb breadcrumb-theme breadcrumb-sm breadcrumb-red">
                                 <li><a href="~/Home/Dashboard">Dashboard</a></li>
-                                <li><a>Function Management</a></li>
-                                <li class="active"><a>Add Functions</a></li>
+                                <li><a>Role Management</a></li>
+                                <li class="active"><a>Add Roles</a></li>
                             </ol>
                         </div>
                     </div>
@@ -28,20 +28,24 @@
             <div class="col-sm-12">
                 <div class="panel panel-white">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Function</h3>
+                        <h3 class="panel-title">Add Role</h3>
                     </div>
                     <div class="panel-body">
-                        <form id="form-validation" class="form-horizontal" role="form" action="javascript:addFunction();" method="post" autocomplete="off">
+                        <form id="form-validation" class="form-horizontal" role="form" action="javascript:addRole();" method="post" autocomplete="off">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Enter Function Name" name="functionName" id="functionName" />
+                                    <input type="text" class="form-control" placeholder="Enter Role Name" name="roleName" id="roleName" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Page Link</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Enter Page Link" name="pageLink" id="functionPageLink" />
+                            <div class="col-md-12">                                
+                                <div class="col-sm-offset-2 panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title" style="font-family:Arial;color:black;font-size:13px;">Functions</h3>
+                                    </div>
+                                    <div class="panel-body" id="dynamicfunctions">
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -57,4 +61,3 @@
         </div>
     </div>
 </aside>
-

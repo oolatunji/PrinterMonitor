@@ -11,6 +11,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     
     public partial class Role
@@ -25,6 +26,8 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         public string Name { get; set; }
         public string Status { get; set; }
     
+        [Required]
+        [DisplayName("Functions")]
         public virtual ICollection<RoleFunction> RoleFunctions { get; set; }
     }
 }

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLibrary\FunctionDL.cs" />
+    <Compile Include="DataLibrary\RoleDL.cs" />
     <Compile Include="ModelLibrary\EntityFrameworkLib\Branch.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
@@ -86,6 +87,7 @@
     <Compile Include="ModelLibrary\Utility\RijndaelEnhanced.cs" />
     <Compile Include="ModelLibrary\Utility\StatusUtil.cs" />
     <Compile Include="ProcessLibrary\FunctionPL.cs" />
+    <Compile Include="ProcessLibrary\RolePL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -41,10 +41,18 @@ namespace PrinterMonitoringApp
 
             bundles.Add(new ScriptBundle("~/bundles/addfunctions").Include(
                       "~/Scripts/Function/AddFunction.js"                    
-                      ));
+                      ));            
 
             bundles.Add(new ScriptBundle("~/bundles/viewfunctions").Include(
                       "~/Scripts/Function/ViewFunction.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/addroles").Include(
+                      "~/Scripts/Role/AddRole.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/viewroles").Include(
+                      "~/Scripts/Role/ViewRole.js"
                       ));
          
             bundles.Add(new StyleBundle("~/Content/css").Include(

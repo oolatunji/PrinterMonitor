@@ -124,7 +124,7 @@ function format(d) {
         '</tr>' +
         '<tr>' +
             '<td style="color:navy;width:40%;font-family:Calibri;"></td>' +
-            '<td><button type="button" id="updateBtn" class="btn btn-red" onclick="update();"><i class="fa fa-cog"></i> Update</button></td>' +
+            '<td><button type="button" id="updateBtn" class="btn btn-red" style="float:right;" onclick="update();"><i class="fa fa-cog"></i> Update</button></td>' +
         '</tr>' +
     '</table>';
 }
