@@ -40,6 +40,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Web" />
@@ -50,16 +52,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataLibrary\FunctionDL.cs" />
+    <Compile Include="ModelLibrary\EntityFrameworkLib\Branch.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\Function.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrinterMonitorModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrinterMonitorModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\Role.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\RoleFunction.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\Utility\Base64Conversions.cs" />
+    <Compile Include="ModelLibrary\Utility\Crypter.cs" />
+    <Compile Include="ModelLibrary\Utility\PasswordHash.cs" />
+    <Compile Include="ModelLibrary\Utility\RijndaelEnhanced.cs" />
+    <Compile Include="ModelLibrary\Utility\StatusUtil.cs" />
+    <Compile Include="ProcessLibrary\FunctionPL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PrinterMonitorModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrinterMonitorModel.edmx</DependentUpon>
+      <LastGenOutput>PrinterMonitorModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.edmx.diagram">
+      <DependentUpon>PrinterMonitorModel.edmx</DependentUpon>
+    </None>
+    <None Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrinterMonitorModel.edmx</DependentUpon>
+      <LastGenOutput>PrinterMonitorModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DataLibrary\" />
-    <Folder Include="ModelLibrary\" />
-    <Folder Include="ProcessLibrary\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
