@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/common_libraries")
+</head>
+<body class="header-fixed skin-red">
+    <!-- Header Section -->
+    <header>
+
+        <!-- Product Logo -->
+        <a href="javascript:void(0);" class="logo hidden-xs">
+            <span class="icon">
+                <i class="fa fa-cogs fa-spin"></i>
+            </span>
+            <span style="font-family:Calibri;font-weight:bold"><img src="~/images/uba.jpg" style="max-height:50px;max-width:70px"/></span> 
+        </a>
+        <!-- End Product Logo -->
+        <!-- Header Navigation -->
+        <nav class="navbar-main" role="navigation">
+
+            <!-- Left Button Container -->
+            <ul class="button-container pull-left">
+
+                <li class="item">
+                    <!-- Left Sidebar Toggle Button -->
+                    <a id="sidebarLeftToggle" class="nav-button" data-toggle="collapse" data-target=".sidebarLeft">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- End Left Button Container -->
+           
+            <!-- Navbar Content Center -->
+            <div class="nav-content">
+                <!-- Page Title -->
+                <h3 class="page-title">PRINTER MONITORING PLATFORM</h3>
+                <!-- End Page Title -->
+            </div>
+            <!-- End Navbar Content Center -->
+
+        </nav>
+        <!-- End Header Navigation -->
+
+    </header>
+    <!-- End Header Section -->
+    <!-- Left Sidebar -->
+    <aside class="sidebar sidebar-left collapse navbar-collapse sidebarLeft">
+
+        <!-- Sidebar Wrapper -->
+        <div class="sidebar-wrapper">
+           
+            <!-- Sidebar Navigation Wrapper -->
+            <div class="sidebar-nav-wrapper">
+
+                <!-- User Conatiner -->
+                <div class="user-container dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">                        
+                        <div class="pull-left info" style="margin-top:10px;">
+                            <h4 class="name">Kevin Mckoy</h4>
+                            <h6 class="text-muted extra">System Administrator</h6>
+                        </div>
+                    </a>                   
+                </div>
+                <!-- End User Conatiner -->               
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+
+                    <!-- Menu Item -->
+                    <li class="border-left-red">
+                        <a href="~/home/dashboard" title="Dashboard">
+                            <i class="menu-icon fa fa-lg fa-fw fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="border-left-green">
+                        <a href="~/Printer/Monitor" title="Monitor">
+                            <i class="menu-icon fa fa-lg fa-fw fa-refresh fa-spin"></i> <span>Monitor</span>
+                        </a>
+                    </li>
+                    <!-- Function Menu Item -->
+                    <li class="border-left-red">
+                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#functions-submenu" title="Function Management">
+                            <i class="menu-icon fa fa-lg fa-fw fa-wrench"></i> <span>Function Management</span>
+                            <i class="fa fa-caret-right submenu-indicator"></i>
+                        </a>
+                        <!-- Sub Menu Item -->
+                        <ul id="functions-submenu" class="collapse">
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Function/AddFunction" class="fa fa-plus-square" style="font-size:13px;"> Add Functions</a>
+                            </li>
+                            <!-- End Menu Item -->
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Function/ViewFunction" class="fa fa-folder" style="font-size:13px;"> View Functions</a>
+                            </li>
+                            <!-- End Menu Item -->
+                        </ul>
+                    </li>
+                    <!-- End Menu Item -->
+                    <!-- Role Menu Item -->
+                    <li class="border-left-green">
+                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#roles-submenu" title="Role Management">
+                            <i class="menu-icon fa fa-lg fa-fw fa-check"></i> <span>Roles Management</span>
+                            <i class="fa fa-caret-right submenu-indicator"></i>
+                        </a>
+                        <!-- Sub Menu Item -->
+                        <ul id="roles-submenu" class="collapse">
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Role/AddRole" class="fa fa-plus-square" style="font-size:13px;"> Add Roles</a>
+                            </li>
+                            <!-- End Menu Item -->
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Role/ViewRole" class="fa fa-folder" style="font-size:13px;"> View Roles</a>
+                            </li>
+                            <!-- End Menu Item -->
+                        </ul>
+                    </li>
+                    <!-- End Menu Item -->
+                    <!-- Branch Menu Item -->
+                    <li class="border-left-red">
+                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#branch-submenu" title="Branch Management">
+                            <i class="menu-icon fa fa-lg fa-fw fa-bank"></i> <span>Branch Management</span>
+                            <i class="fa fa-caret-right submenu-indicator"></i>
+                        </a>
+                        <!-- Sub Menu Item -->
+                        <ul id="branch-submenu" class="collapse">
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Branch/AddBranch" class="fa fa-plus-square" style="font-size:13px;"> Add Branches</a>
+                            </li>
+                            <!-- End Menu Item -->
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Branch/ViewBranch" class="fa fa-folder" style="font-size:13px;"> View Branches</a>
+                            </li>
+                            <!-- End Menu Item -->
+                        </ul>
+                    </li>
+                    <!-- End Menu Item -->
+                    <!-- User Menu Item -->
+                    <li class="border-left-green">
+                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#user-submenu" title="User Management">
+                            <i class="menu-icon fa fa-lg fa-fw fa-user"></i> <span>User Management</span>
+                            <i class="fa fa-caret-right submenu-indicator"></i>
+                        </a>
+                        <!-- Sub Menu Item -->
+                        <ul id="user-submenu" class="collapse">
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/User/AddUser" class="fa fa-plus-square" style="font-size:13px;"> Add Users</a>
+                            </li>
+                            <!-- End Menu Item -->
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/User/ViewUser" class="fa fa-folder" style="font-size:13px;"> View Users</a>
+                            </li>
+                            <!-- End Menu Item -->
+                        </ul>
+                    </li>
+                    <!-- End Menu Item -->
+                    <li>
+                        @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)
+                    </li>   
+                    <!-- End Menu Item -->                    
+                </ul>
+                <!-- End Sidebar Navigation -->
+
+            </div>
+            <!-- End Sidebar Navigation Wrapper -->
+
+        </div>
+        <!-- End Sidebar Wrapper -->
+
+    </aside>
+    <!-- End Left Sidebar -->
+
+    @RenderBody()
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

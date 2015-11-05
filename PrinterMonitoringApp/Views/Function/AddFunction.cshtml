@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Add Functions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/addfunctions")
+<aside class="content-wrapper sidebarLeft">
+    <div class="content container-fluid sidebarRight animated fadeInUp">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-body content-title-container">
+                        <div class="right">
+                            <ol class="breadcrumb breadcrumb-theme breadcrumb-sm breadcrumb-red">
+                                <li><a href="~/Home/Dashboard">Dashboard</a></li>
+                                <li><a>Function Management</a></li>
+                                <li class="active"><a>Add Functions</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Function</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-validation" class="form-horizontal" role="form" action="javascript:addFunction();" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Enter Function Name" name="functionName" id="functionName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Page Link</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Enter Page Link" name="pageLink" id="pageLink" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addBtn" class="btn btn-red">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</aside>
+

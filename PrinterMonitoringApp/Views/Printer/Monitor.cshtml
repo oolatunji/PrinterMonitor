@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Monitor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="content-wrapper sidebarLeft">
+
+    <!-- Page Content -->
+    <div class="content container-fluid sidebarRight animated fadeInUp">
+
+        <div class="row">
+            <div id="MonitorPanel">
+                <div class="panel panel-default border-top-red" id="offlinePrinter">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:red" id="offline_header">OFFLINE PRINTER(S)</h3>
+                        <div class="controls pull-right">
+                            <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="panel-body no-padding" id="offlinePrinterPanel">
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default border-top-purple" id="lowRibbonPrinter">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:purple" id="low_header">LOW RIBBON PRINTER(S)</h3>
+                        <div class="controls pull-right">
+                            <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="panel-body no-padding" id="lowRibbonPrinterPanel">
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default border-top-green" id="onlinePrinter">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:green">OTHER PRINTERS</h3>
+                        <div class="controls pull-right">
+                            <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="panel-body no-padding" id="onlinePrinterPanel">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="modal fade" id="modalHeaderLightBlue" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-light-red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Offline Printers</h4>
+            </div>
+            <div class="modal-body text-left">
+                <table id="properties" class="cell-border" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status (%)</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalHeaderLightPurple" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-light-purple">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Low Ribbon Printers</h4>
+            </div>
+            <div class="modal-body text-left">
+                <table id="lowproperties" class="cell-border" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status (%)</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/dashboard-demo.js"></script>
+}
+
+
+
+
