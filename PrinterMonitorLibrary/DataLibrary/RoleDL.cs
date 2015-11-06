@@ -37,6 +37,8 @@ namespace PrinterMonitorLibrary
                 {
                     existingRole = context.Roles
                                     .Where(t => t.Name.Equals(role.Name))
+                                    .Include(r => r.RoleFunctions)
+                                    .Include(r => r.Users)
                                     .FirstOrDefault();
                 }
 
@@ -57,7 +59,10 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    var roles = context.Roles.Include("RoleFunctions").ToList();
+                    var roles = context.Roles
+                                .Include(r => r.RoleFunctions)
+                                .Include(r => r.Users)
+                                .ToList();
 
                     return roles;
                 }
@@ -74,8 +79,10 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    var role = context.Roles.Include("RoleFunctions")
-                                            .Where(f => f.ID == roleID);
+                    var role = context.Roles
+                                        .Include(r => r.RoleFunctions)
+                                        .Include(r => r.Users)
+                                        .Where(f => f.ID == roleID);
 
                     return role.FirstOrDefault();
                 }
@@ -93,7 +100,9 @@ namespace PrinterMonitorLibrary
                 Role existingRole = new Role();
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    existingRole = context.Roles.Include("RoleFunctions")
+                    existingRole = context.Roles
+                                    .Include(r => r.RoleFunctions)
+                                    .Include(r => r.Users)
                                     .Where(t => t.ID == role.ID)
                                     .FirstOrDefault();
                 }

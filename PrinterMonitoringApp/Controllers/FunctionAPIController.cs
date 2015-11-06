@@ -22,7 +22,7 @@ namespace PrinterMonitoringApp.Controllers
                     function.Status = StatusUtil.Status.Active.ToString();
                     bool result = FunctionPL.Save(function, out errMsg);
                     if (string.IsNullOrEmpty(errMsg))
-                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function was added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
                     else
                     {
                         var response = Request.CreateResponse(HttpStatusCode.BadRequest, errMsg);
@@ -50,7 +50,7 @@ namespace PrinterMonitoringApp.Controllers
                 if (ModelState.IsValid)
                 {
                     bool result = FunctionPL.Update(function);
-                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function was updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Function updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
                 }
                 else
                 {

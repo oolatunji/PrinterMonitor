@@ -47,11 +47,28 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<Branch> RetrieveBranches()
+        public static List<Object> RetrieveBranches()
         {
             try
             {
-                return BranchDL.RetrieveBranches();
+                List<Object> returnedBranches = new List<object>();
+
+                List<Branch> branches = BranchDL.RetrieveBranches();
+
+                foreach(Branch branch in branches)
+                {
+                    Object branchObj = new
+                    {
+                        ID = branch.ID,
+                        Name = branch.Name,
+                        Code = branch.Code,
+                        Address = branch.Address
+                    };
+
+                    returnedBranches.Add(branchObj);
+                }
+
+                return returnedBranches;
             }
             catch (Exception ex)
             {

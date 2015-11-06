@@ -180,11 +180,14 @@
     <Compile Include="Controllers\PrinterController.cs" />
     <Compile Include="Controllers\RoleAPIController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserAPIController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelStateValidation.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimeHubs\PrinterTrackingHub.cs" />
@@ -306,6 +309,8 @@
     <Content Include="Scripts\skycons.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\User\AddUser.js" />
+    <Content Include="Scripts\User\ViewUser.js" />
     <Content Include="Scripts\Utility\configFile.js" />
     <Content Include="Scripts\Utility\messageBox.js" />
     <Content Include="Scripts\xcharts.js" />
@@ -347,6 +352,8 @@
     <Content Include="Views\Role\ViewRole.cshtml" />
     <Content Include="Views\Branch\AddBranch.cshtml" />
     <Content Include="Views\Branch\ViewBranch.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\ViewUser.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

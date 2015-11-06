@@ -21,7 +21,7 @@ namespace PrinterMonitoringApp.Controllers
                     string errMsg = string.Empty;
                     bool result = BranchPL.Save(branch, out errMsg);
                     if (string.IsNullOrEmpty(errMsg))
-                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Branch was added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Branch added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
                     else
                     {
                         var response = Request.CreateResponse(HttpStatusCode.BadRequest, errMsg);
@@ -49,7 +49,7 @@ namespace PrinterMonitoringApp.Controllers
                 if (ModelState.IsValid)
                 {
                     bool result = BranchPL.Update(branch);
-                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Branch was updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
+                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Branch updated successfully") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed");
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                IEnumerable<Branch> branches = BranchPL.RetrieveBranches();
+                IEnumerable<Object> branches = BranchPL.RetrieveBranches();
                 object returnedBranches = new { data = branches };
                 return Request.CreateResponse(HttpStatusCode.OK, returnedBranches);
             }

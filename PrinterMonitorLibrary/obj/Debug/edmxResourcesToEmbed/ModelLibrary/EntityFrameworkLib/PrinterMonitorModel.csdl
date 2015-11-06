@@ -1,22 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PrinterMonitorEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PrinterMonitorDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Branches" EntityType="PrinterMonitorEntities.Branch" />
+    <EntitySet Name="CHECK_WEBTOKEN" EntityType="PrinterMonitorEntities.CHECK_WEBTOKEN" />
+    <EntitySet Name="Functions" EntityType="PrinterMonitorEntities.Function" />
+    <EntitySet Name="Printers" EntityType="PrinterMonitorEntities.Printer" />
+    <EntitySet Name="PrinterFeeds" EntityType="PrinterMonitorEntities.PrinterFeed" />
+    <EntitySet Name="RoleFunctions" EntityType="PrinterMonitorEntities.RoleFunction" />
+    <EntitySet Name="Roles" EntityType="PrinterMonitorEntities.Role" />
+    <EntitySet Name="SmartCards" EntityType="PrinterMonitorEntities.SmartCard" />
+    <EntitySet Name="Users" EntityType="PrinterMonitorEntities.User" />
+    <AssociationSet Name="FK_Printer_Branch" Association="PrinterMonitorEntities.FK_Printer_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Printer" EntitySet="Printers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Branch" Association="PrinterMonitorEntities.FK_Users_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleFunctions_Roles" Association="PrinterMonitorEntities.FK_RoleFunctions_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RoleFunction" EntitySet="RoleFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="PrinterMonitorEntities.FK_Users_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_SmartCard" Association="PrinterMonitorEntities.FK_Users_SmartCard">
+      <End Role="SmartCard" EntitySet="SmartCards" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Branch">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Printers" Relationship="PrinterMonitorEntities.FK_Printer_Branch" FromRole="Branch" ToRole="Printer" />
+    <NavigationProperty Name="Users" Relationship="PrinterMonitorEntities.FK_Users_Branch" FromRole="Branch" ToRole="User" />
+  </EntityType>
+  <EntityType Name="CHECK_WEBTOKEN">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EncyptedToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfrequest" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="HashedToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SmartCardID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HashedSmartCardID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Function">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PageLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PageLink" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Printer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrinterUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrinterSrNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrinterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrinterBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BranchID" Type="Int64" />
+    <Property Name="DateofEnrollment" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Branch" Relationship="PrinterMonitorEntities.FK_Printer_Branch" FromRole="Printer" ToRole="Branch" />
+  </EntityType>
+  <EntityType Name="PrinterFeed">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrinterUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RibbonCount" Type="Int32" Nullable="false" />
+    <Property Name="CardPrinted" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="LatestFeed" Type="Boolean" Nullable="false" />
+    <Property Name="DateofReport" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="RoleFunction">
     <Key>
@@ -24,38 +96,108 @@
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoleID" Type="Int64" Nullable="false" />
-    <Property Name="Functions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_RoleFunctions_Roles" FromRole="RoleFunctions" ToRole="Roles" />
+    <Property Name="Functions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="PrinterMonitorEntities.FK_RoleFunctions_Roles" FromRole="RoleFunction" ToRole="Role" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="RoleFunctions" Relationship="Self.FK_RoleFunctions_Roles" FromRole="Roles" ToRole="RoleFunctions" />
+    <NavigationProperty Name="RoleFunctions" Relationship="PrinterMonitorEntities.FK_RoleFunctions_Roles" FromRole="Role" ToRole="RoleFunction" />
+    <NavigationProperty Name="Users" Relationship="PrinterMonitorEntities.FK_Users_Roles" FromRole="Role" ToRole="User" />
   </EntityType>
-  <Association Name="FK_RoleFunctions_Roles">
-    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
-    <End Role="RoleFunctions" Type="Self.RoleFunction" Multiplicity="*" />
+  <EntityType Name="SmartCard">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EncryptedSmartCardID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HashedSmartCardID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Allocated" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="PrinterMonitorEntities.FK_Users_SmartCard" FromRole="SmartCard" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lastname" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Othernames" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserRole" Type="Int64" />
+    <Property Name="HashedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SmartCardID" Type="Int64" />
+    <Property Name="UserBranch" Type="Int64" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="FirstTime" Type="Boolean" />
+    <NavigationProperty Name="Branch" Relationship="PrinterMonitorEntities.FK_Users_Branch" FromRole="User" ToRole="Branch" />
+    <NavigationProperty Name="Role" Relationship="PrinterMonitorEntities.FK_Users_Roles" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="SmartCard" Relationship="PrinterMonitorEntities.FK_Users_SmartCard" FromRole="User" ToRole="SmartCard" />
+  </EntityType>
+  <Association Name="FK_Printer_Branch">
+    <End Type="PrinterMonitorEntities.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="PrinterMonitorEntities.Printer" Role="Printer" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Roles">
+      <Principal Role="Branch">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="RoleFunctions">
+      <Dependent Role="Printer">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Branch">
+    <End Type="PrinterMonitorEntities.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="PrinterMonitorEntities.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleFunctions_Roles">
+    <End Type="PrinterMonitorEntities.Role" Role="Role" Multiplicity="1" />
+    <End Type="PrinterMonitorEntities.RoleFunction" Role="RoleFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RoleFunction">
         <PropertyRef Name="RoleID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PrinterMonitorDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Branches" EntityType="Self.Branch" />
-    <EntitySet Name="Functions" EntityType="Self.Function" />
-    <EntitySet Name="RoleFunctions" EntityType="Self.RoleFunction" />
-    <EntitySet Name="Roles" EntityType="Self.Role" />
-    <AssociationSet Name="FK_RoleFunctions_Roles" Association="Self.FK_RoleFunctions_Roles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="RoleFunctions" EntitySet="RoleFunctions" />
-    </AssociationSet>
-  </EntityContainer>
+  <Association Name="FK_Users_Roles">
+    <End Type="PrinterMonitorEntities.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="PrinterMonitorEntities.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_SmartCard">
+    <End Type="PrinterMonitorEntities.SmartCard" Role="SmartCard" Multiplicity="0..1" />
+    <End Type="PrinterMonitorEntities.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmartCard">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="SmartCardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

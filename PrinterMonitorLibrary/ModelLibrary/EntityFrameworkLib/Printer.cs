@@ -11,24 +11,17 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class Branch
+    public partial class Printer
     {
-        public Branch()
-        {
-            this.Printers = new HashSet<Printer>();
-            this.Users = new HashSet<User>();
-        }
-    
         public long ID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public string Code { get; set; }
-        [Required]
-        public string Address { get; set; }
+        public string PrinterUID { get; set; }
+        public string PrinterSrNo { get; set; }
+        public string PrinterName { get; set; }
+        public string PrinterBrand { get; set; }
+        public Nullable<long> BranchID { get; set; }
+        public Nullable<System.DateTime> DateofEnrollment { get; set; }
     
-        public virtual ICollection<Printer> Printers { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }

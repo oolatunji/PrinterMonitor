@@ -4,12 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c2b78b9394664c58a7ead63285a60b00" Name="Diagram1">
-        <EntityTypeShape EntityType="PrinterMonitorEntities.Branch" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrinterMonitorEntities.Function" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrinterMonitorEntities.RoleFunction" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrinterMonitorEntities.Role" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="PrinterMonitorEntities.FK_RoleFunctions_Roles" ManuallyRouted="false" />
+      <Diagram DiagramId="c2b78b9394664c58a7ead63285a60b00" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="PrinterMonitorEntities.Branch" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.CHECK_WEBTOKEN" Width="1.5" PointX="5.75" PointY="1.375" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.Function" Width="1.5" PointX="5.75" PointY="5.375" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.Printer" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.PrinterFeed" Width="1.5" PointX="7.75" PointY="1.375" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.RoleFunction" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.Role" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.SmartCard" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="PrinterMonitorEntities.User" Width="1.5" PointX="3" PointY="3.5" />
+        <AssociationConnector Association="PrinterMonitorEntities.FK_Printer_Branch" />
+        <AssociationConnector Association="PrinterMonitorEntities.FK_Users_Branch" />
+        <AssociationConnector Association="PrinterMonitorEntities.FK_RoleFunctions_Roles" />
+        <AssociationConnector Association="PrinterMonitorEntities.FK_Users_Roles" />
+        <AssociationConnector Association="PrinterMonitorEntities.FK_Users_SmartCard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

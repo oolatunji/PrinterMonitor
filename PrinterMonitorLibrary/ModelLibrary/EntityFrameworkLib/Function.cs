@@ -17,7 +17,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
     public partial class Function
     {
         public long ID { get; set; }
-        [Required]        
+        [Required]
         public string Name { get; set; }
         [Required]
         [DisplayName("Page Link")]

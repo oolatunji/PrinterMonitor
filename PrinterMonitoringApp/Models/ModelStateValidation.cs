@@ -11,6 +11,7 @@ namespace PrinterMonitoringApp
         public static string GetErrorListFromModelState(ModelStateDictionary modelState)
         {
             string errors = "";
+
             var query = from state in modelState.Values
                         from error in state.Errors
                         select error.ErrorMessage;

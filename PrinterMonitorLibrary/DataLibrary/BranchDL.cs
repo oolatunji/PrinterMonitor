@@ -40,6 +40,8 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     existingBranch = context.Branches
+                                    .Include(b => b.Printers)
+                                    .Include(b => b.Users)
                                     .Where(t => t.Name.Equals(branch.Name) || t.Code.Equals(branch.Code))
                                     .FirstOrDefault();
                 }
@@ -61,7 +63,10 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    var branches = context.Branches.ToList();
+                    var branches = context.Branches
+                                    .Include(b => b.Printers)
+                                    .Include(b => b.Users)
+                                    .ToList();
 
                     return branches;
                 }
@@ -79,6 +84,8 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     var branches = context.Branches
+                                            .Include(b => b.Printers)
+                                            .Include(b => b.Users)
                                             .Where(f => f.ID == branchID);
 
                     return branches.FirstOrDefault();
@@ -98,6 +105,8 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     existingBranch = context.Branches
+                                    .Include(b => b.Printers)
+                                    .Include(b => b.Users)
                                     .Where(t => t.ID == branch.ID)
                                     .FirstOrDefault();
                 }

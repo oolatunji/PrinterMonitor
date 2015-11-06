@@ -9,6 +9,20 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="CHECK_WEBTOKEN">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Token" Type="nvarchar(max)" />
+    <Property Name="EncyptedToken" Type="nvarchar(max)" />
+    <Property Name="DateOfrequest" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="HashedToken" Type="nvarchar(max)" />
+    <Property Name="Username" Type="nvarchar(max)" />
+    <Property Name="SmartCardID" Type="nvarchar(max)" />
+    <Property Name="HashedSmartCardID" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Functions">
     <Key>
       <PropertyRef Name="ID" />
@@ -17,6 +31,30 @@
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="PageLink" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Printer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrinterSrNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrinterName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrinterBrand" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchID" Type="bigint" />
+    <Property Name="DateofEnrollment" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PrinterFeeds">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RibbonCount" Type="int" Nullable="false" />
+    <Property Name="CardPrinted" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="LatestFeed" Type="bit" Nullable="false" />
+    <Property Name="DateofReport" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="RoleFunctions">
     <Key>
@@ -34,6 +72,45 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="SmartCard">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EncryptedSmartCardID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HashedSmartCardID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Allocated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Othernames" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="UserRole" Type="bigint" />
+    <Property Name="HashedPassword" Type="nvarchar" MaxLength="255" />
+    <Property Name="SmartCardID" Type="bigint" />
+    <Property Name="UserBranch" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="FirstTime" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Printer_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Printer" Type="Self.Printer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Printer">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RoleFunctions_Roles">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="RoleFunctions" Type="Self.RoleFunctions" Multiplicity="*" />
@@ -46,14 +123,71 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Users_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_SmartCard">
+    <End Role="SmartCard" Type="Self.SmartCard" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmartCard">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="SmartCardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PrinterMonitorEntitiesStoreContainer">
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHECK_WEBTOKEN" EntityType="Self.CHECK_WEBTOKEN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Printer" EntityType="Self.Printer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrinterFeeds" EntityType="Self.PrinterFeeds" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RoleFunctions" EntityType="Self.RoleFunctions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmartCard" EntityType="Self.SmartCard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Printer_Branch" Association="Self.FK_Printer_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Printer" EntitySet="Printer" />
+    </AssociationSet>
     <AssociationSet Name="FK_RoleFunctions_Roles" Association="Self.FK_RoleFunctions_Roles">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="RoleFunctions" EntitySet="RoleFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Branch" Association="Self.FK_Users_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_SmartCard" Association="Self.FK_Users_SmartCard">
+      <End Role="SmartCard" EntitySet="SmartCard" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

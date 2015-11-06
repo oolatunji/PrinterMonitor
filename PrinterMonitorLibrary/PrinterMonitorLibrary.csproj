@@ -55,10 +55,20 @@
     <Compile Include="DataLibrary\BranchDL.cs" />
     <Compile Include="DataLibrary\FunctionDL.cs" />
     <Compile Include="DataLibrary\RoleDL.cs" />
+    <Compile Include="DataLibrary\UserDL.cs" />
     <Compile Include="ModelLibrary\EntityFrameworkLib\Branch.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\CHECK_WEBTOKEN.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelLibrary\EntityFrameworkLib\Function.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\Printer.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterFeed.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.Context.cs">
@@ -82,6 +92,12 @@
     <Compile Include="ModelLibrary\EntityFrameworkLib\RoleFunction.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\SmartCard.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\User.cs">
+      <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelLibrary\Utility\Base64Conversions.cs" />
     <Compile Include="ModelLibrary\Utility\Crypter.cs" />
     <Compile Include="ModelLibrary\Utility\PasswordHash.cs" />
@@ -90,6 +106,7 @@
     <Compile Include="ProcessLibrary\BranchPL.cs" />
     <Compile Include="ProcessLibrary\FunctionPL.cs" />
     <Compile Include="ProcessLibrary\RolePL.cs" />
+    <Compile Include="ProcessLibrary\UserPL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

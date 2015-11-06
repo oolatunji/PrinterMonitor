@@ -25,7 +25,7 @@ namespace PrinterMonitoringApp.Controllers
                     role.Status = StatusUtil.Status.Active.ToString();
                     bool result = RolePL.Save(role, out errMsg);
                     if (string.IsNullOrEmpty(errMsg))
-                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Role was added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed.");
+                        return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Role added successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed.");
                     else
                     {
                         var response = Request.CreateResponse(HttpStatusCode.BadRequest, errMsg);
@@ -58,7 +58,7 @@ namespace PrinterMonitoringApp.Controllers
                         throw new Exception("The Functions field is required.");
                     
                     bool result = RolePL.Update(role);
-                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Role was updated successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed.");
+                    return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Role updated successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed.");
                 }
                 else
                 {

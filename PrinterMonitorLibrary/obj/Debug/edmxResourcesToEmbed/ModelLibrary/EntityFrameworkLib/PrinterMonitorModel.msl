@@ -4,38 +4,108 @@
     <EntitySetMapping Name="Branches">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.Branch">
         <MappingFragment StoreEntitySet="Branch">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHECK_WEBTOKEN">
+      <EntityTypeMapping TypeName="PrinterMonitorEntities.CHECK_WEBTOKEN">
+        <MappingFragment StoreEntitySet="CHECK_WEBTOKEN">
+          <ScalarProperty Name="HashedSmartCardID" ColumnName="HashedSmartCardID" />
+          <ScalarProperty Name="SmartCardID" ColumnName="SmartCardID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="HashedToken" ColumnName="HashedToken" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateOfrequest" ColumnName="DateOfrequest" />
+          <ScalarProperty Name="EncyptedToken" ColumnName="EncyptedToken" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Functions">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.Function">
         <MappingFragment StoreEntitySet="Functions">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="PageLink" ColumnName="PageLink" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PageLink" ColumnName="PageLink" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Printers">
+      <EntityTypeMapping TypeName="PrinterMonitorEntities.Printer">
+        <MappingFragment StoreEntitySet="Printer">
+          <ScalarProperty Name="DateofEnrollment" ColumnName="DateofEnrollment" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="PrinterBrand" ColumnName="PrinterBrand" />
+          <ScalarProperty Name="PrinterName" ColumnName="PrinterName" />
+          <ScalarProperty Name="PrinterSrNo" ColumnName="PrinterSrNo" />
+          <ScalarProperty Name="PrinterUID" ColumnName="PrinterUID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrinterFeeds">
+      <EntityTypeMapping TypeName="PrinterMonitorEntities.PrinterFeed">
+        <MappingFragment StoreEntitySet="PrinterFeeds">
+          <ScalarProperty Name="DateofReport" ColumnName="DateofReport" />
+          <ScalarProperty Name="LatestFeed" ColumnName="LatestFeed" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CardPrinted" ColumnName="CardPrinted" />
+          <ScalarProperty Name="RibbonCount" ColumnName="RibbonCount" />
+          <ScalarProperty Name="PrinterUID" ColumnName="PrinterUID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RoleFunctions">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.RoleFunction">
         <MappingFragment StoreEntitySet="RoleFunctions">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="Functions" ColumnName="Functions" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.Role">
         <MappingFragment StoreEntitySet="Roles">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmartCards">
+      <EntityTypeMapping TypeName="PrinterMonitorEntities.SmartCard">
+        <MappingFragment StoreEntitySet="SmartCard">
+          <ScalarProperty Name="Allocated" ColumnName="Allocated" />
+          <ScalarProperty Name="HashedSmartCardID" ColumnName="HashedSmartCardID" />
+          <ScalarProperty Name="EncryptedSmartCardID" ColumnName="EncryptedSmartCardID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PrinterMonitorEntities.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="FirstTime" ColumnName="FirstTime" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UserBranch" ColumnName="UserBranch" />
+          <ScalarProperty Name="SmartCardID" ColumnName="SmartCardID" />
+          <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Othernames" ColumnName="Othernames" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

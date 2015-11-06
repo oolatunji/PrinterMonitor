@@ -11,24 +11,17 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class Branch
+    public partial class CHECK_WEBTOKEN
     {
-        public Branch()
-        {
-            this.Printers = new HashSet<Printer>();
-            this.Users = new HashSet<User>();
-        }
-    
-        public long ID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public string Code { get; set; }
-        [Required]
-        public string Address { get; set; }
-    
-        public virtual ICollection<Printer> Printers { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public int id { get; set; }
+        public string Token { get; set; }
+        public string EncyptedToken { get; set; }
+        public System.DateTime DateOfrequest { get; set; }
+        public int Status { get; set; }
+        public string HashedToken { get; set; }
+        public string Username { get; set; }
+        public string SmartCardID { get; set; }
+        public string HashedSmartCardID { get; set; }
     }
 }

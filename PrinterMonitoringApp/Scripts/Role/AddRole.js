@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     try {
-        $('#dynamicfunctions').html('<p style="font-family:Calibri;color:red;">Loading functions...</p>');
+        $('#dynamicfunctions').html('<p style="font-family:Calibri;color:red;"><i class="fa fa-cog fa-spin"></i> Loading functions...</p>');
         $.ajax({
             url: settingsManager.websiteURL + 'api/FunctionAPI/RetrieveFunctions',
             type: 'GET',
