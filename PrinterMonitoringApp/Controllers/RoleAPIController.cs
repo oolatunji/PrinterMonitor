@@ -18,6 +18,9 @@ namespace PrinterMonitoringApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (role.RoleFunctions.Count.Equals(0))
+                        throw new Exception("The Functions field is required.");
+
                     string errMsg = string.Empty;
                     role.Status = StatusUtil.Status.Active.ToString();
                     bool result = RolePL.Save(role, out errMsg);
@@ -32,6 +35,8 @@ namespace PrinterMonitoringApp.Controllers
                 else
                 {
                     string errors = ModelStateValidation.GetErrorListFromModelState(ModelState);
+                    if (role.RoleFunctions.Count.Equals(0))
+                        errors += ", The Functions field is required.";
                     return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
                 }
             }
@@ -49,12 +54,17 @@ namespace PrinterMonitoringApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (role.RoleFunctions.Count.Equals(0))
+                        throw new Exception("The Functions field is required.");
+                    
                     bool result = RolePL.Update(role);
                     return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Role was updated successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Request failed.");
                 }
                 else
                 {
                     string errors = ModelStateValidation.GetErrorListFromModelState(ModelState);
+                    if (role.RoleFunctions.Count.Equals(0))
+                        errors += ", The Functions field is required.";
                     return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
                 }
             }
@@ -70,7 +80,7 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                IEnumerable<Role> roles = RolePL.RolesObject();
+                IEnumerable<Object> roles = RolePL.RolesObject();
                 object returnedRoles = new { data = roles };
                 return Request.CreateResponse(HttpStatusCode.OK, returnedRoles);
             }

@@ -71,11 +71,34 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<Role> RolesObject()
+        public static List<Object> RolesObject()
         {
             try
-            {                              
-                return RolePL.RetrieveRoles();
+            {
+                List<Object> returnedRoles = new List<Object>();
+
+                List<Role> roles = RoleDL.RetrieveRoles();
+
+                foreach (Role role in roles)
+                {
+                    List<string> functions = new List<string>();
+                    
+                    foreach(RoleFunction roleFunction in role.RoleFunctions)
+                    {
+                        functions.Add(roleFunction.Functions);
+                    }
+
+                    Object roleObj = new
+                    {
+                        ID = role.ID,
+                        Name = role.Name,
+                        Functions = functions
+                    };
+
+                    returnedRoles.Add(roleObj);
+                }
+
+                return returnedRoles;
             }
             catch (Exception ex)
             {

@@ -52,17 +52,20 @@ function getFunctions() {
                     {
                         "sExtends": "copy",
                         "sButtonText": "Copy to Clipboard",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' }
+                        "oSelectorOpts": { filter: 'applied', order: 'current' },
+                        "mColumns": "visible"
                     },
                     {
                         "sExtends": "csv",
                         "sButtonText": "Save to CSV",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' }
+                        "oSelectorOpts": { filter: 'applied', order: 'current' },
+                        "mColumns": "visible"
                     },
                     {
                         "sExtends": "xls",
                         "sButtonText": "Save for Excel",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' }
+                        "oSelectorOpts": { filter: 'applied', order: 'current' },
+                        "mColumns": "visible"
                     }
                 ]
             }
