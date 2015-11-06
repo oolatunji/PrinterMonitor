@@ -172,6 +172,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BranchAPIController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\FunctionAPIController.cs" />
     <Compile Include="Controllers\FunctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -269,6 +271,8 @@
     <Content Include="fonts\ionicons.woff" />
     <Content Include="Scripts\bootstrapValidator.js" />
     <Content Include="Scripts\bootstrapValidator.min.js" />
+    <Content Include="Scripts\Branch\AddBranch.js" />
+    <Content Include="Scripts\Branch\ViewBranch.js" />
     <Content Include="Scripts\clndr.js" />
     <Content Include="Scripts\clndr.min.js" />
     <Content Include="Scripts\custom.js" />
@@ -341,6 +345,8 @@
     <Content Include="Views\Function\ViewFunction.cshtml" />
     <Content Include="Views\Role\AddRole.cshtml" />
     <Content Include="Views\Role\ViewRole.cshtml" />
+    <Content Include="Views\Branch\AddBranch.cshtml" />
+    <Content Include="Views\Branch\ViewBranch.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

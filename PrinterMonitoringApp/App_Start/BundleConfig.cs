@@ -54,6 +54,14 @@ namespace PrinterMonitoringApp
             bundles.Add(new ScriptBundle("~/bundles/viewroles").Include(
                       "~/Scripts/Role/ViewRole.js"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/addbranch").Include(
+                      "~/Scripts/Branch/AddBranch.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/viewbranch").Include(
+                      "~/Scripts/Branch/ViewBranch.js"
+                      ));
          
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",

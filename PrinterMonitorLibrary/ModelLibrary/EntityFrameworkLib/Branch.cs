@@ -18,7 +18,9 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         public long ID { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
         public string Code { get; set; }
+        [Required]
         public string Address { get; set; }
     }
 }
