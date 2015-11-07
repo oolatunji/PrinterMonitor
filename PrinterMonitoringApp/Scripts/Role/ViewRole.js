@@ -165,11 +165,11 @@ $(document).ready(function () {
 function format(d, allfunctions) {
     var table = '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<td style="color:navy;width:40%;font-family:Calibri;">Name:</td>';
+    table += '<td style="color:navy;width:40%;font-family:Arial;">Name:</td>';
     table += '<td><input class="form-control" placeholder="Enter Role Name" id="name" value="' + d.Name + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:40%;font-family:Calibri;">Functions:</td>';
+    table += '<td style="color:navy;width:40%;font-family:Arial;">Functions:</td>';
     table += '<td>';
     $.each(allfunctions, function (key, value) {
         var checked = false;
@@ -201,7 +201,7 @@ function format(d, allfunctions) {
 function formatDetails(d, allfunctions) {
     var table = '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<th style="color:navy;width:40%;font-family:Calibri;">Functions</th>';
+    table += '<th style="color:navy;width:40%;font-family:Arial;">Functions</th>';
     table += '</tr>';
     table += '<tr>';
     table += '<td style="font-family:Arial;">';   
@@ -232,7 +232,7 @@ function update() {
         $("input:checkbox[name=functions]:checked").each(function () {
             var roleFunction = {};
             var _function = $(this).val();
-            roleFunction = { Functions: _function };
+            roleFunction = { FunctionID: _function };
             roleFunctions.push(roleFunction);
         });
 

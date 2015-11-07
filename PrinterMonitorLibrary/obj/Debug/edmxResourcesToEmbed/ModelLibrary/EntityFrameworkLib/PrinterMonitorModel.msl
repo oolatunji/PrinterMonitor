@@ -65,7 +65,7 @@
     <EntitySetMapping Name="RoleFunctions">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.RoleFunction">
         <MappingFragment StoreEntitySet="RoleFunctions">
-          <ScalarProperty Name="Functions" ColumnName="Functions" />
+          <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>

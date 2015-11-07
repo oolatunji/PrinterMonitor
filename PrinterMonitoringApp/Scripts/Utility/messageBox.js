@@ -4,7 +4,7 @@
         "debug": false,
         "newestOnTop": false,
         "progressBar": true,
-        "positionClass": "toast-top-right",
+        "positionClass": "toast-bottom-left",
         "preventDuplicates": true,
         "onclick": null,
         "showDuration": "300",

@@ -35,28 +35,18 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<User> RetrieveUsers()
+        public static List<Object> RetrieveUsers()
         {
             try
             {
-                return UserDL.RetrieveUsers();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                string eKey = System.Configuration.ConfigurationManager.AppSettings.Get("ekey");
 
-        public static List<Object> UsersObject()
-        {
-            try
-            {
                 List<User> users = UserDL.RetrieveUsers();
+                
                 List<Object> returnedUsers = new List<Object>();
+                
                 foreach (User user in users)
                 {
-                    //Role role = RolePL.RetrieveRoleByID(user.Role);
-                    //Branch branch = BranchPL.RetrieveBranchByID(user.Branch);
                     object userObj = new
                     {
                         ID = user.ID,
@@ -66,27 +56,15 @@ namespace PrinterMonitorLibrary
                         PhoneNumber = user.PhoneNumber,
                         Email = user.Email,
                         Username = user.Username,
-                        CreatedOn = user.CreatedOn,
-                        //ModifiedOn = user.ModifiedOn,
-                        //Role = role,
-                        //Branch = branch
+                        CreatedOn = String.Format("{0:dddd, MMMM d, yyyy}", Convert.ToDateTime(user.CreatedOn)),
+                        Role = new { ID = user.Role.ID, Name = user.Role.Name },
+                        Branch = new { ID = user.Branch.ID, Name = user.Branch.Name },
+                        SmartCardID = user.SmartCardID == null ? "None" : Crypter.Decrypt(eKey, user.SmartCard.EncryptedSmartCardID)
                     };
 
                     returnedUsers.Add(userObj);
                 }
                 return returnedUsers;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static User RetrieveUserByID(long? userID)
-        {
-            try
-            {
-                return UserDL.RetrieveUserByID(userID);
             }
             catch (Exception ex)
             {

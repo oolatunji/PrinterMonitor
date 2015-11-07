@@ -114,11 +114,11 @@ function format(d) {
     // `d` is the original data object for the row
     return '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">' +
         '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Calibri;">Function Name:</td>' +
+            '<td style="color:navy;width:40%;font-family:Arial;">Function Name:</td>' +
             '<td><input class="form-control" placeholder="Enter Function Name" id="name" value="' + d.Name + '"/></td>' +
         '</tr>' +
         '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Calibri;">Page Link:</td>' +
+            '<td style="color:navy;width:40%;font-family:Arial;">Page Link:</td>' +
             '<td><input class="form-control" placeholder="Enter Page Link" id="pageLink" value="' + d.PageLink + '"/></td>' +
         '</tr>' +
         '<tr>' +

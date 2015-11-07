@@ -70,7 +70,7 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                IEnumerable<Function> functions = FunctionPL.RetrieveFunctions();
+                IEnumerable<Object> functions = FunctionPL.RetrieveFunctions();
                 object returnedFunctions = new { data = functions };
                 return Request.CreateResponse(HttpStatusCode.OK, returnedFunctions);
             }

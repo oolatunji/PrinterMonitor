@@ -70,7 +70,7 @@ namespace PrinterMonitoringApp.Controllers
             try
             {
                 bool result = UserPL.Update(user);
-                return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Successful") : Request.CreateResponse(HttpStatusCode.BadRequest, "Failed");
+                return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "User Updated Successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Failed");
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                IEnumerable<Object> users = UserPL.UsersObject();
+                IEnumerable<Object> users = UserPL.RetrieveUsers();
                 object returnedUsers = new { data = users };
                 return Request.CreateResponse(HttpStatusCode.OK, returnedUsers);
             }

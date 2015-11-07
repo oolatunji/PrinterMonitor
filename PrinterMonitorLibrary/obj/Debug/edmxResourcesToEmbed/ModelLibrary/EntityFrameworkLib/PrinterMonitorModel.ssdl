@@ -62,7 +62,7 @@
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleID" Type="bigint" Nullable="false" />
-    <Property Name="Functions" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FunctionID" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -108,6 +108,18 @@
       </Principal>
       <Dependent Role="Printer">
         <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleFunctions_RoleFunctions">
+    <End Role="Functions" Type="Self.Functions" Multiplicity="1" />
+    <End Role="RoleFunctions" Type="Self.RoleFunctions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Functions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RoleFunctions">
+        <PropertyRef Name="FunctionID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -172,6 +184,10 @@
     <AssociationSet Name="FK_Printer_Branch" Association="Self.FK_Printer_Branch">
       <End Role="Branch" EntitySet="Branch" />
       <End Role="Printer" EntitySet="Printer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleFunctions_RoleFunctions" Association="Self.FK_RoleFunctions_RoleFunctions">
+      <End Role="Functions" EntitySet="Functions" />
+      <End Role="RoleFunctions" EntitySet="RoleFunctions" />
     </AssociationSet>
     <AssociationSet Name="FK_RoleFunctions_Roles" Association="Self.FK_RoleFunctions_Roles">
       <End Role="Roles" EntitySet="Roles" />

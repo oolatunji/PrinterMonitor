@@ -16,8 +16,9 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
     {
         public long ID { get; set; }
         public long RoleID { get; set; }
-        public string Functions { get; set; }
+        public long FunctionID { get; set; }
     
+        public virtual Function Function { get; set; }
         public virtual Role Role { get; set; }
     }
 }

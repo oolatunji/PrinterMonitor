@@ -47,30 +47,6 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<Role> RetrieveRoles()
-        {
-            try
-            {
-                return RoleDL.RetrieveRoles();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static Role RetrieveRoleByID(long? roleID)
-        {
-            try
-            {
-                return RoleDL.RetrieveRoleByID(roleID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public static List<Object> RolesObject()
         {
             try
@@ -81,11 +57,11 @@ namespace PrinterMonitorLibrary
 
                 foreach (Role role in roles)
                 {
-                    List<string> functions = new List<string>();
+                    List<long> functions = new List<long>();
                     
                     foreach(RoleFunction roleFunction in role.RoleFunctions)
                     {
-                        functions.Add(roleFunction.Functions);
+                        functions.Add(roleFunction.FunctionID);
                     }
 
                     Object roleObj = new

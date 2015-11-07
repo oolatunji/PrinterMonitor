@@ -16,6 +16,11 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
     
     public partial class Function
     {
+        public Function()
+        {
+            this.RoleFunctions = new HashSet<RoleFunction>();
+        }
+    
         public long ID { get; set; }
         [Required]
         public string Name { get; set; }
@@ -23,5 +28,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         [DisplayName("Page Link")]
         public string PageLink { get; set; }
         public string Status { get; set; }
+    
+        public virtual ICollection<RoleFunction> RoleFunctions { get; set; }
     }
 }

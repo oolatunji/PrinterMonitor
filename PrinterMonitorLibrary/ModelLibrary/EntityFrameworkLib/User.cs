@@ -27,7 +27,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]
-        [EmailAddress(ErrorMessage="Invalid Email Address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         [Required]
         public string Username { get; set; }

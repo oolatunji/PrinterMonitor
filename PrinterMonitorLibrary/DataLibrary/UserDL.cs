@@ -40,9 +40,6 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     existingUser = context.Users
-                                    .Include("Branch")
-                                    .Include("Role.RoleFunctions")
-                                    .Include("SmartCard")
                                     .Where(t => t.Username.Equals(user.Username))
                                     .FirstOrDefault();
                 }
@@ -121,27 +118,13 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    var users = context.Users.ToList();
+                    var users = context.Users
+                                        .Include("Branch")
+                                        .Include("Role.RoleFunctions.Function")
+                                        .Include("SmartCard")
+                                        .ToList();
 
                     return users;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static User RetrieveUserByID(long? userID)
-        {
-            try
-            {
-                using (var context = new PrinterMonitorDBEntities())
-                {
-                    var users = context.Users
-                                            .Where(f => f.ID == userID);
-
-                    return users.FirstOrDefault();
                 }
             }
             catch (Exception ex)

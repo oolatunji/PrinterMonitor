@@ -34,7 +34,7 @@ function addRole() {
         $("input:checkbox[name=functions]:checked").each(function () {
             var roleFunction = {};
             var _function = $(this).val();
-            roleFunction = { Functions: _function };
+            roleFunction = { FunctionID: _function };
             roleFunctions.push(roleFunction);
         });
 

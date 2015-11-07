@@ -37,8 +37,6 @@ namespace PrinterMonitorLibrary
                 {
                     existingRole = context.Roles
                                     .Where(t => t.Name.Equals(role.Name))
-                                    .Include(r => r.RoleFunctions)
-                                    .Include(r => r.Users)
                                     .FirstOrDefault();
                 }
 
@@ -60,31 +58,10 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     var roles = context.Roles
-                                .Include(r => r.RoleFunctions)
-                                .Include(r => r.Users)
+                                .Include(r => r.RoleFunctions.Select(rf => rf.Function))
                                 .ToList();
 
                     return roles;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public static Role RetrieveRoleByID(long? roleID)
-        {
-            try
-            {
-                using (var context = new PrinterMonitorDBEntities())
-                {
-                    var role = context.Roles
-                                        .Include(r => r.RoleFunctions)
-                                        .Include(r => r.Users)
-                                        .Where(f => f.ID == roleID);
-
-                    return role.FirstOrDefault();
                 }
             }
             catch (Exception ex)
@@ -101,8 +78,6 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     existingRole = context.Roles
-                                    .Include(r => r.RoleFunctions)
-                                    .Include(r => r.Users)
                                     .Where(t => t.ID == role.ID)
                                     .FirstOrDefault();
                 }
@@ -139,7 +114,7 @@ namespace PrinterMonitorLibrary
                                 {
                                     RoleFunction roleFunction = new RoleFunction();
                                     roleFunction.RoleID = existingRole.ID;
-                                    roleFunction.Functions = function.Functions;
+                                    roleFunction.FunctionID = function.FunctionID;
 
                                     newRoleFunctions.Add(roleFunction);
                                 }

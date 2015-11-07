@@ -47,52 +47,33 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<Function> RetrieveFunctions()
+        public static List<Object> RetrieveFunctions()
         {
             try
             {
-                return FunctionDL.RetrieveFunctions();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                List<Object> returnedFunctions = new List<object>();
 
-        public static Function RetrieveFunctionByID(long functionID)
-        {
-            try
-            {
-                return FunctionDL.RetrieveFunctionByID(functionID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                List<Function> functions = FunctionDL.RetrieveFunctions();
 
-        public static List<Function> GetFunctionsByIDs(string[] functionIDs)
-        {
-            try
-            {
-                List<Function> functions = new List<Function>();
-
-                foreach (string functionID in functionIDs)
+                foreach(Function function in functions)
                 {
-                    if (!string.IsNullOrEmpty(functionID))
+                    Object functionObj = new
                     {
-                        Function function = FunctionPL.RetrieveFunctionByID(Convert.ToInt64(functionID));
+                        ID = function.ID,
+                        Name = function.Name,
+                        PageLink = function.PageLink
+                    };
 
-                        functions.Add(function);
-                    }
+                    returnedFunctions.Add(functionObj);
                 }
 
-                return functions;
+                return returnedFunctions; 
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
     }
 }
