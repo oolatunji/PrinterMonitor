@@ -13,5 +13,15 @@ namespace PrinterMonitoringApp.Controllers
         {
             return View();
         }
+
+        public ActionResult AddPrinter()
+        {
+            return View();
+        }
+
+        public ActionResult ViewPrinter()
+        {
+            return View();
+        }
     }
 }
