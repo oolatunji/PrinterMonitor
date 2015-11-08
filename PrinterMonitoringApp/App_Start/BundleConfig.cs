@@ -70,6 +70,10 @@ namespace PrinterMonitoringApp
             bundles.Add(new ScriptBundle("~/bundles/viewusers").Include(
                       "~/Scripts/User/ViewUser.js"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/viewsmartcards").Include(
+                      "~/Scripts/SmartCard/ViewSmartCard.js"
+                      ));
          
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",

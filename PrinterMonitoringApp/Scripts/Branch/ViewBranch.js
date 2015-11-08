@@ -113,17 +113,17 @@ $(document).ready(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    return '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">' +
+    return '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">' +
         '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Arial;">Name:</td>' +
+            '<td style="color:navy;width:20%;font-family:Arial;">Name:</td>' +
             '<td><input class="form-control" placeholder="Enter Branch Name" id="branchName" value="' + d.Name + '"/></td>' +
         '</tr>' +
         '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Arial;">Code:</td>' +
+            '<td style="color:navy;width:20%;font-family:Arial;">Code:</td>' +
             '<td><input class="form-control" placeholder="Enter Branch Code" id="branchCode" value="' + d.Code + '"/></td>' +
         '</tr>' +
          '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Arial;">Address:</td>' +
+            '<td style="color:navy;width:20%;font-family:Arial;">Address:</td>' +
             '<td><input class="form-control" placeholder="Enter Branch Address" id="branchAddress" value="' + d.Address + '"/></td>' +
         '</tr>' +
         '<tr>' +
@@ -131,7 +131,7 @@ function format(d) {
             '<td style="display:none"><input class="form-control" id="id" value="' + d.ID + '"/></td>' +
         '</tr>' +
         '<tr>' +
-            '<td style="color:navy;width:40%;font-family:Calibri;"></td>' +
+            '<td style="color:navy;width:20%;font-family:Calibri;"></td>' +
             '<td><button type="button" id="updateBtn" class="btn btn-red" style="float:right;" onclick="update();"><i class="fa fa-cog"></i> Update</button></td>' +
         '</tr>' +
     '</table>';

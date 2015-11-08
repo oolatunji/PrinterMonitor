@@ -1,33 +1,33 @@
 ﻿$(document).ready(function () {
-    try {       
-        getFunctionsAndDisplayRoles();
+    try {
+        getUsersAndDisplaySmartCards();
     } catch (err) {
-        displayMessage("error", "Error encountered: " + err, "Roles Management");
+        displayMessage("error", "Error encountered: " + err, "Smart Card Management");
     }
 });
 
-function getFunctionsAndDisplayRoles() {
-    try {        
+function getUsersAndDisplaySmartCards() {
+    try {
         $.ajax({
-            url: settingsManager.websiteURL + 'api/FunctionAPI/RetrieveFunctions',
+            url: settingsManager.websiteURL + 'api/UserAPI/RetrieveUsers',
             type: 'GET',
             async: true,
             cache: false,
             success: function (response) {
-                var functions = [];
-                functions = response.data;
-                getRoles(functions);
+                var users = [];
+                users = response.data;
+                getSmartCards(users);
             },
             error: function (xhr) {
-                displayMessage("error", 'Error experienced: ' + xhr.responseText, "Roles Management");                
-            }            
+                displayMessage("error", 'Error experienced: ' + xhr.responseText, "Smart Card Management");
+            }
         });
     } catch (err) {
-        displayMessage("error", "Error encountered: " + err, "Roles Management");       
+        displayMessage("error", "Error encountered: " + err, "Smart Card Management");
     }
 }
 
-function getRoles(functions) {
+function getSmartCards(users) {
     $('#example tfoot th').each(function () {
         var title = $('#example thead th').eq($(this).index()).text();
         if (title != "")
@@ -37,31 +37,27 @@ function getRoles(functions) {
     if ($.fn.DataTable.isDataTable('#example')) {
 
         var table = $('#example').DataTable();
-        table.ajax.url(settingsManager.websiteURL + 'api/RoleAPI/RetrieveRoles').load();
+        table.ajax.url(settingsManager.websiteURL + 'api/SmartCardAPI/RetrieveSmartCards').load();
 
     } else {
         var table = $('#example').DataTable({
 
             "processing": true,
 
-            "ajax": settingsManager.websiteURL + 'api/RoleAPI/RetrieveRoles',
+            "ajax": settingsManager.websiteURL + 'api/SmartCardAPI/RetrieveSmartCards',
 
             "columns": [
-                {
-                    "className": 'details-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
                 {
                     "className": 'edit-control',
                     "orderable": false,
                     "data": null,
                     "defaultContent": ''
                 },
-                { "data": "Name" },
+                { "data": "SmartCardID" },
+                { "data": "Allocated" },
+                { "data": "User.TheUser" },
                 {
-                    "data": "Functions",
+                    "data": "User.ID",
                     "visible": false
                 },
                 {
@@ -70,7 +66,7 @@ function getRoles(functions) {
                 }
             ],
 
-            "order": [[2, "asc"]],
+            "order": [[1, "asc"]],
 
             "sDom": 'T<"clear">lrtip',
 
@@ -99,30 +95,6 @@ function getRoles(functions) {
             }
         });
 
-        $('#example tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
-                }
-            }
-
-            if (row.child.isShown()) {
-                closeAll();
-            }
-            else {
-                closeAll();
-
-                row.child(formatDetails(row.data(), functions)).show();
-                tr.addClass('shown');
-            }
-        });
-
         $('#example tbody').on('click', 'td.edit-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
@@ -142,7 +114,7 @@ function getRoles(functions) {
             else {
                 closeAll();
 
-                row.child(format(row.data(), functions)).show();
+                row.child(format(row.data(), users)).show();
                 tr.addClass('shown');
             }
         });
@@ -162,29 +134,27 @@ $(document).ready(function () {
     });
 });
 
-function format(d, allfunctions) {
+function format(d, users) {
     var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<td style="color:navy;width:20%;font-family:Arial;">Name:</td>';
-    table += '<td><input class="form-control" placeholder="Enter Role Name" id="name" value="' + d.Name + '"/></td>';
+    if (d.Allocated == true)
+        table += '<th colspan="2" style="color:navy;width:20%;font-family:Arial;">De-Allocate Smart Card From User</th>';
+    else
+        table += '<th colspan="2" style="color:navy;width:20%;font-family:Arial;">Select User to Allocate Smart Card To</th>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:20%;font-family:Arial;">Functions:</td>';
-    table += '<td>';
-    $.each(allfunctions, function (key, value) {
-        var checked = false;
-        $.each(d.Functions, function (key1, value1) {
-            if (value.ID == value1) {
-                checked = true;
-            }
+    table += '<td style="color:navy;width:20%;font-family:Arial;">User:</td>';
+    if (d.Allocated == false) {
+        table += '<td><select class="form-control" name="user" id="user">';
+        table += '<option selected="selected" value="">Select User</option>';
+        $.each(users, function (key, value) {
+            table += '<option value="' + value.ID + '">' + value.Lastname + ' ' + value.Othernames + ' ' + '[' + value.Username + ']' + '</option>';
         });
-        if (checked)
-            table += '<input type="checkbox" name="functions" checked="checked" style="font-size:12px" value="' + value.ID + '" />' + value.Name + '<br/>';
-        else
-            table += '<input type="checkbox" name="functions" style="font-size:12px" value="' + value.ID + '" />' + value.Name + '<br/>';
-    });
-    table += '</td>';
-    table += '</tr>';
+    } else {
+        table += '<td><select class="form-control" disabled="disabled" name="user" id="user">';
+        table += '<option selected="selected" value="' + d.User.ID + '">' + d.User.TheUser + '</option>';
+    }
+    table += '</select></td></tr>';
     table += '<tr>';
     table += '<td style="display:none">ID:</td>';
     table += '<td style="display:none"><input class="form-control" id="id" value="' + d.ID + '"/></td>';
@@ -204,7 +174,7 @@ function formatDetails(d, allfunctions) {
     table += '<th style="color:navy;width:20%;font-family:Arial;">Functions</th>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="font-family:Arial;">';   
+    table += '<td style="font-family:Arial;">';
     $.each(allfunctions, function (key, value) {
         var checked = false;
         $.each(d.Functions, function (key1, value1) {
@@ -222,7 +192,7 @@ function formatDetails(d, allfunctions) {
 }
 
 function update() {
-    try{
+    try {
         $('#updateBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
         $("#updateBtn").attr("disabled", "disabled");
 
@@ -237,7 +207,7 @@ function update() {
         });
 
         var id = $('#id').val();
-    
+
         var data = { Name: name, RoleFunctions: roleFunctions, ID: id };
         $.ajax({
             url: settingsManager.websiteURL + 'api/RoleAPI/UpdateRole',

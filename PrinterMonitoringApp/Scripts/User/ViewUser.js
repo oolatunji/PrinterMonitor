@@ -206,17 +206,17 @@ $(document).ready(function () {
 });
 
 function format(d, roles, branches) {
-    var table = '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
+    var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Lastname:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Lastname:</td>';
     table += '<td><input class="form-control" placeholder="Enter Lastname" id="lastname" value="' + d.Lastname + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Othernames:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Othernames:</td>';
     table += '<td><input class="form-control" placeholder="Enter Othernames" id="othernames" value="' + d.Othernames + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Gender:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Gender:</td>';
     table += '<td><select class="form-control" name="gender" id="gender">';
     table += '<option value="">Select Gender</option>';
     if (d.Gender == "Male") {
@@ -229,15 +229,15 @@ function format(d, roles, branches) {
     }
     table += '</select></td></tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Phone Number:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Phone Number:</td>';
     table += '<td><input class="form-control" placeholder="Enter Phone Number" id="phonenumber" value="' + d.PhoneNumber + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Email:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Email:</td>';
     table += '<td><input class="form-control" placeholder="Enter Email" id="email" value="' + d.Email + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Role:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Role:</td>';
     table += '<td><select class="form-control" name="role" id="role">';
     table += '<option value="">Select Role</option>';
     $.each(roles, function (key, value) {
@@ -248,7 +248,7 @@ function format(d, roles, branches) {
     });
     table += '</select></td></tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Branch:</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Branch:</td>';
     table += '<td><select class="form-control" name="branch" id="branch">';
     table += '<option value="">Select Branch</option>';
     $.each(branches, function (key, value) {
@@ -267,7 +267,7 @@ function format(d, roles, branches) {
     table += '<td style="display:none"><input class="form-control" id="id" value="' + d.ID + '"/></td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:40%;font-family:Calibri;"></td>';
+    table += '<td style="color:navy;width:20%;font-family:Calibri;"></td>';
     table += '<td><button type="button"  id="updateBtn" class="btn btn-red" style="float:right;" onclick="update();"><i class="fa fa-cog"></i> Update</button></td>';
     table += '</tr>';
     table += '</table>';
@@ -276,21 +276,21 @@ function format(d, roles, branches) {
 }
 
 function formatDetails(d) {
-    var table = '<table width="60%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
+    var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Gender</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Gender</td>';
     table += '<td>' + d.Gender + '</td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Phone Number</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Phone Number</td>';
     table += '<td>' + d.PhoneNumber + '</td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Email</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Email</td>';
     table += '<td>' + d.Email + '</td>';
     table += '</tr>';
     table += '<tr>';
-    table += '<td style="color:navy;width:30%;font-family:Arial;">Created On</td>';
+    table += '<td style="color:navy;width:20%;font-family:Arial;">Created On</td>';
     table += '<td>' + d.CreatedOn + '</td>';
     table += '</tr>';
     table += '</table>';
