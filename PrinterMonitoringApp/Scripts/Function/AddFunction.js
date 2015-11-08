@@ -29,5 +29,7 @@
         });
     } catch (err) {
         displayMessage("error", "Error encountered: " + err, "Functions Management");
+        $("#addBtn").removeAttr("disabled");
+        $('#addBtn').html('<i class="fa fa-cog"></i> Add');
     }
 }

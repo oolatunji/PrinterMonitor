@@ -260,30 +260,65 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static bool UpdateSmartCardID(string smartCardID, bool status)
+        public static bool UpdateSmartCardID(long smartCardID, long userID, bool status)
         {
             try
             {
                 var sc = new SmartCard();
-                string hashedSmartID = PasswordHash.MD5Hash(smartCardID);
+                var user = new User();
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    // Query for the token
                     sc = context.SmartCards
-                                    .Where(t => t.HashedSmartCardID == hashedSmartID)
+                                    .Where(t => t.ID == smartCardID)
+                                    .FirstOrDefault();
+
+                    user = context.Users
+                                    .Include(u => u.SmartCard)
+                                    .Where(t => t.ID == userID)
                                     .FirstOrDefault();
                 }
 
-                if (sc != null)
+                if (sc != null && user != null)
                 {
                     sc.Allocated = status;
-                }
 
-                using (var context = new PrinterMonitorDBEntities())
-                {
-                    context.Entry(sc).State = EntityState.Modified;
+                    if (status)
+                    {
+                        if (user.SmartCard != null)
+                            throw new Exception(string.Format("User {0} has a smart card allocated to it already", user.Username));
 
-                    context.SaveChanges();
+                        user.SmartCardID = smartCardID;
+                    }
+                    else
+                    {
+                        user.SmartCard = null;
+                        sc.Users = null;
+                        user.SmartCardID = null;
+                    }
+
+                    using (var context = new PrinterMonitorDBEntities())
+                    {
+                        //Transaction block
+                        using (var transaction = context.Database.BeginTransaction())
+                        {
+                            try
+                            {
+                                context.Entry(user).State = EntityState.Modified;
+                                context.SaveChanges();
+                                
+                                context.Entry(sc).State = EntityState.Modified;
+                                context.SaveChanges();
+
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                throw ex;
+                            }
+                        }
+
+                    }
                 }
 
                 return true;

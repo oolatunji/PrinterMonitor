@@ -31,5 +31,7 @@
         });
     } catch (err) {
         displayMessage("error", "Error encountered: " + err, "Branch Management");
+        $("#addBtn").removeAttr("disabled");
+        $('#addBtn').html('<i class="fa fa-cog"></i> Add');
     }
 }

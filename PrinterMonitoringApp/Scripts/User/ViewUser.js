@@ -330,9 +330,12 @@ function update() {
             error: function (xhr) {
                 displayMessage("error", 'Error experienced: ' + xhr.responseText, "User Management");
                 $("#updateBtn").removeAttr("disabled");
+                $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
             }
         });
     } catch (err) {
         displayMessage("error", "Error encountered: " + err, "User Management");
+        $("#updateBtn").removeAttr("disabled");
+        $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
     }
 }

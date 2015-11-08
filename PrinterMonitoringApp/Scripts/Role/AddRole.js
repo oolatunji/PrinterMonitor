@@ -61,5 +61,7 @@ function addRole() {
         });
     } catch (err) {
         displayMessage("error", "Error encountered: " + err, "Roles Management");
+        $("#addBtn").removeAttr("disabled");
+        $('#addBtn').html('<i class="fa fa-cog"></i> Add');
     }
 }

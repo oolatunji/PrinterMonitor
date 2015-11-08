@@ -133,6 +133,28 @@ namespace PrinterMonitorLibrary
             }
         }
 
+        public static List<User> RetrieveUsersWithoutSmartCard()
+        {
+            try
+            {
+                using (var context = new PrinterMonitorDBEntities())
+                {
+                    var users = context.Users
+                                        .Include("Branch")
+                                        .Include("Role.RoleFunctions.Function")
+                                        .Include("SmartCard")
+                                        .Where(u => u.SmartCard == null)
+                                        .ToList();
+
+                    return users;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static User AuthenticateUser(string username, string hashedPassword)
         {
             try

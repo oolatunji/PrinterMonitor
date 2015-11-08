@@ -171,6 +171,24 @@ namespace PrinterMonitoringApp.Controllers
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage RetrieveUsersWithoutSmartCard()
+        {
+            try
+            {
+                IEnumerable<Object> users = UserPL.RetrieveUsersWithoutSmartCard();
+                object returnedUsers = new { data = users };
+                return Request.CreateResponse(HttpStatusCode.OK, returnedUsers);
+            }
+            catch (Exception ex)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+                response.ReasonPhrase = ex.Message;
+                return response;
+            }
+        }
+
+
         [HttpPost]
         public HttpResponseMessage AuthenticateUser([FromBody]User user)
         {

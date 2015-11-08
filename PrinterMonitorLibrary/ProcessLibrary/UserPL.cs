@@ -72,6 +72,34 @@ namespace PrinterMonitorLibrary
             }
         }
 
+        public static List<Object> RetrieveUsersWithoutSmartCard()
+        {
+            try
+            {
+                List<User> users = UserDL.RetrieveUsersWithoutSmartCard();
+
+                List<Object> returnedUsers = new List<Object>();
+
+                foreach (User user in users)
+                {
+                    object userObj = new
+                    {
+                        ID = user.ID,
+                        Lastname = user.Lastname,
+                        Othernames = user.Othernames,
+                        Username = user.Username
+                    };
+
+                    returnedUsers.Add(userObj);
+                }
+                return returnedUsers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static User RetrieveUserByUsername(string username)
         {
             try
@@ -131,6 +159,25 @@ namespace PrinterMonitorLibrary
             {
                 return UserDL.ChangePassword(username, password);
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool UserExists(string username, string password)
+        {
+            try
+            {
+                var user = new User();
+
+                user = UserDL.AuthenticateUser(username, PasswordHash.MD5Hash(password));
+
+                if (user == null)
+                    return false;
+                else
+                    return true;
             }
             catch (Exception ex)
             {

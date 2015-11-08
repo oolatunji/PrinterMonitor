@@ -140,7 +140,7 @@ namespace PrinterMonitoringApp
         [WebMethod]
         public string UserExists(string username, string password)
         {
-            if (SmartCardPL.UserExists(username, password))
+            if (UserPL.UserExists(username, password))
             {
                 return "True";
             }

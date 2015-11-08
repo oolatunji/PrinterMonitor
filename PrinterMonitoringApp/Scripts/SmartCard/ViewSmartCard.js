@@ -135,6 +135,7 @@ $(document).ready(function () {
 });
 
 function format(d, users) {
+    
     var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
     if (d.Allocated == true)
@@ -160,6 +161,13 @@ function format(d, users) {
     table += '<td style="display:none"><input class="form-control" id="id" value="' + d.ID + '"/></td>';
     table += '</tr>';
     table += '<tr>';
+    table += '<td style="display:none">ID:</td>';
+    if (d.Allocated == true)
+        table += '<td style="display:none"><input class="form-control" id="status" value="false"/></td>';
+    else
+        table += '<td style="display:none"><input class="form-control" id="status" value="true"/></td>';
+    table += '</tr>';
+    table += '<tr>';
     table += '<td style="color:navy;width:20%;font-family:Calibri;"></td>';
     table += '<td><button type="button"  id="updateBtn" class="btn btn-red" style="float:right;" onclick="update();"><i class="fa fa-cog"></i> Update</button></td>';
     table += '</tr>';
@@ -168,66 +176,42 @@ function format(d, users) {
     return table;
 }
 
-function formatDetails(d, allfunctions) {
-    var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
-    table += '<tr>';
-    table += '<th style="color:navy;width:20%;font-family:Arial;">Functions</th>';
-    table += '</tr>';
-    table += '<tr>';
-    table += '<td style="font-family:Arial;">';
-    $.each(allfunctions, function (key, value) {
-        var checked = false;
-        $.each(d.Functions, function (key1, value1) {
-            if (value.ID == value1) {
-                checked = true;
-            }
-        });
-        if (checked)
-            table += value.Name + '<br/>';
-    });
-    table += '</td>';
-    table += '</tr>';
-    table += '</table>';
-    return table;
-}
-
 function update() {
     try {
-        $('#updateBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-        $("#updateBtn").attr("disabled", "disabled");
+        var userID = $('#user').val();
+        var smartCardID = $('#id').val();
+        var status = $('#status').val();
 
-        var name = $('#name').val();
+        if (userID == "") {
+            displayMessage("error", 'Kindly Select a User', "Smart Card Management");
+        } else {
+            $('#updateBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+            $("#updateBtn").attr("disabled", "disabled");
 
-        var roleFunctions = [];
-        $("input:checkbox[name=functions]:checked").each(function () {
-            var roleFunction = {};
-            var _function = $(this).val();
-            roleFunction = { FunctionID: _function };
-            roleFunctions.push(roleFunction);
-        });
-
-        var id = $('#id').val();
-
-        var data = { Name: name, RoleFunctions: roleFunctions, ID: id };
-        $.ajax({
-            url: settingsManager.websiteURL + 'api/RoleAPI/UpdateRole',
-            type: 'PUT',
-            data: data,
-            processData: true,
-            async: true,
-            cache: false,
-            success: function (response) {
-                displayMessage("success", response, "Roles Management");
-                getFunctionsAndDisplayRoles();
-                $("#updateBtn").removeAttr("disabled");
-                $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
-            },
-            error: function (xhr) {
-                displayMessage("error", 'Error experienced: ' + xhr.responseText, "Roles Management");
-                $("#updateBtn").removeAttr("disabled");
-            }
-        });
+            var data = { SmartCardID: smartCardID, UserID: userID, Status: status };
+            $.ajax({
+                url: settingsManager.websiteURL + 'api/SmartCardAPI/UpdateSmartCard',
+                type: 'PUT',
+                data: data,
+                processData: true,
+                async: true,
+                cache: false,
+                success: function (response) {
+                    displayMessage("success", response, "Smart Card Management");
+                    getUsersAndDisplaySmartCards();
+                    $("#updateBtn").removeAttr("disabled");
+                    $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
+                },
+                error: function (xhr) {
+                    displayMessage("error", 'Error experienced: ' + xhr.responseText, "Smart Card Management");
+                    $("#updateBtn").removeAttr("disabled");
+                    $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
+                }
+            });
+        }
     } catch (err) {
-        displayMessage("error", "Error encountered: " + err, "Roles Management");
+        displayMessage("error", "Error encountered: " + err, "Smart Card Management");
+        $("#updateBtn").removeAttr("disabled");
+        $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
     }
 }
