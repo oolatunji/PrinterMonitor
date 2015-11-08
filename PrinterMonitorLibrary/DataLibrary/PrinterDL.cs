@@ -83,7 +83,6 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     existingPrinter = context.Printers
-                                    .Include("Branch")
                                     .Where(t => t.ID == printer.ID)
                                     .FirstOrDefault();
                 }

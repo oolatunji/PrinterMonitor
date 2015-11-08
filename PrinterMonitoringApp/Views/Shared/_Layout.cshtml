@@ -162,9 +162,29 @@
                             <!-- End Menu Item -->
                         </ul>
                     </li>
+                    <li class="border-left-blue">
+                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#printer-submenu" title="Printer Management">
+                            <i class="menu-icon fa fa-lg fa-fw fa-print"></i> <span>Printer Management</span>
+                            <i class="fa fa-caret-right submenu-indicator"></i>
+                        </a>
+                        <!-- Sub Menu Item -->
+                        <ul id="printer-submenu" class="collapse">
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Printer/AddPrinter" class="fa fa-plus-square" style="font-size:13px;"> Add Printers</a>
+                            </li>
+                            <!-- End Menu Item -->
+                            <!-- Menu Item -->
+                            <li>
+                                <a href="~/Printer/ViewPrinter" class="fa fa-folder" style="font-size:13px;"> View Printers</a>
+                            </li>
+                            <!-- End Menu Item -->
+                        </ul>
+                    </li>
                     <!-- End Menu Item -->
                     <!-- User Menu Item -->
-                    <li class="border-left-blue">
+                    <li class="border-left-red">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#user-submenu" title="User Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-user"></i> <span>User Management</span>
@@ -184,35 +204,20 @@
                             <!-- End Menu Item -->
                         </ul>
                     </li>
-                    <li class="border-left-red">
+                    <li class="border-left-blue">
                         <a href="~/SmartCard/ViewSmartCard" title="Smart Cards">
                             <i class="menu-icon fa fa-lg fa-fw fa-credit-card"></i> <span>Smart Cards</span>
                         </a>
                     </li>
-                    <li class="border-left-blue">
-                        <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#user-submenu" title="User Management">
-                            <i class="menu-icon fa fa-lg fa-fw fa-print"></i> <span>Printer Management</span>
-                            <i class="fa fa-caret-right submenu-indicator"></i>
+                    <li class="border-left-red">
+                        <a href="~/Password/ChangePassword" title="Smart Cards">
+                            <i class="menu-icon fa fa-lg fa-fw fa-credit-card"></i> <span>Change Password</span>
                         </a>
-                        <!-- Sub Menu Item -->
-                        <ul id="user-submenu" class="collapse">
-                            <!-- Menu Item -->
-                            <li>
-                                <a href="~/Printer/AddPrinter" class="fa fa-plus-square" style="font-size:13px;"> Add Printers</a>
-                            </li>
-                            <!-- End Menu Item -->
-                            <!-- Menu Item -->
-                            <li>
-                                <a href="~/Printer/ViewPrinter" class="fa fa-folder" style="font-size:13px;"> View Printers</a>
-                            </li>
-                            <!-- End Menu Item -->
-                        </ul>
                     </li>
                     <!-- End Menu Item -->
-                    <li>
+                    @*<li>
                         @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)
-                    </li>   
+                    </li>*@   
                     <!-- End Menu Item -->                    
                 </ul>
                 <!-- End Sidebar Navigation -->

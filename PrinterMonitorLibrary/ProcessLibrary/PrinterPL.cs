@@ -65,7 +65,7 @@ namespace PrinterMonitorLibrary
                         PrinterName = printer.PrinterName,
                         PrinterBrand = printer.PrinterBrand,
                         Branch = new{ ID = printer.Branch.ID, Name= printer.Branch.Name},
-                        DateofEnrollment = printer.DateofEnrollment
+                        DateofEnrollment = String.Format("{0:ddd, MMM d, yyyy}", printer.DateofEnrollment)
                     };
 
                     returnedPrinters.Add(printerObj);
