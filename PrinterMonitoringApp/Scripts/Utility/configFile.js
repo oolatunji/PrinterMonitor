@@ -1,3 +1,1 @@
-﻿var settingsManager = {    
-    "websiteURL": "http://localhost/PrinterMonitor/"
-};
+var settingsManager = {"websiteURL": "http://localhost/PrinterMonitor/"};

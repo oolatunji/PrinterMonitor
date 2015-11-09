@@ -186,6 +186,8 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SmartCardAPIController.cs" />
     <Compile Include="Controllers\SmartCardController.cs" />
+    <Compile Include="Controllers\SystemAPIController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\SmartCardModel.cs" />
+    <Compile Include="Models\SystemModel.cs" />
     <Compile Include="Models\TokenResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimeHubs\PrinterTrackingHub.cs" />
@@ -250,6 +253,7 @@
     <Content Include="images\sort_desc.png" />
     <Content Include="images\sort_desc_disabled.png" />
     <Content Include="images\uba.jpg" />
+    <Content Include="img\backgrounds\blurred-bg1.jpg" />
     <Content Include="img\loading.gif" />
     <Content Include="img\people\1.jpg" />
     <Content Include="img\people\2.jpg" />
@@ -258,6 +262,7 @@
     <Content Include="img\people\5.jpg" />
     <Content Include="img\people\6.jpg" />
     <Content Include="img\people\7.jpg" />
+    <Content Include="img\settings.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -329,7 +334,9 @@
     <Content Include="Scripts\User\AddUser.js" />
     <Content Include="Scripts\User\ViewUser.js" />
     <Content Include="Scripts\Utility\configFile.js" />
+    <Content Include="Scripts\Utility\ConfigureSystem.js" />
     <Content Include="Scripts\Utility\messageBox.js" />
+    <Content Include="Scripts\Utility\SystemConfiguration.js" />
     <Content Include="Scripts\xcharts.js" />
     <Content Include="Scripts\xcharts.min.js" />
     <Content Include="Web.config" />
@@ -374,6 +381,8 @@
     <Content Include="Views\SmartCard\ViewSmartCard.cshtml" />
     <Content Include="Views\Printer\ViewPrinter.cshtml" />
     <Content Include="Views\Printer\AddPrinter.cshtml" />
+    <Content Include="Views\System\Configuration.cshtml" />
+    <Content Include="Views\System\SystemConfiguration.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
