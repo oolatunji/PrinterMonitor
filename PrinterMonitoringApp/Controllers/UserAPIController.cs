@@ -32,7 +32,7 @@ namespace PrinterMonitoringApp.Controllers
                         if (result)
                         {
                             user.HashedPassword = password;
-                            //Mail.SendNewUserMail(user);
+                            Mail.SendNewUserMail(user);
                             return Request.CreateResponse(HttpStatusCode.OK, "User added successfully.");
                         }
                         else
@@ -69,8 +69,16 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
+                if (ModelState.IsValid)
+                {
                 bool result = UserPL.Update(user);
                 return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "User Updated Successfully.") : Request.CreateResponse(HttpStatusCode.BadRequest, "Failed");
+                }
+                else
+                {
+                    string errors = ModelStateValidation.GetErrorListFromModelState(ModelState);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
+                }
             }
             catch (Exception ex)
             {
@@ -187,7 +195,6 @@ namespace PrinterMonitoringApp.Controllers
                 return response;
             }
         }
-
 
         [HttpPost]
         public HttpResponseMessage AuthenticateUser([FromBody]User user)

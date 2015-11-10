@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="ModelLibrary\Utility\Base64Conversions.cs" />
     <Compile Include="ModelLibrary\Utility\Crypter.cs" />
+    <Compile Include="ModelLibrary\Utility\Mail.cs" />
     <Compile Include="ModelLibrary\Utility\MailHelper.cs" />
     <Compile Include="ModelLibrary\Utility\PasswordHash.cs" />
     <Compile Include="ModelLibrary\Utility\RijndaelEnhanced.cs" />

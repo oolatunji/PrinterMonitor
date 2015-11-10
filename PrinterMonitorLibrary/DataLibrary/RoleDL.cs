@@ -149,5 +149,25 @@ namespace PrinterMonitorLibrary
                 throw ex;
             }
         }
+
+        public static Role RetrieveRoleByID(long? roleID)
+        {
+            try
+            {
+                using (var context = new PrinterMonitorDBEntities())
+                {
+                    var role = context.Roles
+                                .Where(r => r.ID == roleID)
+                                .Include(r => r.RoleFunctions.Select(rf => rf.Function))
+                                .ToList().FirstOrDefault();
+
+                    return role;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

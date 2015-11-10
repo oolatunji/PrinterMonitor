@@ -81,5 +81,17 @@ namespace PrinterMonitorLibrary
                 throw ex;
             }
         }
+
+        public static Role RetrieveRoleByID(long? roleID)
+        {
+            try
+            {
+                return RoleDL.RetrieveRoleByID(roleID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
