@@ -7,12 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PrinterMonitorLibrary
 {
     public class Mail
-    {        
+    {
         public static void SendNewUserMail(User user)
         {
             try
@@ -37,7 +38,6 @@ namespace PrinterMonitorLibrary
                     userFunction += roleFunction.Function.Name + "<br/>";
                 }
 
-                string mailBody = "";
                 string fromAddress = "";
                 string smtpUsername = "";
                 string smtpPassword = "";
@@ -75,28 +75,50 @@ namespace PrinterMonitorLibrary
                 body = body.Replace("#UserFunctions", userFunction);
                 body = body.Replace("#WebsiteUrl", websiteUrl);
 
+                Thread email = new Thread(delegate()
+                {
+                    Mail.SendMail(user.Email, fromAddress, subject, body, smtpHost, smtpPort, smtpUseDefaultCredentials, smtpUsername, smtpPassword, smtpEnableSsl);
+                    
+                });
 
+                email.IsBackground = true;
+                email.Start();
+
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.WriteError(ex);
+                throw ex;
+            }
+
+        }
+
+        public static void SendMail(string toAddress, string fromAddress, string subject, string body, string smtpHost, Int32 smtpPort, bool smtpUseDefaultCredentials, string smtpUsername, string smtpPassword, bool smtpEnableSsl)
+        {
+            try
+            {
                 MailMessage mail = new MailMessage();
-                mail.To.Add(user.Email);
+                mail.To.Add(toAddress);
                 mail.From = new MailAddress(fromAddress);
                 mail.Subject = subject;
                 mail.Body = body;
                 mail.IsBodyHtml = true;
+
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = smtpHost;
                 smtp.Port = smtpPort;
                 smtp.UseDefaultCredentials = smtpUseDefaultCredentials;
                 smtp.Credentials = new System.Net.NetworkCredential(smtpUsername, smtpPassword);// Senders User name and password
                 smtp.EnableSsl = smtpEnableSsl;
-                smtp.Send(mail);
 
+                smtp.Send(mail);
             }
             catch (Exception ex)
             {
-                throw ex;
+                ErrorHandler.WriteError(ex);
             }
-
         }
+
 
         public static bool networkIsAvailable()
         {

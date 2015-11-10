@@ -71,6 +71,7 @@ namespace PrinterMonitoringApp.Controllers
             }
             catch (Exception ex)
             {
+                ErrorHandler.WriteError(ex);
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 return response;
             }
@@ -86,6 +87,7 @@ namespace PrinterMonitoringApp.Controllers
             }
             catch (Exception ex)
             {
+                ErrorHandler.WriteError(ex);
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 return response;
             }
@@ -101,12 +103,14 @@ namespace PrinterMonitoringApp.Controllers
             string organization = appSettingsSection.Settings["Organization"].Value;
             string applicationName = appSettingsSection.Settings["ApplicationName"].Value;
             string websiteUrl = appSettingsSection.Settings["WebsiteUrl"].Value;
+            string logFilePath = appSettingsSection.Settings["LogFilePath"].Value;
 
             Object generalSettings = new
             {
                 Organization = organization,
                 ApplicationName = applicationName,
-                ApplicationUrl = websiteUrl
+                ApplicationUrl = websiteUrl,
+                LogFilePath = logFilePath
             };
 
             var connectionStringsSection = (ConnectionStringsSection)configuration.GetSection("connectionStrings");

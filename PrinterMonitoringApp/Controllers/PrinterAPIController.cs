@@ -37,6 +37,7 @@ namespace PrinterMonitoringApp.Controllers
             }
             catch (Exception ex)
             {
+                ErrorHandler.WriteError(ex);
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 return response;
             }
@@ -60,6 +61,7 @@ namespace PrinterMonitoringApp.Controllers
             }
             catch (Exception ex)
             {
+                ErrorHandler.WriteError(ex);
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 return response;
             }
@@ -76,6 +78,7 @@ namespace PrinterMonitoringApp.Controllers
             }
             catch (Exception ex)
             {
+                ErrorHandler.WriteError(ex);
                 var response = Request.CreateResponse(HttpStatusCode.BadRequest);
                 response.ReasonPhrase = ex.Message;
                 return response;

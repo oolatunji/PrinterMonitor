@@ -12,14 +12,18 @@ function getSystemSettings() {
             async: true,
             cache: false,
             success: function (settings) {
+
                 $('#applicationURL').val(settings.GeneralSettings.ApplicationUrl);
                 $('#bankName').val(settings.GeneralSettings.Organization);
                 $('#applicationName').val(settings.GeneralSettings.ApplicationName);
+                $('#logFilePath').val(settings.GeneralSettings.LogFilePath);
+
                 $('#fromEmailAddress').val(settings.MailSettings.FromEmailAddress);
                 $('#smtpUsername').val(settings.MailSettings.SmtpUsername);
                 $('#smtpPassword').val(settings.MailSettings.SmtpPassword);
                 $('#smtpServer').val(settings.MailSettings.SmtpHost);
                 $('#smtpPort').val(settings.MailSettings.SmtpPort);
+
                 $('#databaseServer').val(settings.DatabaseSettings.DatabaseServer);
                 $('#databaseName').val(settings.DatabaseSettings.DatabaseName);
                 $('#databaseUser').val(settings.DatabaseSettings.DatabaseUser);
