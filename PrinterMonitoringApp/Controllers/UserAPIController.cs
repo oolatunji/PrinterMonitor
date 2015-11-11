@@ -94,7 +94,7 @@ namespace PrinterMonitoringApp.Controllers
         {
             try
             {
-                string password = PasswordHash.MD5Hash(changePassword.NewPassword);
+                string password = PasswordHash.MD5Hash(changePassword.Password);
                 string username = changePassword.Username;
                 bool result = UserPL.ChangePassword(username, password);
                 return result.Equals(true) ? Request.CreateResponse(HttpStatusCode.OK, "Successful") : Request.CreateResponse(HttpStatusCode.BadRequest, "Failed");
@@ -204,16 +204,16 @@ namespace PrinterMonitoringApp.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage AuthenticateUser([FromBody]User user)
+        public HttpResponseMessage AuthenticateUser([FromBody]PasswordModel passwordModel)
         {
             try
             {
-                string password = PasswordHash.MD5Hash(user.HashedPassword);
-                Object userObj = UserPL.AuthenticateUser(user.Username, password);
+                string password = PasswordHash.MD5Hash(passwordModel.Password);
+                Object userObj = UserPL.AuthenticateUser(passwordModel.Username, password);
                 if (userObj != null)
                     return Request.CreateResponse(HttpStatusCode.OK, userObj);
                 else
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid/Password");
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid Username/Password");
             }
             catch (Exception ex)
             {

@@ -20,6 +20,7 @@
             var acknowledge = confirm("Are you sure you want to configure the System with the captured settings?");
             if (acknowledge) {
                 $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Configuring System...');
+                $("#addBtn").attr("disabled", "disabled");
 
                 var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword };
 

@@ -247,6 +247,7 @@
     <Content Include="images\forward_disabled.png" />
     <Content Include="images\forward_enabled.png" />
     <Content Include="images\forward_enabled_hover.png" />
+    <Content Include="images\images.png" />
     <Content Include="images\mail.png" />
     <Content Include="images\sort_asc.png" />
     <Content Include="images\sort_asc_disabled.png" />
@@ -315,12 +316,17 @@
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\Login\Layout.js" />
+    <Content Include="Scripts\Login\Login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\nav.js" />
     <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\Password\ChangePassword.js" />
+    <Content Include="Scripts\Password\ForgotPassword.js" />
+    <Content Include="Scripts\Password\PasswordReset.js" />
     <Content Include="Scripts\placeholders.min.js" />
     <Content Include="Scripts\Printer\AddPrinter.js" />
     <Content Include="Scripts\Printer\ViewPrinter.js" />

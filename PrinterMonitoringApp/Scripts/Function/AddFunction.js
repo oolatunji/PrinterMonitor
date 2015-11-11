@@ -2,6 +2,7 @@
     try {
 
         $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Adding...');
+        $("#addBtn").attr("disabled", "disabled");
 
         var functionName = $('#functionName').val();
         var functionPageLink = $('#functionPageLink').val();

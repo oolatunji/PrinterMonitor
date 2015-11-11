@@ -162,7 +162,8 @@ namespace PrinterMonitorLibrary
                 using (var context = new PrinterMonitorDBEntities())
                 {
                     var users = context.Users
-                                            .Where(f => f.Username == username && f.HashedPassword == hashedPassword);
+                                        .Include("Role.RoleFunctions.Function")
+                                        .Where(f => f.Username == username && f.HashedPassword == hashedPassword);
 
                     return users.FirstOrDefault();
                 }

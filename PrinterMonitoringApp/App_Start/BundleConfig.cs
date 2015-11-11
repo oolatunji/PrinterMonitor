@@ -37,8 +37,13 @@ namespace PrinterMonitoringApp
                       "~/Scripts/Utility/configFile.js",
                       "~/Scripts/Utility/messageBox.js",
                       "~/Scripts/Utility/SystemConfiguration.js",
-                      "~/Scripts/custom.js"
+                      "~/Scripts/custom.js",
+                      "~/Scripts/Login/Login.js"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/layout").Include(
+                    "~/Scripts/Login/Layout.js"
+                    ));     
 
             bundles.Add(new ScriptBundle("~/bundles/configureSystem").Include(
                      "~/Scripts/Utility/ConfigureSystem.js"

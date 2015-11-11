@@ -26,7 +26,7 @@ namespace PrinterMonitorLibrary
             {
                 FileStream fs = new FileStream(filepath, FileMode.Append, FileAccess.Write);
                 StreamWriter file = new StreamWriter(fs);
-                file.WriteLine("[Time Stamp: " + String.Format("{0:ddd, MMM d, yyyy}", DateTime.Now) + "]\n");
+                file.WriteLine("[Time Stamp: " + DateTime.Now.ToString() + "]\n");
                 file.WriteLine("[Error:]\n");
                 file.WriteLine(Error + "\n\n");
                 file.WriteLine("");
@@ -37,7 +37,7 @@ namespace PrinterMonitorLibrary
             {
                 FileStream fs = new FileStream(filepath, FileMode.Create, FileAccess.Write);
                 StreamWriter file = new StreamWriter(fs);
-                file.WriteLine("[Time Stamp: " + String.Format("{0:ddd, MMM d, yyyy}", DateTime.Now) + "]\n");
+                file.WriteLine("[Time Stamp: " + DateTime.Now.ToString() + "]\n");
                 file.WriteLine("[Error:]\n");
                 file.WriteLine(Error + "\n\n");
                 file.WriteLine("");

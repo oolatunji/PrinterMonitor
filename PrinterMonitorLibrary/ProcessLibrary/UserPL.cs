@@ -120,15 +120,26 @@ namespace PrinterMonitorLibrary
                 if (user != null)
                 {
                     Object userObj = new Object();
-                    //Role role = RolePL.RetrieveRoleByID(user.Role);
-                    //List<Function> functions = FunctionPL.GetFunctionsByIDs(role.FunctionID.Split('|'));
+                    
+                    List<Object> userFunctions = new List<object>();
+
+                    foreach(RoleFunction roleFunction in user.Role.RoleFunctions)
+                    {
+                        Object function = new
+                        {
+                            Name = roleFunction.Function.Name,
+                            PageLink = roleFunction.Function.PageLink
+                        };
+
+                        userFunctions.Add(function);
+                    }
+
                     userObj = new
                     {
                         ID = user.ID,
                         Username = user.Username,
-                        FirstTime = user.FirstTime,
-                        //Role = role,
-                        //Functions = functions
+                        Role = user.Role.Name,
+                        Function = userFunctions
                     };
 
                     return userObj;

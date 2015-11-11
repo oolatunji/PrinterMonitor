@@ -57,6 +57,7 @@ function addUser() {
     try {
 
         $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Adding...');
+        $("#addBtn").attr("disabled", "disabled");
 
         var lastname = $('#lastname').val();
         var othernames = $('#othernames').val();
