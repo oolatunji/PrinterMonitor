@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     //For index menu     
     var userLinks = [];
     var user = JSON.parse(window.sessionStorage.getItem("loggedInUser"));
@@ -17,7 +18,6 @@ function sideMenu(userLinks) {
     $.each(links, function (key, value) {
         var link = value;
         var URL = $(link).attr('id');
-        console.log(URL);
         if (userLinks.indexOf(URL) < 0)
             $(link).parent().remove();
     });

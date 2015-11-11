@@ -1,34 +1,57 @@
 ﻿$(document).ready(function () {
     try {
 
-        $('#printerBranch').html('<option>Loading Branches...</option>');
-        $('#printerBranch').prop('disabled', 'disabled');
+        var currentUrl = window.location.href;
+        var user = JSON.parse(window.sessionStorage.getItem("loggedInUser"));
+        var userFunctions = user.Function;
 
-        //Get Branches
-        $.ajax({
-            url: settingsManager.websiteURL + 'api/BranchAPI/RetrieveBranches',
-            type: 'GET',
-            async: true,
-            cache: false,
-            success: function (response) {
-                $('#printerBranch').html('');
-                $('#printerBranch').prop('disabled', false);
-                $('#printerBranch').append('<option value="">Select Branch</option>');
-                var functions = response.data;
-                var html = '';
-                $.each(functions, function (key, value) {
-                    $('#printerBranch').append('<option value="' + value.ID + '">' + value.Name + '</option>');
-                });
-            },
-            error: function (xhr) {
-                displayMessage("error", 'Error experienced: ' + xhr.responseText, "Printer Management");
+        var exist = false;
+        $.each(userFunctions, function (key, userfunction) {
+            var link = settingsManager.websiteURL.trimRight('/') + userfunction.PageLink;
+            if (currentUrl == link) {
+                exist = true;
             }
         });
 
+        if (!exist)
+            window.location.href = '../System/UnAuthorized';
+        else {
+            $('#printerBranch').html('<option>Loading Branches...</option>');
+            $('#printerBranch').prop('disabled', 'disabled');
+
+            //Get Branches
+            $.ajax({
+                url: settingsManager.websiteURL + 'api/BranchAPI/RetrieveBranches',
+                type: 'GET',
+                async: true,
+                cache: false,
+                success: function (response) {
+                    $('#printerBranch').html('');
+                    $('#printerBranch').prop('disabled', false);
+                    $('#printerBranch').append('<option value="">Select Branch</option>');
+                    var functions = response.data;
+                    var html = '';
+                    $.each(functions, function (key, value) {
+                        $('#printerBranch').append('<option value="' + value.ID + '">' + value.Name + '</option>');
+                    });
+                },
+                error: function (xhr) {
+                    displayMessage("error", 'Error experienced: ' + xhr.responseText, "Printer Management");
+                }
+            });
+        }
     } catch (err) {
         displayMessage("error", "Error encountered: " + err, "Printer Management");
     }
 });
+
+String.prototype.trimRight = function (charlist) {
+    if (charlist === undefined)
+        charlist = "\s";
+
+    return this.replace(new RegExp("[" + charlist + "]+$"), "");
+};
+
 
 function addPrinter() {
     try {

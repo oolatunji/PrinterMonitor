@@ -18,5 +18,10 @@ namespace PrinterMonitoringApp.Controllers
         {
             return View();
         }
+
+        public ActionResult UnAuthorized()
+        {
+            return View();
+        }
     }
 }

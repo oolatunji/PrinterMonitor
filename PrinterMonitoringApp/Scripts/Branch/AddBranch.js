@@ -1,4 +1,29 @@
-﻿function addBranch() {
+﻿$(document).ready(function () {
+
+    var currentUrl = window.location.href;
+    var user = JSON.parse(window.sessionStorage.getItem("loggedInUser"));
+    var userFunctions = user.Function;
+
+    var exist = false;
+    $.each(userFunctions, function (key, userfunction) {
+        var link = settingsManager.websiteURL.trimRight('/') + userfunction.PageLink;
+        if (currentUrl == link) {
+            exist = true;
+        }
+    });
+
+    if (!exist)
+        window.location.href = '../System/UnAuthorized';
+});
+
+String.prototype.trimRight = function (charlist) {
+    if (charlist === undefined)
+        charlist = "\s";
+
+    return this.replace(new RegExp("[" + charlist + "]+$"), "");
+};
+
+function addBranch() {
     try {
 
         $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Adding...');
