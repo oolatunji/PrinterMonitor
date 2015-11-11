@@ -20,7 +20,7 @@
                 async: true,
                 cache: false,
                 success: function (data) {
-                    displayMessage("success", "An email that contains a link to continue with your password reset has been sent to you.", "Password Management");
+                    displayMessage("success", "An email that contains a link to continue with your password reset has been sent to your email: " + data + ". If this email address is not correct, kindly contact your administrator to modify accordingly", "Password Management");
                     $('#username').val("");
                     $("#addBtn").removeAttr("disabled");
                     $('#addBtn').html('<i class="fa fa-user"></i> Retrieve');

@@ -120,7 +120,7 @@ namespace PrinterMonitoringApp.Controllers
                     {
 
                         Mail.SendForgotPasswordMail(user);
-                        return Request.CreateResponse(HttpStatusCode.OK, "Successful");
+                        return Request.CreateResponse(HttpStatusCode.OK, user.Email);
                     }
                     else
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid username");
