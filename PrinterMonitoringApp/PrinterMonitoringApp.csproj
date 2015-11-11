@@ -258,6 +258,7 @@
     <Content Include="images\sort_desc_disabled.png" />
     <Content Include="images\uba.jpg" />
     <Content Include="img\backgrounds\blurred-bg1.jpg" />
+    <Content Include="img\backgrounds\blurred-bg2.jpg" />
     <Content Include="img\loading.gif" />
     <Content Include="img\people\1.jpg" />
     <Content Include="img\people\2.jpg" />
@@ -398,6 +399,8 @@
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\System\UnAuthorized.cshtml" />
+    <Content Include="Views\System\NotFoundError.cshtml" />
+    <Content Include="Views\System\InternalServerError.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

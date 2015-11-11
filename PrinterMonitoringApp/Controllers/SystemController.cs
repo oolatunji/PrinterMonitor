@@ -23,5 +23,15 @@ namespace PrinterMonitoringApp.Controllers
         {
             return View();
         }
+
+        public ActionResult NotFoundError()
+        {
+            return View();
+        }
+
+        public ActionResult InternalServerError()
+        {
+            return View();
+        }
     }
 }
