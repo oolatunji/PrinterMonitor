@@ -14,14 +14,13 @@ namespace PrinterMonitorLibrary
         {
             try
             {
-                string clearSmartCardID = Crypter.Decrypt(System.Configuration.ConfigurationManager.AppSettings.Get("ekey"), smartCardID);
                 var webToken = new CHECK_WEBTOKEN();
                 webToken.DateOfrequest = System.DateTime.Now;
                 webToken.Token = token;
                 webToken.HashedToken = PasswordHash.MD5Hash(token);
                 webToken.Username = username;
-                webToken.SmartCardID = smartCardID;
-                webToken.HashedSmartCardID = PasswordHash.MD5Hash(clearSmartCardID);
+                webToken.SmartCardID = Crypter.Encrypt(System.Configuration.ConfigurationManager.AppSettings.Get("ekey"), smartCardID);
+                webToken.HashedSmartCardID = PasswordHash.MD5Hash(smartCardID);
                 webToken.Status = 0;
 
                 using (var context = new PrinterMonitorDBEntities())

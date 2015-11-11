@@ -1,6 +1,7 @@
 ﻿using PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,20 +113,20 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static Object AuthenticateUser(string username, string password)
+        public static dynamic AuthenticateUser(string username, string password)
         {
             try
             {
                 User user = UserDL.AuthenticateUser(username, password);
                 if (user != null)
                 {
-                    Object userObj = new Object();
-                    
-                    List<Object> userFunctions = new List<object>();
+                    dynamic userObj = new ExpandoObject();
 
-                    foreach(RoleFunction roleFunction in user.Role.RoleFunctions)
+                    List<dynamic> userFunctions = new List<dynamic>();
+
+                    foreach (RoleFunction roleFunction in user.Role.RoleFunctions)
                     {
-                        Object function = new
+                        dynamic function = new
                         {
                             Name = roleFunction.Function.Name,
                             PageLink = roleFunction.Function.PageLink
@@ -134,13 +135,11 @@ namespace PrinterMonitorLibrary
                         userFunctions.Add(function);
                     }
 
-                    userObj = new
-                    {
-                        ID = user.ID,
-                        Username = user.Username,
-                        Role = user.Role.Name,
-                        Function = userFunctions
-                    };
+                    userObj.ID = user.ID;
+                    userObj.Username = user.Username;
+                    userObj.Role = user.Role.Name;
+                    userObj.SmartCard = user.SmartCard != null ? Crypter.Decrypt(System.Configuration.ConfigurationManager.AppSettings.Get("ekey"), user.SmartCard.EncryptedSmartCardID) : "None";
+                    userObj.Function = userFunctions;
 
                     return userObj;
                 }

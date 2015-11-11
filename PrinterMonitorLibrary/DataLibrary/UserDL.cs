@@ -163,6 +163,7 @@ namespace PrinterMonitorLibrary
                 {
                     var users = context.Users
                                         .Include("Role.RoleFunctions.Function")
+                                        .Include("SmartCard")
                                         .Where(f => f.Username == username && f.HashedPassword == hashedPassword);
 
                     return users.FirstOrDefault();

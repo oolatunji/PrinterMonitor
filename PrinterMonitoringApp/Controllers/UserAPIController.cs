@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace PrinterMonitoringApp.Controllers
@@ -209,9 +210,55 @@ namespace PrinterMonitoringApp.Controllers
             try
             {
                 string password = PasswordHash.MD5Hash(passwordModel.Password);
-                Object userObj = UserPL.AuthenticateUser(passwordModel.Username, password);
+                dynamic userObj = UserPL.AuthenticateUser(passwordModel.Username, password);
                 if (userObj != null)
-                    return Request.CreateResponse(HttpStatusCode.OK, userObj);
+                {
+                    bool useSmartCardAuthentication = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings.Get("UseSmartCardAuthentication"));
+                    if (!useSmartCardAuthentication)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, (object)userObj);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(userObj.SmartCard))
+                        {
+                            string smartCard = userObj.SmartCard;
+
+                            if (!smartCard.Equals("None"))
+                            {
+                                string token = System.Guid.NewGuid().ToString();
+
+                                bool insertToken = SmartCardPL.InsertToken(token, userObj.Username, smartCard);
+
+                                if (insertToken)
+                                {
+                                    bool successful = false;
+                                    for (int i = 0; i < 6; i++)
+                                    {
+                                        Thread.Sleep(1000);
+                                        bool checkTokenStatus = SmartCardPL.CheckInsertedTokenStatus(token);
+                                        if (checkTokenStatus)
+                                        {
+                                            successful = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (successful)
+                                        return Request.CreateResponse(HttpStatusCode.OK, (object)userObj); 
+                                    else
+                                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Login failed. Smart Card validation process ended but failed. Kindly check that the smart card has been placed in the smart card machine and try again.");
+                                }
+                                else
+                                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Login failed. Smart Card validation process started but failed.");
+                            }
+                            else                            
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Login failed. No assigned smart card ID. Kindly contact your administrator.");
+                        }
+                        else
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Login failed. No assigned smart card ID. Kindly contact your administrator");
+                    }
+                }
                 else
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid Username/Password");
             }
