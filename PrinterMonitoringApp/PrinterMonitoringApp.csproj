@@ -208,6 +208,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MailTemplates\ForgotPassword.txt" />
     <Content Include="App_Data\MailTemplates\mail.png" />
     <Content Include="App_Data\MailTemplates\NewUser.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -391,6 +392,7 @@
     <Content Include="Views\System\Configuration.cshtml" />
     <Content Include="Views\System\SystemConfiguration.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

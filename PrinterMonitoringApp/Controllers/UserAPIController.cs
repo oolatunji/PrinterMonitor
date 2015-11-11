@@ -119,7 +119,7 @@ namespace PrinterMonitoringApp.Controllers
                     if (user != null)
                     {
 
-                        //Mail.SendForgotPasswordMail(user);
+                        Mail.SendForgotPasswordMail(user);
                         return Request.CreateResponse(HttpStatusCode.OK, "Successful");
                     }
                     else

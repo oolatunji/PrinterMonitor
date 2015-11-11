@@ -47,6 +47,10 @@ namespace PrinterMonitoringApp
 
             bundles.Add(new ScriptBundle("~/bundles/changepassword").Include(
                     "~/Scripts/Password/ChangePassword.js"
+                    ));
+
+            bundles.Add(new ScriptBundle("~/bundles/forgotpassword").Include(
+                    "~/Scripts/Password/ForgotPassword.js"
                     ));   
 
             bundles.Add(new ScriptBundle("~/bundles/configureSystem").Include(

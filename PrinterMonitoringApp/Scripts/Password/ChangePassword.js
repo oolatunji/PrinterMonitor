@@ -11,9 +11,11 @@
             alert("Your session has expired. Kindly login again.")
         } else {
             var err = passwordValidation(new_password, confirm_password);
+
             if (err != "") {
                 displayMessage("error", "Error encountered: " + err, "Password Management");
             } else {
+
                 $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
                 $("#addBtn").attr("disabled", "disabled");
 
@@ -27,6 +29,9 @@
                     cache: false,
                     success: function (data) {
                         
+                        $("#addBtn").removeAttr("disabled");
+                        $('#addBtn').html('<i class="fa fa-user"></i> Change');
+
                         if (window.sessionStorage.getItem("loggedInUser") != null)
                             window.localStorage.removeItem("loggedInUser");
 
@@ -34,8 +39,7 @@
 
                         alert("Password was changed successfully. You will be redirected shorthly to login with your new password.");
 
-                        $("#addBtn").removeAttr("disabled");
-                        $('#addBtn').html('<i class="fa fa-user"></i> Change');
+                        
                     },
                     error: function (xhr) {
                         displayMessage("error", "Error encountered: " + xhr.responseText, "Password Management");

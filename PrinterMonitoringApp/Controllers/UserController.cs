@@ -23,5 +23,10 @@ namespace PrinterMonitoringApp.Controllers
         {
             return View();
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
     }
 }
