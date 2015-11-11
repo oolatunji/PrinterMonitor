@@ -306,6 +306,8 @@
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\dashboard-demo.js" />
     <Content Include="Scripts\dataTables.tableTools.js" />
+    <Content Include="Scripts\DynamicMenu\Dashboard.js" />
+    <Content Include="Scripts\DynamicMenu\Layout.js" />
     <Content Include="Scripts\Function\AddFunction.js" />
     <Content Include="Scripts\Function\ViewFunction.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

@@ -3,7 +3,7 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Scripts.Render("~/bundles/dashboard")
 <aside class="content-wrapper sidebarLeft">    
     <div class="content container-fluid sidebarRight animated fadeInUp">
         <div class="row">           
@@ -23,8 +23,8 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/Function/AddFunction" style="font-size:12px;color:black">Add Function| </a>
-                                <a name="ilinks" href="~/Function/ViewFunction" style="font-size:12px;color:black">View Function|</a>
+                                <a name="ilinks" href="~/Function/AddFunction" id="/Function/AddFunction" style="font-size:12px;color:black">Add Function| </a>
+                                <a name="ilinks" href="~/Function/ViewFunction" id="/Function/ViewFunction" style="font-size:12px;color:black">View Function|</a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
@@ -47,8 +47,8 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/Role/AddRole" style="font-size:12px;color:black">Add Role| </a>
-                                <a name="ilinks" href="~/Role/ViewRole" style="font-size:12px;color:black">View Role|</a>
+                                <a name="ilinks" href="~/Role/AddRole" id="/Role/AddRole" style="font-size:12px;color:black">Add Role| </a>
+                                <a name="ilinks" href="~/Role/ViewRole" id="/Role/ViewRole" style="font-size:12px;color:black">View Role|</a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
@@ -71,14 +71,37 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/Branch/AddBranch" style="font-size:12px;color:black">Add Branch| </a>
-                                <a name="ilinks" href="~/Branch/ViewBranch" style="font-size:12px;color:black">View Branch|</a>
+                                <a name="ilinks" href="~/Branch/AddBranch" id="/Branch/AddBranch" style="font-size:12px;color:black">Add Branch| </a>
+                                <a name="ilinks" href="~/Branch/ViewBranch" id="/Branch/ViewBranch" style="font-size:12px;color:black">View Branch|</a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
                     </a>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-refresh fa-spin fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge"></div>
+                                <div>Printer Monitor</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">
+                                <a href="~/Printer/Monitor" style="font-size:12px;color:black">Monitor|</a>
+                            </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div> 
             <div class="col-lg-4 col-md-6" name="iparent_link">
                 <div class="panel panel-red">
                     <div class="panel-heading">
@@ -94,9 +117,9 @@
                     </div>
                     <a href="#">
                         <div class="panel-footer">
-                            <span class="pull-left">
-                                <a name="ilinks" href="~/Printer/AddPrinter" style="font-size:12px;color:black">Add Printer| </a>
-                                <a name="ilinks" href="~/Printer/ViewPrinter" style="font-size:12px;color:black">View Printer|</a>
+                            <span class="pull-left">                                
+                                <a name="ilinks" href="~/Printer/AddPrinter" id="/Printer/AddPrinter" style="font-size:12px;color:black">Add Printer| </a>
+                                <a name="ilinks" href="~/Printer/ViewPrinter" id="/Printer/ViewPrinter" style="font-size:12px;color:black">View Printer|</a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
@@ -119,8 +142,8 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/User/AddUser" style="font-size:12px;color:black">Add User| </a>
-                                <a name="ilinks" href="~/User/ViewUser" style="font-size:12px;color:black">View User|</a>
+                                <a name="ilinks" href="~/User/AddUser" id="/User/AddUser" style="font-size:12px;color:black">Add User| </a>
+                                <a name="ilinks" href="~/User/ViewUser" id="/User/ViewUser" style="font-size:12px;color:black">View User|</a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
@@ -143,7 +166,7 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/SmartCard/ViewSmartCard" style="font-size:12px;color:black">View Smart Card| </a>
+                                <a name="ilinks" href="~/SmartCard/ViewSmartCard" id="/SmartCard/ViewSmartCard" style="font-size:12px;color:black">View Smart Card| </a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
@@ -166,14 +189,14 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/System/SystemConfiguration" style="font-size:12px;color:black;">Configure System| </a>
+                                <a name="ilinks" href="~/System/SystemConfiguration" id="/System/SystemConfiguration" style="font-size:12px;color:black;">Configure System| </a>
                             </span>
                             <div class="clearfix"></div>
                         </div>
                     </a>
                 </div>
             </div> 
-            <div class="col-lg-4 col-md-6" name="iparent_link">
+            <div class="col-lg-4 col-md-6">
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
@@ -189,7 +212,7 @@
                     <a href="#">
                         <div class="panel-footer">
                             <span class="pull-left">
-                                <a name="ilinks" href="~/User/ChangePassword" style="font-size:12px;color:black">Change Password| </a>
+                                <a href="~/User/ChangePassword" style="font-size:12px;color:black">Change Password| </a>
                             </span>
                             <div class="clearfix"></div>
                         </div>

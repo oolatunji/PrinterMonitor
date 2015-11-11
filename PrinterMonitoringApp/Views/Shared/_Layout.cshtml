@@ -68,7 +68,7 @@
                         </div>
                     </a>
                     <div class="btn-group">
-                        <button style="width:180px;" type="button" class="btn btn-red dropdown-toggle" data-toggle="dropdown">
+                        <button style="width:200px;" type="button" class="btn btn-red dropdown-toggle" data-toggle="dropdown">
                             <span id="userRole"></span>
                             <span class="caret"></span>
                         </button>
@@ -101,7 +101,7 @@
                     <!-- Function Menu Item -->
                     <li class="border-left-red">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#functions-submenu" title="Function Management">
+                        <a href="javascript:void(0);" name="parent_links" data-toggle="collapse" data-target="#functions-submenu" title="Function Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-wrench"></i> <span>Function Management</span>
                             <i class="fa fa-caret-right submenu-indicator"></i>
                         </a>
@@ -109,12 +109,12 @@
                         <ul id="functions-submenu" class="collapse">
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Function/AddFunction" class="fa fa-plus-square" style="font-size:13px;"> Add Functions</a>
+                                <a href="~/Function/AddFunction" id="/Function/AddFunction" class="fa fa-plus-square" style="font-size:13px;" name="links"> Add Functions</a>
                             </li>
                             <!-- End Menu Item -->
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Function/ViewFunction" class="fa fa-folder" style="font-size:13px;"> View Functions</a>
+                                <a href="~/Function/ViewFunction" id="/Function/ViewFunction" class="fa fa-folder" style="font-size:13px;" name="links"> View Functions</a>
                             </li>
                             <!-- End Menu Item -->
                         </ul>
@@ -123,7 +123,7 @@
                     <!-- Role Menu Item -->
                     <li class="border-left-blue">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#roles-submenu" title="Role Management">
+                        <a href="javascript:void(0);" name="parent_links" data-toggle="collapse" data-target="#roles-submenu" title="Role Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-check"></i> <span>Roles Management</span>
                             <i class="fa fa-caret-right submenu-indicator"></i>
                         </a>
@@ -131,12 +131,12 @@
                         <ul id="roles-submenu" class="collapse">
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Role/AddRole" class="fa fa-plus-square" style="font-size:13px;"> Add Roles</a>
+                                <a href="~/Role/AddRole" id="/Role/AddRole" class="fa fa-plus-square" style="font-size:13px;" name="links"> Add Roles</a>
                             </li>
                             <!-- End Menu Item -->
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Role/ViewRole" class="fa fa-folder" style="font-size:13px;"> View Roles</a>
+                                <a href="~/Role/ViewRole" id="/Role/ViewRole" class="fa fa-folder" style="font-size:13px;" name="links"> View Roles</a>
                             </li>
                             <!-- End Menu Item -->
                         </ul>
@@ -145,7 +145,7 @@
                     <!-- Branch Menu Item -->
                     <li class="border-left-red">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#branch-submenu" title="Branch Management">
+                        <a href="javascript:void(0);" name="parent_links" data-toggle="collapse" data-target="#branch-submenu" title="Branch Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-bank"></i> <span>Branch Management</span>
                             <i class="fa fa-caret-right submenu-indicator"></i>
                         </a>
@@ -153,19 +153,19 @@
                         <ul id="branch-submenu" class="collapse">
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Branch/AddBranch" class="fa fa-plus-square" style="font-size:13px;"> Add Branches</a>
+                                <a href="~/Branch/AddBranch" id="/Branch/AddBranch" class="fa fa-plus-square" style="font-size:13px;" name="links"> Add Branches</a>
                             </li>
                             <!-- End Menu Item -->
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Branch/ViewBranch" class="fa fa-folder" style="font-size:13px;"> View Branches</a>
+                                <a href="~/Branch/ViewBranch" id="/Branch/ViewBranch" class="fa fa-folder" style="font-size:13px;" name="links"> View Branches</a>
                             </li>
                             <!-- End Menu Item -->
                         </ul>
                     </li>
                     <li class="border-left-blue">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#printer-submenu" title="Printer Management">
+                        <a href="javascript:void(0);" name="parent_links" data-toggle="collapse" data-target="#printer-submenu" title="Printer Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-print"></i> <span>Printer Management</span>
                             <i class="fa fa-caret-right submenu-indicator"></i>
                         </a>
@@ -173,12 +173,12 @@
                         <ul id="printer-submenu" class="collapse">
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Printer/AddPrinter" class="fa fa-plus-square" style="font-size:13px;"> Add Printers</a>
+                                <a href="~/Printer/AddPrinter" id="/Printer/AddPrinter" class="fa fa-plus-square" style="font-size:13px;" name="links"> Add Printers</a>
                             </li>
                             <!-- End Menu Item -->
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/Printer/ViewPrinter" class="fa fa-folder" style="font-size:13px;"> View Printers</a>
+                                <a href="~/Printer/ViewPrinter" id="/Printer/ViewPrinter" class="fa fa-folder" style="font-size:13px;" name="links"> View Printers</a>
                             </li>
                             <!-- End Menu Item -->
                         </ul>
@@ -187,7 +187,7 @@
                     <!-- User Menu Item -->
                     <li class="border-left-red">
                         <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#user-submenu" title="User Management">
+                        <a href="javascript:void(0);" name="parent_links" data-toggle="collapse" data-target="#user-submenu" title="User Management">
                             <i class="menu-icon fa fa-lg fa-fw fa-user"></i> <span>User Management</span>
                             <i class="fa fa-caret-right submenu-indicator"></i>
                         </a>
@@ -195,23 +195,23 @@
                         <ul id="user-submenu" class="collapse">
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/User/AddUser" class="fa fa-plus-square" style="font-size:13px;"> Add Users</a>
+                                <a href="~/User/AddUser" id="/User/AddUser" class="fa fa-plus-square" style="font-size:13px;" name="links"> Add Users</a>
                             </li>
                             <!-- End Menu Item -->
                             <!-- Menu Item -->
                             <li>
-                                <a href="~/User/ViewUser" class="fa fa-folder" style="font-size:13px;"> View Users</a>
+                                <a href="~/User/ViewUser" id="/User/ViewUser" class="fa fa-folder" style="font-size:13px;" name="links"> View Users</a>
                             </li>
                             <!-- End Menu Item -->
                         </ul>
                     </li>
                     <li class="border-left-blue">
-                        <a href="~/SmartCard/ViewSmartCard" title="Smart Cards">
+                        <a href="~/SmartCard/ViewSmartCard" id="/SmartCard/ViewSmartCard" title="Smart Cards" name="links">
                             <i class="menu-icon fa fa-lg fa-fw fa-credit-card"></i> <span>Smart Cards</span>
                         </a>
                     </li>
                     <li class="border-left-red">
-                        <a href="~/System/SystemConfiguration" title="System Configuration">
+                        <a href="~/System/SystemConfiguration" id="/System/SystemConfiguration" title="System Configuration" name="links">
                             <i class="menu-icon fa fa-lg fa-fw fa-wrench"></i> <span>System Configuration</span>
                         </a>
                     </li>

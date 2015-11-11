@@ -42,7 +42,12 @@ namespace PrinterMonitoringApp
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/layout").Include(
-                    "~/Scripts/Login/Layout.js"
+                    "~/Scripts/Login/Layout.js",
+                    "~/Scripts/DynamicMenu/Layout.js"
+                    ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dashboard").Include(
+                    "~/Scripts/DynamicMenu/Dashboard.js"
                     ));
 
             bundles.Add(new ScriptBundle("~/bundles/changepassword").Include(
