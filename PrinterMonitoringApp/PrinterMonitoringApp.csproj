@@ -390,6 +390,7 @@
     <Content Include="Views\Printer\AddPrinter.cshtml" />
     <Content Include="Views\System\Configuration.cshtml" />
     <Content Include="Views\System\SystemConfiguration.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

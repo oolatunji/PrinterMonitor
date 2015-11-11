@@ -1,49 +1,59 @@
 ﻿function changePassword() {
-    var username = window.localStorage.getItem("loggedInUsername");
-    var new_password = $('#new_password').val();
-    var confirm_password = $('#confirm_password').val();
+    try {
+        var user = JSON.parse(window.sessionStorage.getItem("loggedInUser"));
 
-    if (username === null || username == "") {
-        window.location = "../";
-        alert("Your session has expired. Kindly login again.")
-    } else {
-        var err = customValidation(new_password, confirm_password);
-        if (err != "") {
-            noty({ text: err, layout: 'bottomRight', type: 'warning', timeout: 10000 });
+        var username = user.Username;
+        var new_password = $('#newPassword').val();
+        var confirm_password = $('#confirmPassword').val();
+
+        if (username === null || username == "") {
+            window.location = "../";
+            alert("Your session has expired. Kindly login again.")
         } else {
-            $("#updateBtn").attr("disabled", "disabled");
+            var err = passwordValidation(new_password, confirm_password);
+            if (err != "") {
+                displayMessage("error", "Error encountered: " + err, "Password Management");
+            } else {
+                $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+                $("#addBtn").attr("disabled", "disabled");
 
-            var data = { Username: username, NewPassword: new_password };
-            $.ajax({
-                url: settingsManager.websiteURL + 'api/UserAPI/ChangePassword',
-                type: 'PUT',
-                data: data,
-                processData: true,
-                async: true,
-                cache: false,
-                success: function (data) {
-                    //Remove local storages before redirecting to the login page
-                    window.localStorage.removeItem("loggedInUsername");
+                var data = { Username: username, Password: new_password };
+                $.ajax({
+                    url: settingsManager.websiteURL + 'api/UserAPI/ChangePassword',
+                    type: 'PUT',
+                    data: data,
+                    processData: true,
+                    async: true,
+                    cache: false,
+                    success: function (data) {
+                        
+                        if (window.sessionStorage.getItem("loggedInUser") != null)
+                            window.localStorage.removeItem("loggedInUser");
 
-                    if (window.localStorage.removeItem("loggedInUserID") != null)
-                        window.localStorage.removeItem("loggedInUserID");
+                        window.location.href = "../";
 
-                    window.location.href = "../";
+                        alert("Password was changed successfully. You will be redirected shorthly to login with your new password.");
 
-                    alert("Password was changed successfully. You will be redirected shorthly to login with your new password.");
-
-                    $("#updateBtn").removeAttr("disabled");
-                },
-                error: function (xhr) {
-                    noty({ text: 'Error experienced: ' + xhr.responseText, layout: 'bottomRight', type: 'warning', timeout: 10000 });
-                    $("#updateBtn").removeAttr("disabled");
-                }
-            });
+                        $("#addBtn").removeAttr("disabled");
+                        $('#addBtn').html('<i class="fa fa-user"></i> Change');
+                    },
+                    error: function (xhr) {
+                        displayMessage("error", "Error encountered: " + xhr.responseText, "Password Management");
+                        $("#addBtn").removeAttr("disabled");
+                        $('#addBtn').html('<i class="fa fa-user"></i> Change');
+                    }
+                });
+            }
         }
+    } catch (err) {
+        displayMessage("error", "Error encountered: " + err, "Password Management");
+        console.log(err);
+        $("#addBtn").removeAttr("disabled");
+        $('#addBtn').html('<i class="fa fa-user"></i> Change');
     }
 }
 
-function customValidation(newpassword, confirmnewpassword) {
+function passwordValidation(newpassword, confirmnewpassword) {
     var err = "";
     var missingFields = "";
     var errCount = 0;

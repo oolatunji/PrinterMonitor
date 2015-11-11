@@ -22,13 +22,13 @@
                 cache: false,
                 success: function (data) {
                     //Remove local storages if they exist before adding new ones
-                    if (window.localStorage.getItem("loggedInUser") != null)
-                        window.localStorage.removeItem("loggedInUser");
+                    if (window.sessionStorage.getItem("loggedInUser") != null)
+                        window.sessionStorage.removeItem("loggedInUser");
 
                     //Add new local storages
                     var user = JSON.stringify(data);
                     
-                    window.localStorage.setItem("loggedInUser", user);
+                    window.sessionStorage.setItem("loggedInUser", user);
 
                     window.location = ("Home/Dashboard");
 
