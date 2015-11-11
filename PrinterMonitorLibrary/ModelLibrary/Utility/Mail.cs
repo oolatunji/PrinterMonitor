@@ -102,7 +102,7 @@ namespace PrinterMonitorLibrary
                 string organization = System.Configuration.ConfigurationManager.AppSettings.Get("Organization");
                 string applicationName = System.Configuration.ConfigurationManager.AppSettings.Get("ApplicationName");
                 string websiteUrl = System.Configuration.ConfigurationManager.AppSettings.Get("WebsiteUrl");
-                string passwordResetUrl = websiteUrl + "User/PasswordReset?rq=" + encrypted_username; ;
+                string passwordResetUrl = websiteUrl + "User/ResetPassword?rq=" + encrypted_username; ;
                 string subject = "Password Reset Request on " + applicationName;
                
                 string fromAddress = "";

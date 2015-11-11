@@ -248,6 +248,7 @@
     <Content Include="images\forward_disabled.png" />
     <Content Include="images\forward_enabled.png" />
     <Content Include="images\forward_enabled_hover.png" />
+    <Content Include="images\images.jpg" />
     <Content Include="images\images.png" />
     <Content Include="images\mail.png" />
     <Content Include="images\sort_asc.png" />
@@ -393,6 +394,7 @@
     <Content Include="Views\System\SystemConfiguration.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
