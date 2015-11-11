@@ -37,6 +37,7 @@ namespace PrinterMonitoringApp.Controllers
                     appSettingsSection.Settings["Organization"].Value = systemModel.Organization;
                     appSettingsSection.Settings["ApplicationName"].Value = systemModel.ApplicationName;
                     appSettingsSection.Settings["WebsiteUrl"].Value = systemModel.WebsiteUrl;
+                    appSettingsSection.Settings["UseSmartCardAuthentication"].Value = systemModel.UseSmartCardAuthentication.ToString().ToLower();
 
                     
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
@@ -104,13 +105,15 @@ namespace PrinterMonitoringApp.Controllers
             string applicationName = appSettingsSection.Settings["ApplicationName"].Value;
             string websiteUrl = appSettingsSection.Settings["WebsiteUrl"].Value;
             string logFilePath = appSettingsSection.Settings["LogFilePath"].Value;
+            string useSmartCardAuthentication = appSettingsSection.Settings["UseSmartCardAuthentication"].Value;
 
             Object generalSettings = new
             {
                 Organization = organization,
                 ApplicationName = applicationName,
                 ApplicationUrl = websiteUrl,
-                LogFilePath = logFilePath
+                LogFilePath = logFilePath,
+                UseSmartCardAuthentication = useSmartCardAuthentication
             };
 
             var connectionStringsSection = (ConnectionStringsSection)configuration.GetSection("connectionStrings");

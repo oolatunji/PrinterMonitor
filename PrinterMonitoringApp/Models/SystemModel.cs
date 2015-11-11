@@ -32,5 +32,7 @@ namespace PrinterMonitoringApp
         public string SmtpHost { get; set; }
         [Required]
         public string SmtpPort { get; set; }
+        [Required]
+        public bool UseSmartCardAuthentication { get; set; }
     }
 }

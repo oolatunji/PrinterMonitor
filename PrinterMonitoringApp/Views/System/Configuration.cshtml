@@ -25,6 +25,10 @@
                     </div>
                     <div class="panel-body">
                         <div id="form-validation" class="form-horizontal" role="form">
+                            <p style="color:blue">To get default System Configuration Settings, click on the button below and supply System's Application url. Application url is the component of the url in your address bar before "System/Configuration". For example, If the url in the address bar is <span style="color:red">http://192.168.1.1/Monitor/System/Configuration</span> then the Application url is:<span style ="color:red">http://192.168.1.1/Monitor/</span></p>
+                            <div class="panel-heading">
+                                <button type="submit" id="getBtn" class="btn btn-red btn-block" onclick="getDefaultSettings()"><i class="fa fa-cog"></i> Get Default Settings</button>
+                            </div>
                             <div class="panel-heading">
                                 <h4 class="panel-title"><i class="ion-ios7-monitor-outline"></i> General Configuration</h4>
                                 <hr />
@@ -45,6 +49,12 @@
                                 <label class="col-sm-2 control-label">Bank Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" placeholder="Enter Bank Name" id="bankName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Use Smart Card Authentication</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="useSmartCardAuthentication"></select>
                                 </div>
                             </div>
                             <div class="panel-heading">

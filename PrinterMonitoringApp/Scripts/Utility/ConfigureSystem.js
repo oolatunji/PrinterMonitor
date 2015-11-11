@@ -18,6 +18,18 @@ function getSystemSettings() {
                 $('#applicationName').val(settings.GeneralSettings.ApplicationName);
                 $('#logFilePath').val(settings.GeneralSettings.LogFilePath);
 
+                $('#useSmartCardAuthentication').html('');
+                var optionsHtml = "";
+                if (settings.GeneralSettings.UseSmartCardAuthentication == 'true') {
+                    optionsHtml += '<option selected="selected" value="true">True</option>';
+                    optionsHtml += '<option value="false">False</option>';
+                    $('#useSmartCardAuthentication').append(optionsHtml);
+                } else {
+                    optionsHtml += '<option value="true">True</option>';
+                    optionsHtml += '<option selected="selected" value="false">False</option>';
+                    $('#useSmartCardAuthentication').append(optionsHtml);
+                }
+
                 $('#fromEmailAddress').val(settings.MailSettings.FromEmailAddress);
                 $('#smtpUsername').val(settings.MailSettings.SmtpUsername);
                 $('#smtpPassword').val(settings.MailSettings.SmtpPassword);
@@ -54,6 +66,7 @@ function configureSystem() {
         var databaseName = $('#databaseName').val();
         var databaseUser = $('#databaseUser').val();
         var databasePassword = $('#databasePassword').val();
+        var useSmartCardAuthentication = $('#useSmartCardAuthentication').val();
 
         if (websiteUrl == "") {
             displayMessage("error", 'Kindly enter Application Url', "System Management");
@@ -63,7 +76,7 @@ function configureSystem() {
                 $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Configuring System...');
                 $("#addBtn").attr("disabled", "disabled");
 
-                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword };
+                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword, UseSmartCardAuthentication: useSmartCardAuthentication };
 
                 $.ajax({
                     url: websiteUrl + 'api/SystemAPI/ConfigureSystem',
@@ -79,7 +92,10 @@ function configureSystem() {
                         $('#addBtn').html('<i class="fa fa-cog"></i> Configure');
                     },
                     error: function (xhr) {
-                        displayMessage("error", 'Error Experienced, ' + xhr.responseText, "System Management");
+                        if (xhr.status = 404)
+                            displayMessage("error", 'Error experienced: Incorrect Application Url.', "System Management");
+                        else
+                            displayMessage("error", 'Error experienced: ' + xhr.responseText, "System Management");
                         console.log(xhr);
                         $("#addBtn").removeAttr("disabled");
                         $('#addBtn').html('<i class="fa fa-cog"></i> Configure');
