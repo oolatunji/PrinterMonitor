@@ -1,0 +1,6 @@
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\bin\Debug\PrinterFeedsTest.exe.config
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\bin\Debug\PrinterFeedsTest.exe
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\bin\Debug\PrinterFeedsTest.pdb
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\obj\Debug\PrinterFeedsTest.csprojResolveAssemblyReference.cache
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\obj\Debug\PrinterFeedsTest.exe
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterFeedsTest\obj\Debug\PrinterFeedsTest.pdb

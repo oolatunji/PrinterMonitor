@@ -343,6 +343,7 @@
     <Content Include="Scripts\placeholders.min.js" />
     <Content Include="Scripts\Printer\AddPrinter.js" />
     <Content Include="Scripts\Printer\Monitor.js" />
+    <Content Include="Scripts\Printer\PrinterFeeds.js" />
     <Content Include="Scripts\Printer\ViewPrinter.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -412,6 +413,7 @@
     <Content Include="Views\System\UnAuthorized.cshtml" />
     <Content Include="Views\System\NotFoundError.cshtml" />
     <Content Include="Views\System\InternalServerError.cshtml" />
+    <Content Include="Views\Printer\PrinterFeeds.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

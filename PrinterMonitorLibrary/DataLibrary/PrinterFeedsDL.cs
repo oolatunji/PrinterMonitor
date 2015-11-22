@@ -32,7 +32,7 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    var printerFeeds = context.PrinterFeeds.Where(printerFeed => printerFeed.LatestFeed.Equals(true)).ToList();
+                    var printerFeeds = context.PrinterFeeds.Where(p => p.LatestFeed == true).ToList();
 
                     return printerFeeds;
                 }

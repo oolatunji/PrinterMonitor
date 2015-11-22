@@ -56,6 +56,27 @@ namespace PrinterMonitorLibrary
             }
         }
 
+        public static Printer GetPrinterBySerialNumber(string printerSerialNumber)
+        {
+            try
+            {
+                var existingPrinter = new Printer();
+                using (var context = new PrinterMonitorDBEntities())
+                {
+                    existingPrinter = context.Printers
+                                    .Include("Branch")
+                                    .Where(t => t.PrinterSrNo.Equals(printerSerialNumber))
+                                    .FirstOrDefault();
+                }
+
+                return existingPrinter;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Printer> RetrievePrinters()
         {
             try

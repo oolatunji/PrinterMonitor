@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Printer Feeds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="content-wrapper sidebarLeft">
+    <div class="content container-fluid sidebarRight animated fadeInUp">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-body content-title-container">
+                        <div class="right">
+                            <ol class="breadcrumb breadcrumb-theme breadcrumb-sm breadcrumb-red">
+                                <li><a href="~/Home/Dashboard">Dashboard</a></li>
+                                <li><a>Printer Feeds</a></li>
+                                <li class="active"><a>View Printer Feeds</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="MonitorPanel">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">View Printer Feeds</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel panel-default border-top-red" id="offlinePrinter">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:red" id="offline_header">OFFLINE PRINTER(S)</h3>
+                                <div class="controls pull-right">
+                                    <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body no-padding" id="offlinePrinterPanel">
+                                <table id="properties" class="cell-border" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status (%)</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default border-top-purple" id="lowRibbonPrinter">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:purple" id="low_header">LOW RIBBON PRINTER(S)</h3>
+                                <div class="controls pull-right">
+                                    <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body no-padding" id="lowRibbonPrinterPanel">
+                                <table id="lowproperties" class="cell-border" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status (%)</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default border-top-green" id="onlinePrinter">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:green">OTHER PRINTERS</h3>
+                                <div class="controls pull-right">
+                                    <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="panel-body no-padding" id="onlinePrinterPanel">
+                                <table id="highproperties" class="cell-border" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status (%)</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>Branch</th>
+                                            <th>Ribbon Status</th>
+                                            <th>Printed Cards</th>
+                                            <th>Date of Report</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</aside>
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/Printer/PrinterFeeds.js"></script>
+}

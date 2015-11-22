@@ -27,7 +27,7 @@ function pollPrinterFeeds() {
 function displayPrinterFeeds(time) {
 
     var feedsPollingTime = time * 60000;
-    
+
     $('#MonitorPanel').addClass('wobblebar-loader');
     $('#lowRibbonPrinter').hide();
     $('#offlinePrinter').hide();
@@ -52,21 +52,10 @@ function getLatestUpdates() {
 
         var offlinePrinterStatus = [];
         var lowRibbonPrinterStatus = [];
-
-        $("#offlinePrinterPanel").html('');
-        $("#lowRibbonPrinterPanel").html('');
-        $("#onlinePrinterPanel").html('');
-
-        var lowRibbonPrinter = '';
-        var offlinePrinter = '';
-        var onlinePrinter = '';
+        var onlinePrinterStatus = [];
 
         $.each(printerStatuses, function (key, printerStatus) {
             if (printerStatus.status == 0) {
-
-                offlinePrinter += '<div style="cursor:pointer;float:left;background-color:red;width:auto;height:17px;margin:5px" data-toggle="modal" data-target="#modalHeaderLightBlue" >';
-                offlinePrinter += '<div style="color:white;margin-left:5px;margin-right:5px;"><p class="blink" style="font-family:Calibri;font-weight:bold;">' + printerStatus.branchName + '</p></div>';
-                offlinePrinter += '</div>';
 
                 offlinePrinterStatus.push(printerStatus);
 
@@ -74,52 +63,38 @@ function getLatestUpdates() {
 
                 var ribbonStatus = printerStatus.ribbonStatus.toString().length < 2 ? "0" + printerStatus.ribbonStatus : printerStatus.ribbonStatus;
                 if (printerStatus.ribbonStatus <= 400) {
-                    lowRibbonPrinter += '<div style="cursor:pointer;float:left;background-color:purple;width:200px;height:17px;margin:5px"  data-toggle="modal" data-target="#modalHeaderLightPurple">';
-                    lowRibbonPrinter += '<div style="color:white;width:50%;margin-left:5px;margin-right:5px;float:left"><p class="blink" style="font-family:Calibri;font-weight:bold;">' + printerStatus.branchName + ' </p></div>';
-                    lowRibbonPrinter += '<div style="color:white;margin-right:10px;float:left;"><span style="font-family:Calibri;font-weight:bold;margin-right:10px;">' + ribbonStatus + ' |</span>';
-                    lowRibbonPrinter += '<span style="font-family:Calibri;font-weight:bold;">' + printerStatus.printedCards + '</span></div>';
-                    lowRibbonPrinter += '</div>';
-
+                    
                     lowRibbonPrinterStatus.push(printerStatus);
                 }
                 else if (printerStatus.ribbonStatus > 400) {
 
-                    onlinePrinter += '<div style="float:left;background-color:green;width:200px;height:17px;margin:5px">';
-                    onlinePrinter += '<div style="color:white;width:50%;margin-left:5px;margin-right:10px;float:left"><p style="font-family:Calibri;font-weight:bold;">' + printerStatus.branchName + ' </p></div>';
-                    onlinePrinter += '<div style="color:white;margin-right:10px;float:left;"><span style="font-family:Calibri;font-weight:bold;margin-right:10px;">' + ribbonStatus + ' |</span>';
-                    onlinePrinter += '<span style="font-family:Calibri;font-weight:bold;">' + printerStatus.printedCards + '</span></div>';
-                    onlinePrinter += '</div>';
-
+                    onlinePrinterStatus.push(printerStatus);
                 }
             }
         });
 
-        if (offlinePrinter != '') {
-            $('#offlinePrinter').show();
-            $("#offlinePrinterPanel").html(offlinePrinter);
-        } else if (offlinePrinter == '') {
+        if (offlinePrinterStatus.length == 0) {
             $('#offlinePrinter').hide();
+        } else {
+            $('#offlinePrinter').show();
         }
 
-        if (lowRibbonPrinter != '') {
-            $('#lowRibbonPrinter').show();
-            $("#lowRibbonPrinterPanel").html(lowRibbonPrinter);
-        } else if (lowRibbonPrinter == '') {
+        if (lowRibbonPrinterStatus.length == 0) {
             $('#lowRibbonPrinter').hide();
+        } else {
+            $('#lowRibbonPrinter').show();
         }
 
-        if (onlinePrinter != '') {
-            $('#onlinePrinter').show();
-            $("#onlinePrinterPanel").html(onlinePrinter);
-        } else if (onlinePrinter == '') {
+        if (onlinePrinterStatus.length == 0) {
             $('#onlinePrinter').hide();
+        } else {
+            $('#onlinePrinter').show();
         }
 
         $('#MonitorPanel').removeClass('wobblebar-loader');
-
         offlineData(offlinePrinterStatus);
         lowRibbonData(lowRibbonPrinterStatus);
-
+        onlineData(onlinePrinterStatus);
     };
     $.connection.hub.start().done(function () {
         printerMonitoringHub.server.getLatestPrinterStatus();
@@ -152,6 +127,7 @@ function offlineData(printerData) {
                     { "data": "branchName" },
                     { "data": "ribbonStatus" },
                     { "data": "printedCards" },
+                    { "data": "dateofReport" },
                     {
                         "data": "status",
                         "visible": false
@@ -163,12 +139,25 @@ function offlineData(printerData) {
                 "sDom": 'T<"clear">lrtip',
 
                 "oTableTools": {
-                    "sSwfPath": "../images/copy_csv_xls_pdf.swf",
+                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
                     "aButtons": [
                         {
-                            "sExtends": "print",
-                            "sButtonText": "Print Data",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' }
+                            "sExtends": "copy",
+                            "sButtonText": "Copy to Clipboard",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "csv",
+                            "sButtonText": "Save to CSV",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "Save for Excel",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
                         }
                     ]
                 }
@@ -209,6 +198,7 @@ function lowRibbonData(printerData) {
                     { "data": "branchName" },
                     { "data": "ribbonStatus" },
                     { "data": "printedCards" },
+                    { "data": "dateofReport" },
                     {
                         "data": "status",
                         "visible": false
@@ -220,16 +210,98 @@ function lowRibbonData(printerData) {
                 "sDom": 'T<"clear">lrtip',
 
                 "oTableTools": {
-                    "sSwfPath": "../images/copy_csv_xls_pdf.swf",
+                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
                     "aButtons": [
                         {
-                            "sExtends": "print",
-                            "sButtonText": "Print Data",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' }
+                            "sExtends": "copy",
+                            "sButtonText": "Copy to Clipboard",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "csv",
+                            "sButtonText": "Save to CSV",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "Save for Excel",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
                         }
                     ]
                 }
             });
+        }
+    } catch (err) {
+        alert(err);
+    }
+}
+
+function onlineData(printerData) {
+
+    try {
+        $('#highproperties tfoot th').each(function () {
+            var title = $('#highproperties tfoot th').eq($(this).index()).text();
+            if (title != "")
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+
+        if ($.fn.DataTable.isDataTable('#highproperties')) {
+            var table = $('#highproperties').DataTable();
+            table.clear().draw();
+            table.rows.add(printerData); // Add new data
+            table.columns.adjust().draw(); // R            
+        }
+        else {
+            var table = $('#highproperties').DataTable({
+
+                "processing": true,
+
+                "data": printerData,
+
+                "columns": [
+                    { "data": "branchName" },
+                    { "data": "ribbonStatus" },
+                    { "data": "printedCards" },
+                    { "data": "dateofReport" },
+                    {
+                        "data": "status",
+                        "visible": false
+                    },
+                ],
+
+                "order": [[1, "asc"]],
+
+                "sDom": 'T<"clear">lrtip',
+
+                "oTableTools": {
+                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
+                    "aButtons": [
+                        {
+                            "sExtends": "copy",
+                            "sButtonText": "Copy to Clipboard",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "csv",
+                            "sButtonText": "Save to CSV",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        },
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "Save for Excel",
+                            "oSelectorOpts": { filter: 'applied', order: 'current' },
+                            "mColumns": "visible"
+                        }
+                    ]
+                }
+            });
+
+
         }
     } catch (err) {
         alert(err);

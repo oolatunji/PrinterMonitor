@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterMonitoringApp", "Pri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterMonitorLibrary", "PrinterMonitorLibrary\PrinterMonitorLibrary.csproj", "{BC32ABE1-7D23-479A-9DE4-28C940D688FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterFeedsTest", "PrinterFeedsTest\PrinterFeedsTest.csproj", "{88E3E64C-258A-4F0A-8A06-1FF1F1016438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BC32ABE1-7D23-479A-9DE4-28C940D688FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC32ABE1-7D23-479A-9DE4-28C940D688FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC32ABE1-7D23-479A-9DE4-28C940D688FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E3E64C-258A-4F0A-8A06-1FF1F1016438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E3E64C-258A-4F0A-8A06-1FF1F1016438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E3E64C-258A-4F0A-8A06-1FF1F1016438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E3E64C-258A-4F0A-8A06-1FF1F1016438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
