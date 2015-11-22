@@ -55,6 +55,7 @@
     <Compile Include="DataLibrary\BranchDL.cs" />
     <Compile Include="DataLibrary\FunctionDL.cs" />
     <Compile Include="DataLibrary\PrinterDL.cs" />
+    <Compile Include="DataLibrary\PrinterFeedsDL.cs" />
     <Compile Include="DataLibrary\RoleDL.cs" />
     <Compile Include="DataLibrary\SmartCardDL.cs" />
     <Compile Include="DataLibrary\UserDL.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="ModelLibrary\Utility\StatusUtil.cs" />
     <Compile Include="ProcessLibrary\BranchPL.cs" />
     <Compile Include="ProcessLibrary\FunctionPL.cs" />
+    <Compile Include="ProcessLibrary\PrinterFeedsPL.cs" />
     <Compile Include="ProcessLibrary\PrinterPL.cs" />
     <Compile Include="ProcessLibrary\RolePL.cs" />
     <Compile Include="ProcessLibrary\SmartCardPL.cs" />

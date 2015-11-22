@@ -172,6 +172,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_insert_printer_feeds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PrinterUID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PrinterSerialNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="RibbonCount" Type="int" Mode="In" />
+    <Parameter Name="CardPrinted" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="bit" Mode="In" />
+    <Parameter Name="DateofReport" Type="datetime" Mode="In" />
+  </Function>
   <EntityContainer Name="PrinterMonitorEntitiesStoreContainer">
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHECK_WEBTOKEN" EntityType="Self.CHECK_WEBTOKEN" Schema="dbo" store:Type="Tables" />

@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PrinterMonitorEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="PrinterMonitorDBEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_insert_printer_feeds" ReturnType="Collection(Decimal)">
+      <Parameter Name="PrinterUID" Mode="In" Type="String" />
+      <Parameter Name="PrinterSerialNumber" Mode="In" Type="String" />
+      <Parameter Name="RibbonCount" Mode="In" Type="Int32" />
+      <Parameter Name="CardPrinted" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+      <Parameter Name="DateofReport" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <EntitySet Name="Branches" EntityType="PrinterMonitorEntities.Branch" />
     <EntitySet Name="CHECK_WEBTOKEN" EntityType="PrinterMonitorEntities.CHECK_WEBTOKEN" />
     <EntitySet Name="Functions" EntityType="PrinterMonitorEntities.Function" />

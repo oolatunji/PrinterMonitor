@@ -48,6 +48,8 @@ namespace PrinterMonitoringApp
                 response.Successful = false;
                 response.token = null;
 
+                ErrorHandler.WriteError(ex);
+
                 return response;
             }
         }
@@ -75,6 +77,8 @@ namespace PrinterMonitoringApp
             {
                 response.ErrMessage = ex.Message;
                 response.Successful = false;
+
+                ErrorHandler.WriteError(ex);
 
                 return response;
             }
@@ -105,6 +109,8 @@ namespace PrinterMonitoringApp
                 response.ErrMessage = ex.Message;
                 response.Successful = false;
 
+                ErrorHandler.WriteError(ex);
+
                 return response;
             }
         }
@@ -133,6 +139,8 @@ namespace PrinterMonitoringApp
                 response.ErrMessage = ex.Message;
                 response.Successful = false;
 
+                ErrorHandler.WriteError(ex);
+
                 return response;
             }
         }
@@ -140,12 +148,58 @@ namespace PrinterMonitoringApp
         [WebMethod]
         public string UserExists(string username, string password)
         {
-            if (UserPL.UserExists(username, password))
+            try
             {
-                return "True";
+                if (UserPL.UserExists(username, password))
+                {
+                    return "True";
+                }
+                else
+                    return "False";
             }
-            else
+            catch(Exception ex)
+            {
+                ErrorHandler.WriteError(ex);
                 return "False";
+            }
+        }
+
+        [WebMethod]
+        public Response LatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline)
+        {
+            Response response = new Response();
+            try
+            {
+                PrinterFeed printerFeed = new PrinterFeed();
+                printerFeed.PrinterUID = printerUID;
+                printerFeed.PrinterSerialNumber = printerSerialNumber;
+                printerFeed.RibbonCount = ribbonCount;
+                printerFeed.CardPrinted = noOfCardsPrinted;
+                printerFeed.Status = printerOnline;
+                printerFeed.DateofReport = System.DateTime.Now;
+
+                if (PrinterFeedsPL.Save(printerFeed))
+                {
+                    response.ErrMessage = string.Empty;
+                    response.Successful = true;
+                }
+                else
+                {
+                    response.ErrMessage = "Operation failed: " + printerSerialNumber;
+                    response.Successful = false;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.ErrMessage = ex.Message;
+                response.Successful = false;
+
+                ErrorHandler.WriteError(ex);
+
+                return response;
+            }
         }
     }
 }

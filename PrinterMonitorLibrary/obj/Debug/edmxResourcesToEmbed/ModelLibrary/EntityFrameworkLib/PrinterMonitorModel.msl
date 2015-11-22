@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="PrinterMonitorEntitiesStoreContainer" CdmEntityContainer="PrinterMonitorDBEntities">
+    <FunctionImportMapping FunctionImportName="sp_insert_printer_feeds" FunctionName="PrinterMonitorEntities.Store.sp_insert_printer_feeds" />
     <EntitySetMapping Name="Branches">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.Branch">
         <MappingFragment StoreEntitySet="Branch">
