@@ -54,12 +54,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RibbonCount" Type="int" Nullable="false" />
-          <Property Name="CardPrinted" Type="int" Nullable="false" />
-          <Property Name="Status" Type="bit" Nullable="false" />
-          <Property Name="LatestFeed" Type="bit" Nullable="false" />
-          <Property Name="DateofReport" Type="datetime" Nullable="false" />
+          <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrinterSerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="RibbonCount" Type="int" />
+          <Property Name="CardPrinted" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="LatestFeed" Type="bit" />
+          <Property Name="DateofReport" Type="datetime" />
         </EntityType>
         <EntityType Name="RoleFunctions">
           <Key>
@@ -303,12 +304,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PrinterUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RibbonCount" Type="Int32" Nullable="false" />
-          <Property Name="CardPrinted" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="LatestFeed" Type="Boolean" Nullable="false" />
-          <Property Name="DateofReport" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PrinterUID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrinterSerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RibbonCount" Type="Int32" />
+          <Property Name="CardPrinted" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="LatestFeed" Type="Boolean" />
+          <Property Name="DateofReport" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RoleFunction">
           <Key>
@@ -495,6 +497,7 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CardPrinted" ColumnName="CardPrinted" />
                 <ScalarProperty Name="RibbonCount" ColumnName="RibbonCount" />
+                <ScalarProperty Name="PrinterSerialNumber" ColumnName="PrinterSerialNumber" />
                 <ScalarProperty Name="PrinterUID" ColumnName="PrinterUID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

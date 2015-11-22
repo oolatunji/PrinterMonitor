@@ -20,7 +20,7 @@ namespace PrinterMonitorLibrary
             {
                 if (PrinterDL.PrinterExists(printer))
                 {
-                    message = string.Format("Printer with unique identifier: {0} exists already", printer.PrinterUID);
+                    message = string.Format("Printer with serial number: {0} exists already", printer.PrinterSrNo);
                     return false;
                 }
                 else
@@ -60,7 +60,6 @@ namespace PrinterMonitorLibrary
                     Object printerObj = new
                     {
                         ID = printer.ID,
-                        PrinterUID = printer.PrinterUID,
                         PrinterSrNo = printer.PrinterSrNo,
                         PrinterName = printer.PrinterName,
                         PrinterBrand = printer.PrinterBrand,

@@ -49,12 +49,13 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="RibbonCount" Type="int" Nullable="false" />
-    <Property Name="CardPrinted" Type="int" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="LatestFeed" Type="bit" Nullable="false" />
-    <Property Name="DateofReport" Type="datetime" Nullable="false" />
+    <Property Name="PrinterUID" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrinterSerialNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="RibbonCount" Type="int" />
+    <Property Name="CardPrinted" Type="int" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="LatestFeed" Type="bit" />
+    <Property Name="DateofReport" Type="datetime" />
   </EntityType>
   <EntityType Name="RoleFunctions">
     <Key>

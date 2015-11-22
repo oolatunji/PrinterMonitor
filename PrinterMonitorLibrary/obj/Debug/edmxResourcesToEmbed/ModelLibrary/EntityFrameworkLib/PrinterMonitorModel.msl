@@ -57,6 +57,7 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="CardPrinted" ColumnName="CardPrinted" />
           <ScalarProperty Name="RibbonCount" ColumnName="RibbonCount" />
+          <ScalarProperty Name="PrinterSerialNumber" ColumnName="PrinterSerialNumber" />
           <ScalarProperty Name="PrinterUID" ColumnName="PrinterUID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>

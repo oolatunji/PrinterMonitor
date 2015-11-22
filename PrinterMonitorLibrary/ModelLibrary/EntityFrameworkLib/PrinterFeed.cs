@@ -16,10 +16,11 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
     {
         public long ID { get; set; }
         public string PrinterUID { get; set; }
-        public int RibbonCount { get; set; }
-        public int CardPrinted { get; set; }
-        public bool Status { get; set; }
-        public bool LatestFeed { get; set; }
-        public System.DateTime DateofReport { get; set; }
+        public string PrinterSerialNumber { get; set; }
+        public Nullable<int> RibbonCount { get; set; }
+        public Nullable<int> CardPrinted { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public Nullable<bool> LatestFeed { get; set; }
+        public Nullable<System.DateTime> DateofReport { get; set; }
     }
 }

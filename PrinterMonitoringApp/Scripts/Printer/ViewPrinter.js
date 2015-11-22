@@ -79,7 +79,6 @@ function getPrinters(branches) {
                     "data": null,
                     "defaultContent": ''
                 },
-                { "data": "PrinterUID" },
                 { "data": "PrinterSrNo" },
                 { "data": "PrinterName" },
                 { "data": "PrinterBrand" },
@@ -100,7 +99,7 @@ function getPrinters(branches) {
             "sDom": 'T<"clear">lrtip',
 
             "oTableTools": {
-                "sSwfPath": "../images/copy_csv_xls_pdf.swf",
+                "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
                 "aButtons": [
                     {
                         "sExtends": "copy",
@@ -166,10 +165,6 @@ $(document).ready(function () {
 function format(d, branches) {
     var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
     table += '<tr>';
-    table += '<td style="color:navy;width:20%;font-family:Arial;">Printer UID:</td>';
-    table += '<td><input class="form-control" placeholder="Enter Printer Unique Identifier" id="printerUID" value="' + d.PrinterUID + '"/></td>';
-    table += '</tr>';
-    table += '<tr>';
     table += '<td style="color:navy;width:20%;font-family:Arial;">Printer Serial No:</td>';
     table += '<td><input class="form-control" placeholder="Enter Printer Serial Number" id="printerSrNo" value="' + d.PrinterSrNo + '"/></td>';
     table += '</tr>';
@@ -210,14 +205,13 @@ function update() {
         $('#updateBtn').html('<i class="fa fa-spinner fa-spin"></i> Updating...');
         $("#updateBtn").attr("disabled", "disabled");
 
-        var printerUID = $('#printerUID').val();
         var printerSrNo = $('#printerSrNo').val();
         var printerName = $('#printerName').val();
         var printerBrand = $('#printerBrand').val();
         var printerBranch = $('#printerBranch').val();
         var id = $('#id').val();
 
-        var data = { PrinterUID: printerUID, PrinterSrNo: printerSrNo, PrinterName: printerName, PrinterBrand: printerBrand, BranchID: printerBranch, ID: id };
+        var data = { PrinterSrNo: printerSrNo, PrinterName: printerName, PrinterBrand: printerBrand, BranchID: printerBranch, ID: id };
 
         $.ajax({
             url: settingsManager.websiteURL + 'api/PrinterAPI/UpdatePrinter',

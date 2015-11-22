@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "View Printer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/viewprinters")
+<aside class="content-wrapper sidebarLeft">
+    <div class="content container-fluid sidebarRight animated fadeInUp">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-body content-title-container">
+                        <div class="right">
+                            <ol class="breadcrumb breadcrumb-theme breadcrumb-sm breadcrumb-red">
+                                <li><a href="~/Home/Dashboard">Dashboard</a></li>
+                                <li><a>Printer Management</a></li>
+                                <li class="active"><a>View Printers</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">View Printers</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="example" class="cell-border order-column cell-border" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Printer UID</th>
+                                    <th>Printer Serial No</th>
+                                    <th>Printer Name</th>
+                                    <th>Printer Brand</th>
+                                    <th>Branch</th>
+                                    <th>Enrollment Date</th>
+                                </tr>
+                            </thead>
+
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Printer UID</th>
+                                    <th>Printer Serial No</th>
+                                    <th>Printer Name</th>
+                                    <th>Printer Brand</th>
+                                    <th>Branch</th>
+                                    <th>Enrollment Date</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</aside>

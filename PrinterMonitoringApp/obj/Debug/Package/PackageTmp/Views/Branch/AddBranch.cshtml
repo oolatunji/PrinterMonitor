@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Add Branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/addbranch")
+<aside class="content-wrapper sidebarLeft">
+    <div class="content container-fluid sidebarRight animated fadeInUp">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-body content-title-container">
+                        <div class="right">
+                            <ol class="breadcrumb breadcrumb-theme breadcrumb-sm breadcrumb-red">
+                                <li><a href="~/Home/Dashboard">Dashboard</a></li>
+                                <li><a>Branch Management</a></li>
+                                <li class="active"><a>Add Branch</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Branch</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="form-validation" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Enter Branch Name" name="branchName" id="branchName" autofocus="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Enter Branch Code" name="branchCode" id="branchCode" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Enter Branch Address" name="branchAddress" id="branchAddress" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addBtn" class="btn btn-red" style="float:right;" onclick="addBranch()"><i class="fa fa-cog"></i> Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</aside>
+
+

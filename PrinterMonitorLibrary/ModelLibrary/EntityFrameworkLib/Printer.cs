@@ -18,9 +18,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
     {
         public long ID { get; set; }
         [Required]
-        [DisplayName("Printer Unique Identifier")]
-        public string PrinterUID { get; set; }
-        [Required]
         [DisplayName("Printer Serial Number")]
         public string PrinterSrNo { get; set; }
         [Required]

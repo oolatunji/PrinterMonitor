@@ -34,5 +34,7 @@ namespace PrinterMonitoringApp
         public string SmtpPort { get; set; }
         [Required]
         public bool UseSmartCardAuthentication { get; set; }
+        [Required]
+        public Int32 PrinterFeedsPollingTime { get; set; }
     }
 }

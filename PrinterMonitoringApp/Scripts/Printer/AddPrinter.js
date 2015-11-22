@@ -58,13 +58,12 @@ function addPrinter() {
 
         $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Adding...');
 
-        var printerUID = $('#printerUID').val();
         var printerSrNo = $('#printerSrNo').val();
         var printerName = $('#printerName').val();
         var printerBrand = $('#printerBrand').val();
         var printerBranch = $('#printerBranch').val();
 
-        var data = { PrinterUID: printerUID, PrinterSrNo: printerSrNo, PrinterName: printerName, PrinterBrand: printerBrand, BranchID: printerBranch };
+        var data = { PrinterSrNo: printerSrNo, PrinterName: printerName, PrinterBrand: printerBrand, BranchID: printerBranch };
         $.ajax({
             url: settingsManager.websiteURL + 'api/PrinterAPI/SavePrinter',
             type: 'POST',
@@ -74,7 +73,6 @@ function addPrinter() {
             cache: false,
             success: function (response) {
                 displayMessage("success", response, "Printer Management");
-                $('#printerUID').val('');
                 $('#printerSrNo').val('');
                 $('#printerName').val('');
                 $('#printerBrand').val('');

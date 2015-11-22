@@ -41,7 +41,7 @@ namespace PrinterMonitorLibrary
                 {
                     existingPrinter = context.Printers
                                     .Include("Branch")
-                                    .Where(t => t.PrinterUID.Equals(printer.PrinterUID))
+                                    .Where(t => t.PrinterSrNo.Equals(printer.PrinterSrNo))
                                     .FirstOrDefault();
                 }
 
@@ -89,7 +89,6 @@ namespace PrinterMonitorLibrary
 
                 if (existingPrinter != null)
                 {
-                    existingPrinter.PrinterUID = printer.PrinterUID;
                     existingPrinter.PrinterSrNo = printer.PrinterSrNo;
                     existingPrinter.PrinterName = printer.PrinterName;
                     existingPrinter.PrinterBrand = printer.PrinterBrand;

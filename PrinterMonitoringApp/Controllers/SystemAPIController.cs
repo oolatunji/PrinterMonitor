@@ -38,6 +38,7 @@ namespace PrinterMonitoringApp.Controllers
                     appSettingsSection.Settings["ApplicationName"].Value = systemModel.ApplicationName;
                     appSettingsSection.Settings["WebsiteUrl"].Value = systemModel.WebsiteUrl;
                     appSettingsSection.Settings["UseSmartCardAuthentication"].Value = systemModel.UseSmartCardAuthentication.ToString().ToLower();
+                    appSettingsSection.Settings["PrinterFeedsPollingTime"].Value = systemModel.PrinterFeedsPollingTime.ToString();
 
                     
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
@@ -94,6 +95,22 @@ namespace PrinterMonitoringApp.Controllers
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetPrinterFeedsPollingTime()
+        {
+            try
+            {
+                object pollingTime = PrinterFeedsPollingTime();
+                return Request.CreateResponse(HttpStatusCode.OK, pollingTime);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.WriteError(ex);
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+                return response;
+            }
+        }
+
         Object SystemSettings()
         {
             Object systemSettings = new object();
@@ -106,6 +123,7 @@ namespace PrinterMonitoringApp.Controllers
             string websiteUrl = appSettingsSection.Settings["WebsiteUrl"].Value;
             string logFilePath = appSettingsSection.Settings["LogFilePath"].Value;
             string useSmartCardAuthentication = appSettingsSection.Settings["UseSmartCardAuthentication"].Value;
+            Int32 printerFeedsPollingTime = Convert.ToInt32(appSettingsSection.Settings["PrinterFeedsPollingTime"].Value);
 
             Object generalSettings = new
             {
@@ -113,7 +131,8 @@ namespace PrinterMonitoringApp.Controllers
                 ApplicationName = applicationName,
                 ApplicationUrl = websiteUrl,
                 LogFilePath = logFilePath,
-                UseSmartCardAuthentication = useSmartCardAuthentication
+                UseSmartCardAuthentication = useSmartCardAuthentication,
+                PrinterFeedsPollingTime = printerFeedsPollingTime
             };
 
             var connectionStringsSection = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
@@ -144,6 +163,21 @@ namespace PrinterMonitoringApp.Controllers
             };
 
             return systemSettings;
+        }
+
+        Object PrinterFeedsPollingTime()
+        {
+            var configuration = WebConfigurationManager.OpenWebConfiguration("~");
+
+            var appSettingsSection = (AppSettingsSection)configuration.GetSection("appSettings");
+            Int32 printerFeedsPollingTime = Convert.ToInt32(appSettingsSection.Settings["PrinterFeedsPollingTime"].Value);
+
+            Object generalSettings = new
+            {
+                PrinterFeedsPollingTime = printerFeedsPollingTime
+            };
+
+            return generalSettings;
         }
         
         string GetConnectionString(string databaseServerInstance, string databaseName, string databaseUser, string databasePassword)
