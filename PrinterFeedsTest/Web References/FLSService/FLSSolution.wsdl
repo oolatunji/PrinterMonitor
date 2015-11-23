@@ -102,7 +102,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="LatestPrinterFeeds">
+      <s:element name="SendLatestPrinterFeeds">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="printerUID" type="s:string" />
@@ -113,10 +113,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="LatestPrinterFeedsResponse">
+      <s:element name="SendLatestPrinterFeedsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LatestPrinterFeedsResult" type="tns:Response" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendLatestPrinterFeedsResult" type="tns:Response" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -152,11 +152,11 @@
   <wsdl:message name="UserExistsSoapOut">
     <wsdl:part name="parameters" element="tns:UserExistsResponse" />
   </wsdl:message>
-  <wsdl:message name="LatestPrinterFeedsSoapIn">
-    <wsdl:part name="parameters" element="tns:LatestPrinterFeeds" />
+  <wsdl:message name="SendLatestPrinterFeedsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendLatestPrinterFeeds" />
   </wsdl:message>
-  <wsdl:message name="LatestPrinterFeedsSoapOut">
-    <wsdl:part name="parameters" element="tns:LatestPrinterFeedsResponse" />
+  <wsdl:message name="SendLatestPrinterFeedsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendLatestPrinterFeedsResponse" />
   </wsdl:message>
   <wsdl:portType name="FLSSolutionSoap">
     <wsdl:operation name="CheckNewToken">
@@ -179,9 +179,9 @@
       <wsdl:input message="tns:UserExistsSoapIn" />
       <wsdl:output message="tns:UserExistsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="LatestPrinterFeeds">
-      <wsdl:input message="tns:LatestPrinterFeedsSoapIn" />
-      <wsdl:output message="tns:LatestPrinterFeedsSoapOut" />
+    <wsdl:operation name="SendLatestPrinterFeeds">
+      <wsdl:input message="tns:SendLatestPrinterFeedsSoapIn" />
+      <wsdl:output message="tns:SendLatestPrinterFeedsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="FLSSolutionSoap" type="tns:FLSSolutionSoap">
@@ -231,8 +231,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LatestPrinterFeeds">
-      <soap:operation soapAction="http://tempuri.org/LatestPrinterFeeds" style="document" />
+    <wsdl:operation name="SendLatestPrinterFeeds">
+      <soap:operation soapAction="http://tempuri.org/SendLatestPrinterFeeds" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -288,8 +288,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LatestPrinterFeeds">
-      <soap12:operation soapAction="http://tempuri.org/LatestPrinterFeeds" style="document" />
+    <wsdl:operation name="SendLatestPrinterFeeds">
+      <soap12:operation soapAction="http://tempuri.org/SendLatestPrinterFeeds" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

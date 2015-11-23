@@ -33,14 +33,17 @@ namespace PrinterMonitorLibrary
                 {
                     Printer printer = PrinterDL.GetPrinterBySerialNumber(feed.PrinterSerialNumber);
 
-                    dynamic printerFeed = new System.Dynamic.ExpandoObject();
-                    printerFeed.branchName = printer.Branch.Name;
-                    printerFeed.ribbonStatus = feed.RibbonCount;
-                    printerFeed.printedCards = feed.CardPrinted;
-                    printerFeed.status = feed.Status.Equals(true) ? 1 : 0;
-                    printerFeed.dateofReport = String.Format("{0:G}", feed.DateofReport);
+                    if (printer != null)
+                    {
+                        dynamic printerFeed = new System.Dynamic.ExpandoObject();
+                        printerFeed.branchName = printer.Branch.Name;
+                        printerFeed.ribbonStatus = feed.RibbonCount;
+                        printerFeed.printedCards = feed.CardPrinted;
+                        printerFeed.status = feed.Status.Equals(true) ? 1 : 0;
+                        printerFeed.dateofReport = String.Format("{0:G}", feed.DateofReport);
 
-                    printerFeeds.Add(printerFeed);
+                        printerFeeds.Add(printerFeed);
+                    }
                 }
 
                 return printerFeeds;

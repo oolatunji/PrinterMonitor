@@ -165,28 +165,36 @@ namespace PrinterMonitoringApp
         }
 
         [WebMethod]
-        public Response LatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline)
+        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline)
         {
             Response response = new Response();
             try
             {
-                PrinterFeed printerFeed = new PrinterFeed();
-                printerFeed.PrinterUID = printerUID;
-                printerFeed.PrinterSerialNumber = printerSerialNumber;
-                printerFeed.RibbonCount = ribbonCount;
-                printerFeed.CardPrinted = noOfCardsPrinted;
-                printerFeed.Status = printerOnline;
-                printerFeed.DateofReport = System.DateTime.Now;
-
-                if (PrinterFeedsPL.Save(printerFeed))
+                if (string.IsNullOrEmpty(printerSerialNumber))
                 {
-                    response.ErrMessage = string.Empty;
-                    response.Successful = true;
+                    response.ErrMessage = "Operation failed: Printer Serial Number Cannot be Empty or Null";
+                    response.Successful = false;
                 }
                 else
                 {
-                    response.ErrMessage = "Operation failed: " + printerSerialNumber;
-                    response.Successful = false;
+                    PrinterFeed printerFeed = new PrinterFeed();
+                    printerFeed.PrinterUID = printerUID;
+                    printerFeed.PrinterSerialNumber = printerSerialNumber;
+                    printerFeed.RibbonCount = ribbonCount;
+                    printerFeed.CardPrinted = noOfCardsPrinted;
+                    printerFeed.Status = printerOnline;
+                    printerFeed.DateofReport = System.DateTime.Now;
+
+                    if (PrinterFeedsPL.Save(printerFeed))
+                    {
+                        response.ErrMessage = string.Empty;
+                        response.Successful = true;
+                    }
+                    else
+                    {
+                        response.ErrMessage = "Operation failed: " + printerSerialNumber;
+                        response.Successful = false;
+                    }
                 }
 
                 return response;

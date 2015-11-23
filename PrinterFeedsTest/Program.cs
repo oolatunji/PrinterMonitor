@@ -37,7 +37,7 @@ namespace PrinterFeedsTest
                     if (online > 150)
                         printerOnline = true;
 
-                    flsservice.LatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
+                    flsservice.SendLatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
                 });
 
                 Thread printer2 = new Thread(delegate()
@@ -53,7 +53,7 @@ namespace PrinterFeedsTest
                     if (online > 150)
                         printerOnline = true;
 
-                    flsservice.LatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
+                    flsservice.SendLatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
                 });
 
                 Thread printer3 = new Thread(delegate()
@@ -69,7 +69,7 @@ namespace PrinterFeedsTest
                     if (online > 150)
                         printerOnline = true;
 
-                    flsservice.LatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
+                    flsservice.SendLatestPrinterFeeds(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline);
                 });
 
                 printer1.IsBackground = true;

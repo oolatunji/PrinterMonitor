@@ -39,7 +39,7 @@ namespace PrinterFeedsTest.FLSService {
         
         private System.Threading.SendOrPostCallback UserExistsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback LatestPrinterFeedsOperationCompleted;
+        private System.Threading.SendOrPostCallback SendLatestPrinterFeedsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -95,7 +95,7 @@ namespace PrinterFeedsTest.FLSService {
         public event UserExistsCompletedEventHandler UserExistsCompleted;
         
         /// <remarks/>
-        public event LatestPrinterFeedsCompletedEventHandler LatestPrinterFeedsCompleted;
+        public event SendLatestPrinterFeedsCompletedEventHandler SendLatestPrinterFeedsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CheckNewToken", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -247,9 +247,9 @@ namespace PrinterFeedsTest.FLSService {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LatestPrinterFeeds", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Response LatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
-            object[] results = this.Invoke("LatestPrinterFeeds", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendLatestPrinterFeeds", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
+            object[] results = this.Invoke("SendLatestPrinterFeeds", new object[] {
                         printerUID,
                         printerSerialNumber,
                         ribbonCount,
@@ -259,27 +259,27 @@ namespace PrinterFeedsTest.FLSService {
         }
         
         /// <remarks/>
-        public void LatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
-            this.LatestPrinterFeedsAsync(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline, null);
+        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
+            this.SendLatestPrinterFeedsAsync(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline, null);
         }
         
         /// <remarks/>
-        public void LatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, object userState) {
-            if ((this.LatestPrinterFeedsOperationCompleted == null)) {
-                this.LatestPrinterFeedsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLatestPrinterFeedsOperationCompleted);
+        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, object userState) {
+            if ((this.SendLatestPrinterFeedsOperationCompleted == null)) {
+                this.SendLatestPrinterFeedsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendLatestPrinterFeedsOperationCompleted);
             }
-            this.InvokeAsync("LatestPrinterFeeds", new object[] {
+            this.InvokeAsync("SendLatestPrinterFeeds", new object[] {
                         printerUID,
                         printerSerialNumber,
                         ribbonCount,
                         noOfCardsPrinted,
-                        printerOnline}, this.LatestPrinterFeedsOperationCompleted, userState);
+                        printerOnline}, this.SendLatestPrinterFeedsOperationCompleted, userState);
         }
         
-        private void OnLatestPrinterFeedsOperationCompleted(object arg) {
-            if ((this.LatestPrinterFeedsCompleted != null)) {
+        private void OnSendLatestPrinterFeedsOperationCompleted(object arg) {
+            if ((this.SendLatestPrinterFeedsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LatestPrinterFeedsCompleted(this, new LatestPrinterFeedsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.SendLatestPrinterFeedsCompleted(this, new SendLatestPrinterFeedsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -606,17 +606,17 @@ namespace PrinterFeedsTest.FLSService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void LatestPrinterFeedsCompletedEventHandler(object sender, LatestPrinterFeedsCompletedEventArgs e);
+    public delegate void SendLatestPrinterFeedsCompletedEventHandler(object sender, SendLatestPrinterFeedsCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LatestPrinterFeedsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class SendLatestPrinterFeedsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LatestPrinterFeedsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal SendLatestPrinterFeedsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
