@@ -5,6 +5,6 @@ C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\Printer
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\bin\Debug\EntityFramework.xml
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\obj\Debug\PrinterMonitorLibrary.csprojResolveAssemblyReference.cache
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\obj\Debug\PrinterMonitorLibrary.dll
 C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\obj\Debug\PrinterMonitorLibrary.pdb
-C:\Users\OLATUNJI\Documents\projects\PrinterMonitoringApp\PrinterMonitor\PrinterMonitorLibrary\obj\Debug\PrinterMonitorLibrary.csprojResolveAssemblyReference.cache

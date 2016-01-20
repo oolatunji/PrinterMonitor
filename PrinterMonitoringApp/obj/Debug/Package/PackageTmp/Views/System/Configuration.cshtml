@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>System Configuration</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/common_libraries")
+</head>
+<body class="login">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="ion-settings"></i> SYSTEM CONFIGURATION</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="form-validation" class="form-horizontal" role="form">
+                            <p style="color:blue">To get default System Configuration Settings, click on the button below and supply System's Application url. Application url is the component of the url in your address bar before "System/Configuration". For example, If the url in the address bar is <span style="color:red">http://192.168.1.1/Monitor/System/Configuration</span> then the Application url is:<span style ="color:red">http://192.168.1.1/Monitor/</span></p>
+                            <div class="panel-heading">
+                                <button type="submit" id="getBtn" class="btn btn-red btn-block" onclick="getDefaultSettings()"><i class="fa fa-cog"></i> Get Default Settings</button>
+                            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><i class="ion-ios7-monitor-outline"></i> General Configuration</h4>
+                                <hr />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Application Name" id="applicationName" autofocus="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Application URL</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Application URL" id="applicationURL" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Bank Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Bank Name" id="bankName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Printer Feeds Polling Time (minute)</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="printerFeedsPollingTime"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Use Smart Card Authentication</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="useSmartCardAuthentication"></select>
+                                </div>
+                            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><i class="ion-android-storage"></i> Database Configuration</h4>
+                                <hr />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Database Server</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Database Server" id="databaseServer" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Database Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Database Name" id="databaseName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Database User</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Database User" id="databaseUser" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Database Password</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter Database Password" id="databasePassword" />
+                                </div>
+                            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><i class="ion-email"></i> E-Mail Configuration</h4>
+                                <hr />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">SMTP Server</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter SMTP Server" id="smtpServer" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">SMTP Port</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter SMTP Port" id="smtpPort" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">SMTP Username</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter SMTP Username" id="smtpUsername" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">SMTP Password</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter SMTP Password" id="smtpPassword" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">From E-Mail Address</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter From Email Address" id="fromEmailAddress" />
+                                </div>
+                            </div>
+                            <div class="panel-heading">
+                                <button type="submit" id="addBtn" class="btn btn-red btn-block" onclick="configure()"><i class="fa fa-cog"></i> Configure</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+    </div>
+
+</body>
+</html>
