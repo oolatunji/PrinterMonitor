@@ -223,6 +223,7 @@
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\buttons.dataTables.min.css" />
     <Content Include="Content\clndr.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -308,12 +309,14 @@
     <Content Include="Scripts\bootstrapValidator.min.js" />
     <Content Include="Scripts\Branch\AddBranch.js" />
     <Content Include="Scripts\Branch\ViewBranch.js" />
+    <Content Include="Scripts\buttons.html5.min.js" />
     <Content Include="Scripts\clndr.js" />
     <Content Include="Scripts\clndr.min.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\dashboard-demo.js" />
+    <Content Include="Scripts\dataTables.buttons.min.js" />
     <Content Include="Scripts\dataTables.tableTools.js" />
     <Content Include="Scripts\DynamicMenu\Dashboard.js" />
     <Content Include="Scripts\DynamicMenu\Layout.js" />
@@ -329,6 +332,7 @@
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\Login\Layout.js" />
     <Content Include="Scripts\Login\Login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -340,6 +344,7 @@
     <Content Include="Scripts\Password\ChangePassword.js" />
     <Content Include="Scripts\Password\ForgotPassword.js" />
     <Content Include="Scripts\Password\PasswordReset.js" />
+    <Content Include="Scripts\pdfmake.min.js" />
     <Content Include="Scripts\placeholders.min.js" />
     <Content Include="Scripts\Printer\AddPrinter.js" />
     <Content Include="Scripts\Printer\Monitor.js" />
@@ -359,6 +364,7 @@
     <Content Include="Scripts\Utility\ConfigureSystem.js" />
     <Content Include="Scripts\Utility\messageBox.js" />
     <Content Include="Scripts\Utility\SystemConfiguration.js" />
+    <Content Include="Scripts\vfs_fonts.js" />
     <Content Include="Scripts\xcharts.js" />
     <Content Include="Scripts\xcharts.min.js" />
     <Content Include="Web.config">

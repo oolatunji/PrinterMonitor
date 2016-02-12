@@ -37,94 +37,83 @@ function getFunctions() {
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
 
-    if ($.fn.DataTable.isDataTable('#example')) {
+    var table = $('#example').DataTable({
 
-        var table = $('#example').DataTable();
-        table.ajax.url(settingsManager.websiteURL + 'api/FunctionAPI/RetrieveFunctions').load();
+        "processing": true,
 
-    }else {
+        "ajax": settingsManager.websiteURL + 'api/FunctionAPI/RetrieveFunctions',
 
-        var table = $('#example').DataTable({
+        "columns": [
+            {
+                "className": 'edit-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "Name" },
+            { "data": "PageLink" },
+            {
+                "data": "ID",
+                "visible": false
+            },
+        ],
 
-            "processing": true,
+        "order": [[1, "asc"]],
 
-            "ajax": settingsManager.websiteURL + 'api/FunctionAPI/RetrieveFunctions',
+        dom: 'Bfrtip',
 
-            "columns": [
-                {
-                    "className": 'edit-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
-                { "data": "Name" },
-                { "data": "PageLink" },
-                {
-                    "data": "ID",
-                    "visible": false
-                },
-            ],
-
-            "order": [[1, "asc"]],
-
-            "sDom": 'T<"clear">lrtip',
-
-            "oTableTools": {
-                "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        "sButtonText": "Copy to Clipboard",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
-                    },
-                    {
-                        "sExtends": "csv",
-                        "sButtonText": "Save to CSV",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
-                    },
-                    {
-                        "sExtends": "xls",
-                        "sButtonText": "Save for Excel",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
-                    }
-                ]
-            }
-        });
-
-        $('#example tbody').on('click', 'td.edit-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: ':visible'
                 }
             }
+        ]
+    });
 
-            if (row.child.isShown()) {
-                closeAll();
+    $('#example tbody').on('click', 'td.edit-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        function closeAll() {
+            var e = $('#example tbody tr.shown');
+            var rows = table.row(e);
+            if (tr != e) {
+                e.removeClass('shown');
+                rows.child.hide();
             }
-            else {
-                closeAll();
+        }
 
-                row.child(format(row.data())).show();
-                tr.addClass('shown');
-            }
-        });
+        if (row.child.isShown()) {
+            closeAll();
+        }
+        else {
+            closeAll();
 
-        $("#example tfoot input").on('keyup change', function () {
-            table
-                .column($(this).parent().index() + ':visible')
-                .search(this.value)
-                .draw();
-        });
-    }
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    $("#example tfoot input").on('keyup change', function () {
+        table
+            .column($(this).parent().index() + ':visible')
+            .search(this.value)
+            .draw();
+    });
 }
 
 $(document).ready(function () {

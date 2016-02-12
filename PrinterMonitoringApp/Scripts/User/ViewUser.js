@@ -137,31 +137,28 @@ function getUsers(roles, branches) {
 
             "order": [[2, "asc"]],
 
-            "sDom": 'T<"clear">lrtip',
+            dom: 'Bfrtip',
 
-            "oTableTools": {
-                "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        "sButtonText": "Copy to Clipboard",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                    },
-                    {
-                        "sExtends": "csv",
-                        "sButtonText": "Save to CSV",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                    },
-                    {
-                        "sExtends": "xls",
-                        "sButtonText": "Save for Excel",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                     }
-                ]
-            }
+                },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    }
+                }
+            ]
         });
 
         $('#example tbody').on('click', 'td.details-control', function () {

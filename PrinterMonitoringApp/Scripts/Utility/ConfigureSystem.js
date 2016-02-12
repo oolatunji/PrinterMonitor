@@ -32,6 +32,14 @@ function feedTimes() {
     return times;
 }
 
+function communicationTimes() {
+    var times = [];
+    for (var i = 5; i <= 60; i = i + 5) {
+        times.push(i);
+    }
+    return times;
+}
+
 function getSystemSettings() {
     try {
 
@@ -72,6 +80,18 @@ function getSystemSettings() {
                 });
                 $('#printerFeedsPollingTime').append(timesHtml);
 
+                $('#timeToCheckForNoCommunication').html('');
+                var communicationTimesHtml = "";
+                var communicationtimes = communicationTimes();
+                $.each(communicationtimes, function (key, value) {
+                    if (settings.GeneralSettings.TimeToCheckForNoCommunication === value) {
+                        communicationTimesHtml += '<option selected="selected" value="' + value + '">' + value + '</option>';
+                    } else {
+                        communicationTimesHtml += '<option value="' + value + '">' + value + '</option>';
+                    }
+                });
+                $('#timeToCheckForNoCommunication').append(communicationTimesHtml);
+
                 $('#fromEmailAddress').val(settings.MailSettings.FromEmailAddress);
                 $('#smtpUsername').val(settings.MailSettings.SmtpUsername);
                 $('#smtpPassword').val(settings.MailSettings.SmtpPassword);
@@ -110,6 +130,7 @@ function configureSystem() {
         var databasePassword = $('#databasePassword').val();
         var useSmartCardAuthentication = $('#useSmartCardAuthentication').val();
         var printerFeedsPollingTime = $('#printerFeedsPollingTime').val();
+        var timeToCheckForNoCommunication = $('#timeToCheckForNoCommunication').val();
 
         if (websiteUrl == "") {
             displayMessage("error", 'Kindly enter Application Url', "System Management");
@@ -119,7 +140,7 @@ function configureSystem() {
                 $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Configuring System...');
                 $("#addBtn").attr("disabled", "disabled");
 
-                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword, UseSmartCardAuthentication: useSmartCardAuthentication, PrinterFeedsPollingTime: printerFeedsPollingTime };
+                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword, UseSmartCardAuthentication: useSmartCardAuthentication, PrinterFeedsPollingTime: printerFeedsPollingTime, TimeToCheckForNoCommunication: timeToCheckForNoCommunication };
 
                 $.ajax({
                     url: websiteUrl + 'api/SystemAPI/ConfigureSystem',

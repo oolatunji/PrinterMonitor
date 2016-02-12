@@ -95,31 +95,28 @@ function getRoles(functions) {
 
             "order": [[2, "asc"]],
 
-            "sDom": 'T<"clear">lrtip',
+            dom: 'Bfrtip',
 
-            "oTableTools": {
-                "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                "aButtons": [
-                    {
-                        "sExtends": "copy",
-                        "sButtonText": "Copy to Clipboard",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
-                    },
-                    {
-                        "sExtends": "csv",
-                        "sButtonText": "Save to CSV",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
-                    },
-                    {
-                        "sExtends": "xls",
-                        "sButtonText": "Save for Excel",
-                        "oSelectorOpts": { filter: 'applied', order: 'current' },
-                        "mColumns": "visible"
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: ':visible'
                     }
-                ]
+                },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
             }
+            ]
         });
 
         $('#example tbody').on('click', 'td.details-control', function () {

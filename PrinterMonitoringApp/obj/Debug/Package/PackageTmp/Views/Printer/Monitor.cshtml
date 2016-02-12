@@ -11,6 +11,19 @@
 
         <div class="row">
             <div id="MonitorPanel">
+                <div class="panel panel-default border-top-light-orange" id="communicationPrinter">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:orange" id="communication_header">NO COMMUNICATION FROM PRINTER(S)</h3>
+                        <div class="controls pull-right">
+                            <span class="pull-right clickable"><i class="fa fa-chevron-up"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="panel-body no-padding" id="communicationPrinterPanel">
+
+                    </div>
+                </div>
+
                 <div class="panel panel-default border-top-red" id="offlinePrinter">
                     <div class="panel-heading">
                         <h3 class="panel-title" style="font-family:Calibri;font-weight:bold;color:red" id="offline_header">OFFLINE PRINTER(S)</h3>
@@ -96,6 +109,39 @@
             </div>
             <div class="modal-body text-left">
                 <table id="lowproperties" class="cell-border" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status (%)</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>Branch</th>
+                            <th>Ribbon Status</th>
+                            <th>Printed Cards</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalHeaderLightOrange" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-light-orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">No Communication From Printers</h4>
+            </div>
+            <div class="modal-body text-left">
+                <table id="nocommunicationproperties" class="cell-border" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Branch</th>

@@ -32,6 +32,7 @@ function displayPrinterFeeds(time) {
     $('#lowRibbonPrinter').hide();
     $('#offlinePrinter').hide();
     $('#onlinePrinter').hide();
+    $('#communicationPrinter').hide();
 
     getLatestUpdates();
 
@@ -53,25 +54,39 @@ function getLatestUpdates() {
         var offlinePrinterStatus = [];
         var lowRibbonPrinterStatus = [];
         var onlinePrinterStatus = [];
+        var communicationPrinterStatus = [];
 
         $.each(printerStatuses, function (key, printerStatus) {
-            if (printerStatus.status == 0) {
+            if (printerStatus.overDue == 1) {
 
-                offlinePrinterStatus.push(printerStatus);
+                communicationPrinterStatus.push(printerStatus);
 
-            } else if (printerStatus.status == 1) {
+            } else if (printerStatus.overDue == 0) {
 
-                var ribbonStatus = printerStatus.ribbonStatus.toString().length < 2 ? "0" + printerStatus.ribbonStatus : printerStatus.ribbonStatus;
-                if (printerStatus.ribbonStatus <= 400) {
-                    
-                    lowRibbonPrinterStatus.push(printerStatus);
-                }
-                else if (printerStatus.ribbonStatus > 400) {
+                if (printerStatus.status == 0) {
 
-                    onlinePrinterStatus.push(printerStatus);
+                    offlinePrinterStatus.push(printerStatus);
+
+                } else if (printerStatus.status == 1) {
+
+                    var ribbonStatus = printerStatus.ribbonStatus.toString().length < 2 ? "0" + printerStatus.ribbonStatus : printerStatus.ribbonStatus;
+                    if (printerStatus.ribbonStatus <= 400) {
+
+                        lowRibbonPrinterStatus.push(printerStatus);
+                    }
+                    else if (printerStatus.ribbonStatus > 400) {
+
+                        onlinePrinterStatus.push(printerStatus);
+                    }
                 }
             }
         });
+
+        if (communicationPrinterStatus.length == 0) {
+            $('#communicationPrinter').hide();
+        } else {
+            $('#communicationPrinter').show();
+        }
 
         if (offlinePrinterStatus.length == 0) {
             $('#offlinePrinter').hide();
@@ -95,10 +110,77 @@ function getLatestUpdates() {
         offlineData(offlinePrinterStatus);
         lowRibbonData(lowRibbonPrinterStatus);
         onlineData(onlinePrinterStatus);
+        noCommunicationData(communicationPrinterStatus);
     };
     $.connection.hub.start().done(function () {
         printerMonitoringHub.server.getLatestPrinterStatus();
     });
+}
+
+function noCommunicationData(printerData) {
+
+    try {
+        $('#communicationproperties tfoot th').each(function () {
+            var title = $('#communicationproperties tfoot th').eq($(this).index()).text();
+            if (title != "")
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+
+        if ($.fn.DataTable.isDataTable('#communicationproperties')) {
+            var table = $('#communicationproperties').DataTable();
+            table.clear().draw();
+            table.rows.add(printerData); // Add new data
+            table.columns.adjust().draw(); // R            
+        }
+        else {
+            var table = $('#communicationproperties').DataTable({
+
+                "processing": true,
+
+                "data": printerData,
+
+                "columns": [
+                    { "data": "branchName" },
+                    { "data": "ribbonStatus" },
+                    { "data": "printedCards" },
+                    { "data": "dateofReport" },
+                    {
+                        "data": "status",
+                        "visible": false
+                    },
+                ],
+
+                "order": [[1, "asc"]],
+
+                dom: 'Bfrtip',
+
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }
+                ]
+            });
+
+
+        }
+    } catch (err) {
+        alert(err);
+    }
 }
 
 function offlineData(printerData) {
@@ -136,31 +218,28 @@ function offlineData(printerData) {
 
                 "order": [[1, "asc"]],
 
-                "sDom": 'T<"clear">lrtip',
+                dom: 'Bfrtip',
 
-                "oTableTools": {
-                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                    "aButtons": [
-                        {
-                            "sExtends": "copy",
-                            "sButtonText": "Copy to Clipboard",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "csv",
-                            "sButtonText": "Save to CSV",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "xls",
-                            "sButtonText": "Save for Excel",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
                         }
-                    ]
+                    },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }
+                ]
             });
 
 
@@ -207,31 +286,28 @@ function lowRibbonData(printerData) {
 
                 "order": [[1, "asc"]],
 
-                "sDom": 'T<"clear">lrtip',
+                dom: 'Bfrtip',
 
-                "oTableTools": {
-                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                    "aButtons": [
-                        {
-                            "sExtends": "copy",
-                            "sButtonText": "Copy to Clipboard",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "csv",
-                            "sButtonText": "Save to CSV",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "xls",
-                            "sButtonText": "Save for Excel",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
                         }
-                    ]
+                    },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }
+                ]
             });
         }
     } catch (err) {
@@ -274,31 +350,28 @@ function onlineData(printerData) {
 
                 "order": [[1, "asc"]],
 
-                "sDom": 'T<"clear">lrtip',
+                dom: 'Bfrtip',
 
-                "oTableTools": {
-                    "sSwfPath": settingsManager.websiteURL + "images/copy_csv_xls_pdf.swf",
-                    "aButtons": [
-                        {
-                            "sExtends": "copy",
-                            "sButtonText": "Copy to Clipboard",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "csv",
-                            "sButtonText": "Save to CSV",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
-                        },
-                        {
-                            "sExtends": "xls",
-                            "sButtonText": "Save for Excel",
-                            "oSelectorOpts": { filter: 'applied', order: 'current' },
-                            "mColumns": "visible"
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
                         }
-                    ]
+                    },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }
+                ]
             });
 
 

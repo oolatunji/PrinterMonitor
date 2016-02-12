@@ -36,5 +36,7 @@ namespace PrinterMonitoringApp
         public bool UseSmartCardAuthentication { get; set; }
         [Required]
         public Int32 PrinterFeedsPollingTime { get; set; }
+        [Required]
+        public Int32 TimeToCheckForNoCommunication { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace PrinterMonitoringApp.Controllers
                     appSettingsSection.Settings["WebsiteUrl"].Value = systemModel.WebsiteUrl;
                     appSettingsSection.Settings["UseSmartCardAuthentication"].Value = systemModel.UseSmartCardAuthentication.ToString().ToLower();
                     appSettingsSection.Settings["PrinterFeedsPollingTime"].Value = systemModel.PrinterFeedsPollingTime.ToString();
+                    appSettingsSection.Settings["TimeToCheckForNoCommunication"].Value = systemModel.TimeToCheckForNoCommunication.ToString();
 
                     
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
@@ -124,6 +125,7 @@ namespace PrinterMonitoringApp.Controllers
             string logFilePath = appSettingsSection.Settings["LogFilePath"].Value;
             string useSmartCardAuthentication = appSettingsSection.Settings["UseSmartCardAuthentication"].Value;
             Int32 printerFeedsPollingTime = Convert.ToInt32(appSettingsSection.Settings["PrinterFeedsPollingTime"].Value);
+            Int32 timeToCheckForNoCommunication = Convert.ToInt32(appSettingsSection.Settings["TimeToCheckForNoCommunication"].Value);
 
             Object generalSettings = new
             {
@@ -132,7 +134,8 @@ namespace PrinterMonitoringApp.Controllers
                 ApplicationUrl = websiteUrl,
                 LogFilePath = logFilePath,
                 UseSmartCardAuthentication = useSmartCardAuthentication,
-                PrinterFeedsPollingTime = printerFeedsPollingTime
+                PrinterFeedsPollingTime = printerFeedsPollingTime,
+                TimeToCheckForNoCommunication = timeToCheckForNoCommunication
             };
 
             var connectionStringsSection = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
