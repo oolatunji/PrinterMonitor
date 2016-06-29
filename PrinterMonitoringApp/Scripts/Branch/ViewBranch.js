@@ -37,91 +37,93 @@ function getBranches() {
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
 
-    if ($.fn.DataTable.isDataTable('#example')) {
 
+    var table = $('#example').DataTable({
+
+        "processing": true,
+
+        "ajax": settingsManager.websiteURL + 'api/BranchAPI/RetrieveBranches',
+
+        "columns": [
+            {
+                "className": 'edit-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "Name" },
+            { "data": "Code" },
+            { "data": "Address" },
+            {
+                "data": "ID",
+                "visible": false
+            },
+        ],
+
+        "order": [[1, "asc"]],
+
+        dom: 'Bfrtip',
+
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }
+        ]
+    });
+
+    $('#example tbody').on('click', 'td.edit-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        function closeAll() {
+            var e = $('#example tbody tr.shown');
+            var rows = table.row(e);
+            if (tr != e) {
+                e.removeClass('shown');
+                rows.child.hide();
+            }
+        }
+
+        if (row.child.isShown()) {
+            closeAll();
+        }
+        else {
+            closeAll();
+
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    $("#example tfoot input").on('keyup change', function () {
+        table
+            .column($(this).parent().index() + ':visible')
+            .search(this.value)
+            .draw();
+    });
+}
+
+function refreshResult() {
+    try {
         var table = $('#example').DataTable();
-        table.ajax.url(settingsManager.websiteURL + 'api/BranchAPI/RetrieveBranches').load();
-
-    } else {
-
-        var table = $('#example').DataTable({
-
-            "processing": true,
-
-            "ajax": settingsManager.websiteURL + 'api/BranchAPI/RetrieveBranches',
-
-            "columns": [
-                {
-                    "className": 'edit-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
-                { "data": "Name" },
-                { "data": "Code" },
-                { "data": "Address" },
-                {
-                    "data": "ID",
-                    "visible": false
-                },
-            ],
-
-            "order": [[1, "asc"]],
-
-            dom: 'Bfrtip',
-
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
-                {
-                    extend: 'csvHtml5',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                }
-            ]
-        });
-
-        $('#example tbody').on('click', 'td.edit-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
-                }
-            }
-
-            if (row.child.isShown()) {
-                closeAll();
-            }
-            else {
-                closeAll();
-
-                row.child(format(row.data())).show();
-                tr.addClass('shown');
-            }
-        });
-
-        $("#example tfoot input").on('keyup change', function () {
-            table
-                .column($(this).parent().index() + ':visible')
-                .search(this.value)
-                .draw();
-        });
+        table.ajax.reload();
+    } catch (err) {
+        displayMessage("error", "Error encountered: " + err, "Branch Management");
     }
 }
 
@@ -178,7 +180,7 @@ function update() {
             cache: false,
             success: function (response) {
                 displayMessage("success", response, "Branch Management");
-                getBranches();
+                refreshResult();
                 $("#updateBtn").removeAttr("disabled");
                 $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
             },

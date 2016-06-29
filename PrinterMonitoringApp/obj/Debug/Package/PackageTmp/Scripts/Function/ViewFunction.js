@@ -116,6 +116,15 @@ function getFunctions() {
     });
 }
 
+function refreshResult() {
+    try {
+        var table = $('#example').DataTable();
+        table.ajax.reload();
+    } catch (err) {
+        displayMessage("error", "Error encountered: " + err, "Functions Management");
+    }
+}
+
 $(document).ready(function () {
     $('#dataTables-example').DataTable({
         responsive: true
@@ -164,7 +173,7 @@ function update() {
             cache: false,
             success: function (response) {
                 displayMessage("success", response, "Functions Management");
-                getFunctions();
+                refreshResult();
                 $("#updateBtn").removeAttr("disabled");            
                 $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
             },

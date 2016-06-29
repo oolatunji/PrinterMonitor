@@ -14,6 +14,8 @@ namespace PrinterMonitoringApp
             //var cors = new EnableCorsAttribute("*", "*", "*");
             //config.EnableCors(cors);
 
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

@@ -74,149 +74,151 @@ function getUsers(roles, branches) {
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
 
-    if ($.fn.DataTable.isDataTable('#example')) {
+    var table = $('#example').DataTable({
 
-        var table = $('#example').DataTable();
-        table.ajax.url(settingsManager.websiteURL + 'api/UserAPI/RetrieveUsers').load();
+        "processing": true,
 
-    } else {
-        var table = $('#example').DataTable({
+        "ajax": settingsManager.websiteURL + 'api/UserAPI/RetrieveUsers',
 
-            "processing": true,
+        "columns": [
+            {
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            {
+                "className": 'edit-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "Lastname" },
+            { "data": "Othernames" },
+            { "data": "Username" },
+            { "data": "Role.Name" },
+            { "data": "Branch.Name" },
+            { "data": "SmartCardID" },
+            {
+                "data": "Gender",
+                "visible": false
+            },
+            {
+                "data": "PhoneNumber",
+                "visible": false
+            },
+            {
+                "data": "Email",
+                "visible": false
+            },
+            {
+                "data": "CreatedOn",
+                "visible": false
+            },
+            {
+                "data": "Role.ID",
+                "visible": false
+            },
+            {
+                "data": "Branch.ID",
+                "visible": false
+            },
+            {
+                "data": "ID",
+                "visible": false
+            }
+        ],
 
-            "ajax": settingsManager.websiteURL + 'api/UserAPI/RetrieveUsers',
+        "order": [[2, "asc"]],
 
-            "columns": [
-                {
-                    "className": 'details-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
-                {
-                    "className": 'edit-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
-                { "data": "Lastname" },
-                { "data": "Othernames" },
-                { "data": "Username" },
-                { "data": "Role.Name" },
-                { "data": "Branch.Name" },
-                { "data": "SmartCardID" },
-                {
-                    "data": "Gender",
-                    "visible": false
-                },
-                {
-                    "data": "PhoneNumber",
-                    "visible": false
-                },
-                {
-                    "data": "Email",
-                    "visible": false
-                },
-                {
-                    "data": "CreatedOn",
-                    "visible": false
-                },
-                {
-                    "data": "Role.ID",
-                    "visible": false
-                },
-                {
-                    "data": "Branch.ID",
-                    "visible": false
-                },
-                {
-                    "data": "ID",
-                    "visible": false
+        dom: 'Bfrtip',
+
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                 }
-            ],
-
-            "order": [[2, "asc"]],
-
-            dom: 'Bfrtip',
-
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                    }
-                },
-                {
-                    extend: 'csvHtml5',
-                    exportOptions: {
-                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    exportOptions: {
-                        columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                    }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                 }
-            ]
-        });
-
-        $('#example tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                 }
             }
+        ]
+    });
 
-            if (row.child.isShown()) {
-                closeAll();
+    $('#example tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        function closeAll() {
+            var e = $('#example tbody tr.shown');
+            var rows = table.row(e);
+            if (tr != e) {
+                e.removeClass('shown');
+                rows.child.hide();
             }
-            else {
-                closeAll();
+        }
 
-                row.child(formatDetails(row.data())).show();
-                tr.addClass('shown');
+        if (row.child.isShown()) {
+            closeAll();
+        }
+        else {
+            closeAll();
+
+            row.child(formatDetails(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+
+    $('#example tbody').on('click', 'td.edit-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        function closeAll() {
+            var e = $('#example tbody tr.shown');
+            var rows = table.row(e);
+            if (tr != e) {
+                e.removeClass('shown');
+                rows.child.hide();
             }
-        });
+        }
 
-        $('#example tbody').on('click', 'td.edit-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
+        if (row.child.isShown()) {
+            closeAll();
+        }
+        else {
+            closeAll();
 
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
-                }
-            }
+            row.child(format(row.data(), roles, branches)).show();
+            tr.addClass('shown');
+        }
+    });
 
-            if (row.child.isShown()) {
-                closeAll();
-            }
-            else {
-                closeAll();
-
-                row.child(format(row.data(), roles, branches)).show();
-                tr.addClass('shown');
-            }
-        });
-
-        $("#example tfoot input").on('keyup change', function () {
-            table
-                .column($(this).parent().index() + ':visible')
-                .search(this.value)
-                .draw();
-        });
-    }
+    $("#example tfoot input").on('keyup change', function () {
+        table
+            .column($(this).parent().index() + ':visible')
+            .search(this.value)
+            .draw();
+    });
 };
+
+function refreshResult() {
+    try {
+        var table = $('#example').DataTable();
+        table.ajax.reload();
+    } catch (err) {
+        displayMessage("error", "Error encountered: " + err, "Functions Management");
+    }
+}
 
 $(document).ready(function () {
     $('#dataTables-example').DataTable({
@@ -342,7 +344,7 @@ function update() {
             cache: false,
             success: function (response) {
                 displayMessage("success", response, "User Management");
-                getRolesBranchAndDisplayUsers();
+                refreshResult();
                 $("#updateBtn").removeAttr("disabled");
                 $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
             },

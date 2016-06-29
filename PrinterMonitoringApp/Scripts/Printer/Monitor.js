@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    window.location.reload(true);
     getLatestUpdates();
     pollPrinterFeeds();
     if (window.sessionStorage.getItem("printerFeedsTimer") != null)

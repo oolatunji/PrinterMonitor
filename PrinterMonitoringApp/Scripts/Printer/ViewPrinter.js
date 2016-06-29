@@ -60,97 +60,90 @@ function getPrinters(branches) {
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
     });
 
-    if ($.fn.DataTable.isDataTable('#example')) {
+    var table = $('#example').DataTable({
 
-        var table = $('#example').DataTable();
-        table.ajax.url(settingsManager.websiteURL + 'api/PrinterAPI/RetrievePrinters').load();
+        "processing": true,
 
-    } else {
-        var table = $('#example').DataTable({
+        "ajax": settingsManager.websiteURL + 'api/PrinterAPI/RetrievePrinters',
 
-            "processing": true,
-
-            "ajax": settingsManager.websiteURL + 'api/PrinterAPI/RetrievePrinters',
-
-            "columns": [
-                {
-                    "className": 'edit-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
-                },
-                { "data": "PrinterSrNo" },
-                { "data": "PrinterName" },
-                { "data": "PrinterBrand" },
-                { "data": "Branch.Name" },
-                { "data": "DateofEnrollment" },
-                {
-                    "data": "Branch.ID",
-                    "visible": false
-                },
-                {
-                    "data": "ID",
-                    "visible": false
-                }
-            ],
-
-            "order": [[1, "asc"]],
-
-            dom: 'Bfrtip',
-
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
+        "columns": [
             {
-                extend: 'csvHtml5',
+                "className": 'edit-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "PrinterSrNo" },
+            { "data": "PrinterName" },
+            { "data": "PrinterBrand" },
+            { "data": "Branch.Name" },
+            { "data": "DateofEnrollment" },
+            {
+                "data": "Branch.ID",
+                "visible": false
+            },
+            {
+                "data": "ID",
+                "visible": false
+            }
+        ],
+
+        "order": [[1, "asc"]],
+
+        dom: 'Bfrtip',
+
+        buttons: [
+            {
+                extend: 'copyHtml5',
                 exportOptions: {
                     columns: ':visible'
                 }
             },
-            {
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: ':visible'
-                }
+        {
+            extend: 'csvHtml5',
+            exportOptions: {
+                columns: ':visible'
             }
-            ]
-        });
-
-        $('#example tbody').on('click', 'td.edit-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row(tr);
-
-            function closeAll() {
-                var e = $('#example tbody tr.shown');
-                var rows = table.row(e);
-                if (tr != e) {
-                    e.removeClass('shown');
-                    rows.child.hide();
-                }
+        },
+        {
+            extend: 'pdfHtml5',
+            exportOptions: {
+                columns: ':visible'
             }
+        }
+        ]
+    });
 
-            if (row.child.isShown()) {
-                closeAll();
+    $('#example tbody').on('click', 'td.edit-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        function closeAll() {
+            var e = $('#example tbody tr.shown');
+            var rows = table.row(e);
+            if (tr != e) {
+                e.removeClass('shown');
+                rows.child.hide();
             }
-            else {
-                closeAll();
+        }
 
-                row.child(format(row.data(), branches)).show();
-                tr.addClass('shown');
-            }
-        });
+        if (row.child.isShown()) {
+            closeAll();
+        }
+        else {
+            closeAll();
 
-        $("#example tfoot input").on('keyup change', function () {
-            table
-                .column($(this).parent().index() + ':visible')
-                .search(this.value)
-                .draw();
-        });
-    }
+            row.child(format(row.data(), branches)).show();
+            tr.addClass('shown');
+        }
+    });
+
+    $("#example tfoot input").on('keyup change', function () {
+        table
+            .column($(this).parent().index() + ':visible')
+            .search(this.value)
+            .draw();
+    });
 };
 
 $(document).ready(function () {
@@ -158,6 +151,15 @@ $(document).ready(function () {
         responsive: true
     });
 });
+
+function refreshResult() {
+    try {
+        var table = $('#example').DataTable();
+        table.ajax.reload();
+    } catch (err) {
+        displayMessage("error", "Error encountered: " + err, "Functions Management");
+    }
+}
 
 function format(d, branches) {
     var table = '<table width="100%" class="cell-border" cellpadding="5" cellspacing="0" border="2" style="padding-left:50px;">';
@@ -219,7 +221,7 @@ function update() {
             cache: false,
             success: function (response) {
                 displayMessage("success", response, "Printer Management");
-                getBranchAndDisplayPrinters();
+                refreshResult();
                 $("#updateBtn").removeAttr("disabled");
                 $('#updateBtn').html('<i class="fa fa-cog"></i> Update');
             },

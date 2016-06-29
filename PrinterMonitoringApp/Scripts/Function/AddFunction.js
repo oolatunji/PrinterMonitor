@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    
     var currentUrl = window.location.href;
     var user = JSON.parse(window.sessionStorage.getItem("loggedInUser"));
     var userFunctions = user.Function;
