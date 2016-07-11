@@ -21,11 +21,17 @@ namespace PrinterMonitorLibrary
             }
         }
 
-        public static List<dynamic> RetrievePrinterFeeds()
+        public static PrinterFeedModel RetrievePrinterFeeds()
         {
             try
             {
-                List<dynamic> printerFeeds = new List<dynamic>();
+                var lowRibbonThreshold = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings.Get("LowRibbonThreshold"));
+
+                var printerFeedModel = new PrinterFeedModel();
+                printerFeedModel.onlinePrinters = new List<OnlinePrinter>();
+                printerFeedModel.offlinePrinters = new List<OfflinePrinter>();
+                printerFeedModel.noCommunicationPrinters = new List<NoCommunicationPrinter>();
+                printerFeedModel.lowRibbonPrinters = new List<LowRibbonPrinter>();
 
                 List<PrinterFeed> feeds = PrinterFeedsDL.RetrievePrinterFeeds();
 
@@ -37,23 +43,84 @@ namespace PrinterMonitorLibrary
                 {
                     Printer printer = PrinterDL.GetPrinterBySerialNumber(feed.PrinterSerialNumber);
 
-                    if (printer != null)
+                    if (printer != null  && printer.ID != 0)
                     {
                         var timeSpan = today.Subtract(Convert.ToDateTime(feed.DateofReport));
 
-                        dynamic printerFeed = new System.Dynamic.ExpandoObject();
-                        printerFeed.branchName = printer.Branch.Name;
-                        printerFeed.ribbonStatus = feed.RibbonCount;
-                        printerFeed.printedCards = feed.CardPrinted;
-                        printerFeed.status = feed.Status.Equals(true) ? 1 : 0;
-                        printerFeed.dateofReport = String.Format("{0:G}", feed.DateofReport);
-                        printerFeed.overDue = timeSpan.Minutes >=timeToCheckForNoCommunication ? 1 : 0; 
+                        if (timeSpan.Minutes >= timeToCheckForNoCommunication)
+                        {
+                            var ncp = new NoCommunicationPrinter
+                            {
+                                branchName = printer.Branch.Name,
+                                ribbonCount = "NA",
+                                printedCards = "NA",
+                                dateofReport = String.Format("{0:G}", feed.DateofReport)
+                            };
 
-                        printerFeeds.Add(printerFeed);
+                            printerFeedModel.noCommunicationPrinters.Add(ncp);
+                        }
+                        else
+                        {
+                            var printerOnline = Convert.ToBoolean(feed.Status);
+                            if(!printerOnline)
+                            {
+                                var printerOffline = new OfflinePrinter
+                                {
+                                    branchName = printer.Branch.Name,
+                                    ribbonCount = "NA",
+                                    printedCards = "NA",
+                                    dateofReport = String.Format("{0:G}", feed.DateofReport)
+                                };
+
+                                printerFeedModel.offlinePrinters.Add(printerOffline);
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrEmpty(feed.PrinterType) && feed.PrinterType.Contains("Tattoo"))
+                                {
+                                    var onlinePrinters = new OnlinePrinter
+                                    {
+                                        branchName = printer.Branch.Name,
+                                        ribbonCount = "NA",
+                                        printedCards = feed.CardPrinted.ToString(),
+                                        dateofReport = String.Format("{0:G}", feed.DateofReport)
+                                    };
+
+                                    printerFeedModel.onlinePrinters.Add(onlinePrinters);
+                                }
+                                else
+                                {
+                                    if (feed.RibbonCount <= lowRibbonThreshold)
+                                    {
+                                        var lowRibbonPrinters = new LowRibbonPrinter
+                                        {
+                                            branchName = printer.Branch.Name,
+                                            ribbonCount = feed.RibbonCount.ToString(),
+                                            printedCards = feed.CardPrinted.ToString(),
+                                            dateofReport = String.Format("{0:G}", feed.DateofReport)
+                                        };
+
+                                        printerFeedModel.lowRibbonPrinters.Add(lowRibbonPrinters);
+                                    }
+                                    else
+                                    {
+                                        var onlinePrinters = new OnlinePrinter
+                                        {
+                                            branchName = printer.Branch.Name,
+                                            ribbonCount = feed.RibbonCount.ToString(),
+                                            printedCards = feed.CardPrinted.ToString(),
+                                            dateofReport = String.Format("{0:G}", feed.DateofReport)
+                                        };
+
+                                        printerFeedModel.onlinePrinters.Add(onlinePrinters);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
-                return printerFeeds;
+                return printerFeedModel;
             }
             catch (Exception ex)
             {

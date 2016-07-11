@@ -56,32 +56,19 @@ function getLatestUpdates() {
         var onlinePrinterStatus = [];
         var communicationPrinterStatus = [];
 
-        $.each(printerStatuses, function (key, printerStatus) {
-            if (printerStatus.overDue == 1) {
+        if (printerStatuses.noCommunicationPrinters.length != 0)
+            communicationPrinterStatus = printerStatuses.noCommunicationPrinters;
 
-                communicationPrinterStatus.push(printerStatus);
+        if (printerStatuses.offlinePrinters.length != 0)
+            offlinePrinterStatus = printerStatuses.offlinePrinters;
 
-            } else if (printerStatus.overDue == 0) {
+        if (printerStatuses.lowRibbonPrinters.length != 0)
+            lowRibbonPrinterStatus = printerStatuses.lowRibbonPrinters;
 
-                if (printerStatus.status == 0) {
+        if (printerStatuses.onlinePrinters.length != 0)
+            onlinePrinterStatus = printerStatuses.onlinePrinters;
 
-                    offlinePrinterStatus.push(printerStatus);
-
-                } else if (printerStatus.status == 1) {
-
-                    var ribbonStatus = printerStatus.ribbonStatus.toString().length < 2 ? "0" + printerStatus.ribbonStatus : printerStatus.ribbonStatus;
-                    if (printerStatus.ribbonStatus <= 400) {
-
-                        lowRibbonPrinterStatus.push(printerStatus);
-                    }
-                    else if (printerStatus.ribbonStatus > 400) {
-
-                        onlinePrinterStatus.push(printerStatus);
-                    }
-                }
-            }
-        });
-
+        
         if (communicationPrinterStatus.length == 0) {
             $('#communicationPrinter').hide();
         } else {
@@ -120,12 +107,7 @@ function getLatestUpdates() {
 function noCommunicationData(printerData) {
 
     try {
-        $('#communicationproperties tfoot th').each(function () {
-            var title = $('#communicationproperties tfoot th').eq($(this).index()).text();
-            if (title != "")
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-
+        
         if ($.fn.DataTable.isDataTable('#communicationproperties')) {
             var table = $('#communicationproperties').DataTable();
             table.clear().draw();
@@ -141,13 +123,9 @@ function noCommunicationData(printerData) {
 
                 "columns": [
                     { "data": "branchName" },
-                    { "data": "ribbonStatus" },
+                    { "data": "ribbonCount" },
                     { "data": "printedCards" },
-                    { "data": "dateofReport" },
-                    {
-                        "data": "status",
-                        "visible": false
-                    },
+                    { "data": "dateofReport" }
                 ],
 
                 "order": [[1, "asc"]],
@@ -186,11 +164,6 @@ function noCommunicationData(printerData) {
 function offlineData(printerData) {
 
     try {
-        $('#properties tfoot th').each(function () {
-            var title = $('#properties tfoot th').eq($(this).index()).text();
-            if (title != "")
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
 
         if ($.fn.DataTable.isDataTable('#properties')) {
             var table = $('#properties').DataTable();
@@ -207,13 +180,9 @@ function offlineData(printerData) {
 
                 "columns": [
                     { "data": "branchName" },
-                    { "data": "ribbonStatus" },
+                    { "data": "ribbonCount" },
                     { "data": "printedCards" },
-                    { "data": "dateofReport" },
-                    {
-                        "data": "status",
-                        "visible": false
-                    },
+                    { "data": "dateofReport" }
                 ],
 
                 "order": [[1, "asc"]],
@@ -254,12 +223,6 @@ function lowRibbonData(printerData) {
 
     try {
 
-        $('#lowproperties tfoot th').each(function () {
-            var title = $('#lowproperties tfoot th').eq($(this).index()).text();
-            if (title != "")
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-
         if ($.fn.DataTable.isDataTable('#lowproperties')) {
             var table = $('#lowproperties').DataTable();
             table.clear().draw();
@@ -275,13 +238,9 @@ function lowRibbonData(printerData) {
 
                 "columns": [
                     { "data": "branchName" },
-                    { "data": "ribbonStatus" },
+                    { "data": "ribbonCount" },
                     { "data": "printedCards" },
-                    { "data": "dateofReport" },
-                    {
-                        "data": "status",
-                        "visible": false
-                    },
+                    { "data": "dateofReport" }
                 ],
 
                 "order": [[1, "asc"]],
@@ -318,12 +277,7 @@ function lowRibbonData(printerData) {
 function onlineData(printerData) {
 
     try {
-        $('#highproperties tfoot th').each(function () {
-            var title = $('#highproperties tfoot th').eq($(this).index()).text();
-            if (title != "")
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-
+        
         if ($.fn.DataTable.isDataTable('#highproperties')) {
             var table = $('#highproperties').DataTable();
             table.clear().draw();
@@ -339,13 +293,9 @@ function onlineData(printerData) {
 
                 "columns": [
                     { "data": "branchName" },
-                    { "data": "ribbonStatus" },
+                    { "data": "ribbonCount" },
                     { "data": "printedCards" },
-                    { "data": "dateofReport" },
-                    {
-                        "data": "status",
-                        "visible": false
-                    },
+                    { "data": "dateofReport" }
                 ],
 
                 "order": [[1, "asc"]],

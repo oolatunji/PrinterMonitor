@@ -53,6 +53,7 @@
     <EntitySetMapping Name="PrinterFeeds">
       <EntityTypeMapping TypeName="PrinterMonitorEntities.PrinterFeed">
         <MappingFragment StoreEntitySet="PrinterFeeds">
+          <ScalarProperty Name="PrinterType" ColumnName="PrinterType" />
           <ScalarProperty Name="DateofReport" ColumnName="DateofReport" />
           <ScalarProperty Name="LatestFeed" ColumnName="LatestFeed" />
           <ScalarProperty Name="Status" ColumnName="Status" />

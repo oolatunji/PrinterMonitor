@@ -56,6 +56,7 @@
     <Property Name="Status" Type="bit" />
     <Property Name="LatestFeed" Type="bit" />
     <Property Name="DateofReport" Type="datetime" />
+    <Property Name="PrinterType" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="RoleFunctions">
     <Key>
@@ -179,6 +180,7 @@
     <Parameter Name="CardPrinted" Type="int" Mode="In" />
     <Parameter Name="Status" Type="bit" Mode="In" />
     <Parameter Name="DateofReport" Type="datetime" Mode="In" />
+    <Parameter Name="PrinterType" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="PrinterMonitorEntitiesStoreContainer">
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />

@@ -11,33 +11,19 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
         public long ID { get; set; }
-        [Required]
         public string Lastname { get; set; }
-        [Required]
         public string Othernames { get; set; }
-        [Required]
         public string Gender { get; set; }
-        [Required]
-        [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
-        [Required]
-        [RegularExpression("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", ErrorMessage="Invalid Email Address")]
         public string Email { get; set; }
-        [Required]
         public string Username { get; set; }
-        [Required]
-        [DisplayName("User Role")]
         public Nullable<long> UserRole { get; set; }
         public string HashedPassword { get; set; }
         public Nullable<long> SmartCardID { get; set; }
-        [Required]
-        [DisplayName("User Branch")]
         public Nullable<long> UserBranch { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<bool> FirstTime { get; set; }

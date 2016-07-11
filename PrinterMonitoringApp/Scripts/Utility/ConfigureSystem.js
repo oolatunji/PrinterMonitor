@@ -54,6 +54,7 @@ function getSystemSettings() {
                 $('#applicationURL').val(settings.GeneralSettings.ApplicationUrl);
                 $('#bankName').val(settings.GeneralSettings.Organization);
                 $('#applicationName').val(settings.GeneralSettings.ApplicationName);
+                $('#lowRibbonThreshold').val(settings.GeneralSettings.LowRibbonThreshold);
                 $('#logFilePath').val(settings.GeneralSettings.LogFilePath);
 
                 $('#useSmartCardAuthentication').html('');
@@ -131,6 +132,7 @@ function configureSystem() {
         var useSmartCardAuthentication = $('#useSmartCardAuthentication').val();
         var printerFeedsPollingTime = $('#printerFeedsPollingTime').val();
         var timeToCheckForNoCommunication = $('#timeToCheckForNoCommunication').val();
+        var lowRibbonThreshold = $('#lowRibbonThreshold').val();
 
         if (websiteUrl == "") {
             displayMessage("error", 'Kindly enter Application Url', "System Management");
@@ -140,7 +142,7 @@ function configureSystem() {
                 $('#addBtn').html('<i class="fa fa-spinner fa-spin"></i> Configuring System...');
                 $("#addBtn").attr("disabled", "disabled");
 
-                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword, UseSmartCardAuthentication: useSmartCardAuthentication, PrinterFeedsPollingTime: printerFeedsPollingTime, TimeToCheckForNoCommunication: timeToCheckForNoCommunication };
+                var data = { WebsiteUrl: websiteUrl, Organization: organization, ApplicationName: applicationName, FromEmailAddress: fromEmailAddress, SmtpUsername: smtpUsername, SmtpPassword: smtpPassword, SmtpHost: smtpHost, SmtpPort: smtpPort, DatabaseServer: databaseServer, DatabaseName: databaseName, DatabaseUser: databaseUser, DatabasePassword: databasePassword, UseSmartCardAuthentication: useSmartCardAuthentication, PrinterFeedsPollingTime: printerFeedsPollingTime, TimeToCheckForNoCommunication: timeToCheckForNoCommunication, LowRibbonThreshold: lowRibbonThreshold };
 
                 $.ajax({
                     url: websiteUrl + 'api/SystemAPI/ConfigureSystem',

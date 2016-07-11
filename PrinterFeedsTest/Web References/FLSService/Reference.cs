@@ -248,23 +248,24 @@ namespace PrinterFeedsTest.FLSService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SendLatestPrinterFeeds", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
+        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, string printerType) {
             object[] results = this.Invoke("SendLatestPrinterFeeds", new object[] {
                         printerUID,
                         printerSerialNumber,
                         ribbonCount,
                         noOfCardsPrinted,
-                        printerOnline});
+                        printerOnline,
+                        printerType});
             return ((Response)(results[0]));
         }
         
         /// <remarks/>
-        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline) {
-            this.SendLatestPrinterFeedsAsync(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline, null);
+        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, string printerType) {
+            this.SendLatestPrinterFeedsAsync(printerUID, printerSerialNumber, ribbonCount, noOfCardsPrinted, printerOnline, printerType, null);
         }
         
         /// <remarks/>
-        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, object userState) {
+        public void SendLatestPrinterFeedsAsync(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, string printerType, object userState) {
             if ((this.SendLatestPrinterFeedsOperationCompleted == null)) {
                 this.SendLatestPrinterFeedsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendLatestPrinterFeedsOperationCompleted);
             }
@@ -273,7 +274,8 @@ namespace PrinterFeedsTest.FLSService {
                         printerSerialNumber,
                         ribbonCount,
                         noOfCardsPrinted,
-                        printerOnline}, this.SendLatestPrinterFeedsOperationCompleted, userState);
+                        printerOnline,
+                        printerType}, this.SendLatestPrinterFeedsOperationCompleted, userState);
         }
         
         private void OnSendLatestPrinterFeedsOperationCompleted(object arg) {

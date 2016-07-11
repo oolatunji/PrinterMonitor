@@ -15,7 +15,7 @@ namespace PrinterMonitorLibrary
             {
                 using (var context = new PrinterMonitorDBEntities())
                 {
-                    context.sp_insert_printer_feeds(printerFeed.PrinterUID, printerFeed.PrinterSerialNumber, printerFeed.RibbonCount, printerFeed.CardPrinted, printerFeed.Status, printerFeed.DateofReport);
+                    context.sp_insert_printer_feeds(printerFeed.PrinterUID, printerFeed.PrinterSerialNumber, printerFeed.RibbonCount, printerFeed.CardPrinted, printerFeed.Status, printerFeed.DateofReport, printerFeed.PrinterType);
 
                 }
                 return true;

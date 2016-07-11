@@ -165,7 +165,7 @@ namespace PrinterMonitoringApp
         }
 
         [WebMethod]
-        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline)
+        public Response SendLatestPrinterFeeds(string printerUID, string printerSerialNumber, int ribbonCount, int noOfCardsPrinted, bool printerOnline, string printerType)
         {
             Response response = new Response();
             try
@@ -183,6 +183,7 @@ namespace PrinterMonitoringApp
                     printerFeed.RibbonCount = ribbonCount;
                     printerFeed.CardPrinted = noOfCardsPrinted;
                     printerFeed.Status = printerOnline;
+                    printerFeed.PrinterType = printerType;
                     printerFeed.DateofReport = System.DateTime.Now;
 
                     if (PrinterFeedsPL.Save(printerFeed))

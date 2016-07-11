@@ -11,8 +11,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Function
     {
@@ -22,10 +20,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         }
     
         public long ID { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
-        [DisplayName("Page Link")]
         public string PageLink { get; set; }
         public string Status { get; set; }
     

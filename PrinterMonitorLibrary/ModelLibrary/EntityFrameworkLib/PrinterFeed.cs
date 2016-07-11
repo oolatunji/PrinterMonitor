@@ -22,5 +22,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         public Nullable<bool> Status { get; set; }
         public Nullable<bool> LatestFeed { get; set; }
         public Nullable<System.DateTime> DateofReport { get; set; }
+        public string PrinterType { get; set; }
     }
 }

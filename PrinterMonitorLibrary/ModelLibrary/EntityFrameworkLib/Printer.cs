@@ -11,24 +11,14 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Printer
     {
         public long ID { get; set; }
         public string PrinterUID { get; set; }
-        [Required]
-        [DisplayName("Printer Serial Number")]
         public string PrinterSrNo { get; set; }
-        [Required]
-        [DisplayName("Printer Name")]
         public string PrinterName { get; set; }
-        [Required]
-        [DisplayName("Printer Brand")]
         public string PrinterBrand { get; set; }
-        [Required]
-        [DisplayName("Branch")]
         public Nullable<long> BranchID { get; set; }
         public Nullable<System.DateTime> DateofEnrollment { get; set; }
     

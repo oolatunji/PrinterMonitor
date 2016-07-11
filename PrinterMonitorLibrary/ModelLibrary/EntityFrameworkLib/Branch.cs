@@ -11,7 +11,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Branch
     {
@@ -22,10 +21,8 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         }
     
         public long ID { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Code { get; set; }
-        [Required]
         public string Address { get; set; }
     
         public virtual ICollection<Printer> Printers { get; set; }

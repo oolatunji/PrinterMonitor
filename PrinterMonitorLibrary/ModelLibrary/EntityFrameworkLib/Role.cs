@@ -11,7 +11,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Role
     {
@@ -22,7 +21,6 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         }
     
         public long ID { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Status { get; set; }
     

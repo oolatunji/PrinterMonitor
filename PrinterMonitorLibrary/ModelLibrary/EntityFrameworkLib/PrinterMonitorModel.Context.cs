@@ -37,7 +37,7 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
         public virtual DbSet<SmartCard> SmartCards { get; set; }
         public virtual DbSet<User> Users { get; set; }
     
-        public virtual ObjectResult<Nullable<decimal>> sp_insert_printer_feeds(string printerUID, string printerSerialNumber, Nullable<int> ribbonCount, Nullable<int> cardPrinted, Nullable<bool> status, Nullable<System.DateTime> dateofReport)
+        public virtual ObjectResult<Nullable<decimal>> sp_insert_printer_feeds(string printerUID, string printerSerialNumber, Nullable<int> ribbonCount, Nullable<int> cardPrinted, Nullable<bool> status, Nullable<System.DateTime> dateofReport, string printerType)
         {
             var printerUIDParameter = printerUID != null ?
                 new ObjectParameter("PrinterUID", printerUID) :
@@ -63,7 +63,11 @@ namespace PrinterMonitorLibrary.ModelLibrary.EntityFrameworkLib
                 new ObjectParameter("DateofReport", dateofReport) :
                 new ObjectParameter("DateofReport", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_insert_printer_feeds", printerUIDParameter, printerSerialNumberParameter, ribbonCountParameter, cardPrintedParameter, statusParameter, dateofReportParameter);
+            var printerTypeParameter = printerType != null ?
+                new ObjectParameter("PrinterType", printerType) :
+                new ObjectParameter("PrinterType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_insert_printer_feeds", printerUIDParameter, printerSerialNumberParameter, ribbonCountParameter, cardPrintedParameter, statusParameter, dateofReportParameter, printerTypeParameter);
         }
     }
 }

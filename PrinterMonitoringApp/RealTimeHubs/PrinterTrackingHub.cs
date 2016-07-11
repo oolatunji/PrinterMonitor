@@ -15,7 +15,7 @@ namespace PrinterMonitoringApp.RealTimeHubs
     {
         public void GetLatestPrinterStatus()
         {
-            List<dynamic> pds = PrinterFeedsPL.RetrievePrinterFeeds();
+            var pds = PrinterFeedsPL.RetrievePrinterFeeds();
 
             Clients.All.LatestPrinterStatus(pds);
         }

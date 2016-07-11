@@ -8,6 +8,7 @@
       <Parameter Name="CardPrinted" Mode="In" Type="Int32" />
       <Parameter Name="Status" Mode="In" Type="Boolean" />
       <Parameter Name="DateofReport" Mode="In" Type="DateTime" />
+      <Parameter Name="PrinterType" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Branches" EntityType="PrinterMonitorEntities.Branch" />
     <EntitySet Name="CHECK_WEBTOKEN" EntityType="PrinterMonitorEntities.CHECK_WEBTOKEN" />
@@ -103,6 +104,7 @@
     <Property Name="Status" Type="Boolean" />
     <Property Name="LatestFeed" Type="Boolean" />
     <Property Name="DateofReport" Type="DateTime" Precision="3" />
+    <Property Name="PrinterType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="RoleFunction">
     <Key>

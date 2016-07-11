@@ -41,6 +41,7 @@ namespace PrinterMonitoringApp.Controllers
                     appSettingsSection.Settings["PrinterFeedsPollingTime"].Value = systemModel.PrinterFeedsPollingTime.ToString();
                     appSettingsSection.Settings["TimeToCheckForNoCommunication"].Value = systemModel.TimeToCheckForNoCommunication.ToString();
 
+                    appSettingsSection.Settings["LowRibbonThreshold"].Value = systemModel.LowRibbonThreshold.ToString();
                     
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
                     section.ConnectionStrings["PrinterMonitorDBEntities"].ConnectionString = GetConnectionString(systemModel.DatabaseServer, systemModel.DatabaseName, systemModel.DatabaseUser, systemModel.DatabasePassword);
@@ -123,6 +124,7 @@ namespace PrinterMonitoringApp.Controllers
             string applicationName = appSettingsSection.Settings["ApplicationName"].Value;
             string websiteUrl = appSettingsSection.Settings["WebsiteUrl"].Value;
             string logFilePath = appSettingsSection.Settings["LogFilePath"].Value;
+            string lowRibbonThreshold = appSettingsSection.Settings["LowRibbonThreshold"].Value;
             string useSmartCardAuthentication = appSettingsSection.Settings["UseSmartCardAuthentication"].Value;
             Int32 printerFeedsPollingTime = Convert.ToInt32(appSettingsSection.Settings["PrinterFeedsPollingTime"].Value);
             Int32 timeToCheckForNoCommunication = Convert.ToInt32(appSettingsSection.Settings["TimeToCheckForNoCommunication"].Value);
@@ -135,7 +137,8 @@ namespace PrinterMonitoringApp.Controllers
                 LogFilePath = logFilePath,
                 UseSmartCardAuthentication = useSmartCardAuthentication,
                 PrinterFeedsPollingTime = printerFeedsPollingTime,
-                TimeToCheckForNoCommunication = timeToCheckForNoCommunication
+                TimeToCheckForNoCommunication = timeToCheckForNoCommunication,
+                LowRibbonThreshold = lowRibbonThreshold
             };
 
             var connectionStringsSection = (ConnectionStringsSection)configuration.GetSection("connectionStrings");

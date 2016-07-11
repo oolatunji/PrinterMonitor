@@ -15,6 +15,8 @@ namespace PrinterMonitoringApp
         [Required]
         public string ApplicationName { get; set; }
         [Required]
+        public Int32 LowRibbonThreshold { get; set; }
+        [Required]
         public string DatabaseServer { get; set; }
         [Required]
         public string DatabaseName { get; set; }

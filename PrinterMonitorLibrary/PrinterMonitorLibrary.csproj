@@ -65,15 +65,22 @@
     <Compile Include="ModelLibrary\EntityFrameworkLib\CHECK_WEBTOKEN.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\EnrolmentSystemUser.cs" />
     <Compile Include="ModelLibrary\EntityFrameworkLib\Function.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\LowRibbonPrinter.cs" />
+    <Compile Include="ModelLibrary\EntityFrameworkLib\NoCommunicationPrinter.cs" />
+    <Compile Include="ModelLibrary\EntityFrameworkLib\OfflinePrinter.cs" />
+    <Compile Include="ModelLibrary\EntityFrameworkLib\OnlinePrinter.cs" />
     <Compile Include="ModelLibrary\EntityFrameworkLib\Printer.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterFeed.cs">
       <DependentUpon>PrinterMonitorModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterFeedCore.cs" />
+    <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterFeedModel.cs" />
     <Compile Include="ModelLibrary\EntityFrameworkLib\PrinterMonitorModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
